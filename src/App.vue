@@ -2,12 +2,12 @@
   <div>
     <div>
       &lt;
-      Week 53
-      23 - 31 December
+      Week {{ weekOfYear }}
+      {{ startOfWeek }} - {{ endOfWeek }} {{ currentMonth }}
       &gt;
     </div>
 
-    <div v-for="(tasks, date) in week">
+    <div v-for="(tasks, date) in list">
       <p>{{ dayOfWeek(date) }}</p>
       <ul v-for="task in tasks">
         <li>
@@ -29,8 +29,20 @@ import moment from 'moment'
 export default {
   name: 'app',
   computed: {
-    week () {
+    list () {
       return groupBy(this.tasks, 'date')
+    },
+    weekOfYear () {
+      return moment().format('w')
+    },
+    startOfWeek () {
+      return moment().startOf('week').format('D')
+    },
+    endOfWeek () {
+      return moment().endOf('week').format('D')
+    },
+    currentMonth () {
+      return moment().format('MMMM')
     }
   },
   methods: {
