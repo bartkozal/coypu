@@ -7,9 +7,9 @@
       &gt;
     </div>
 
-    <div v-for="day in week">
-      <p>{{ day.date }}</p>
-      <ul v-for="task in day.tasks">
+    <div v-for="(tasks, day) in week">
+      <p>{{ day }}</p>
+      <ul v-for="task in tasks">
         <li>
           <input type="checkbox" v-model="task.completion">
           {{ task.body }}
@@ -23,61 +23,68 @@
 </template>
 
 <script>
+import groupBy from 'lodash/groupBy'
+
 export default {
   name: 'app',
+  computed: {
+    week () {
+      return groupBy(this.tasks, 'date')
+    }
+  },
   data () {
     return {
-      week: [
+      tasks: [
         {
-          date: 'Tue Dec 27 2016 18:00:00 GMT+0100 (CET)',
-          tasks: [
-            {
-              body: '13:00 - 14:00 lunch with client',
-              completion: false
-            },
-            {
-              body: '16:00 - 18:00 lunch with client',
-              completion: false
-            },
-            {
-              body: 'go to gym #everyday',
-              completion: true
-            },
-            {
-              body: 'pay tax for November',
-              completion: true,
-              note: 'phone to Joshua: +32 655 633 653. Ask about a ship container from Hong Kong'
-            },
-            {
-              body: 'take yoga lesson',
-              completion: false
-            },
-            {
-              body: 'call mum',
-              completion: false
-            }
-          ]
+          body: '13:00 - 14:00 lunch with client',
+          completion: false,
+          date: 'Tue Dec 27 2016 18:00:00 GMT+0100 (CET)'
         },
         {
-          date: 'Tue Dec 28 2016 18:00:00 GMT+0100 (CET)',
-          tasks: [
-            {
-              body: '13:00 - 14:00 lunch with bruh',
-              completion: false
-            },
-            {
-              body: 'go to gym #everyday',
-              completion: true
-            },
-            {
-              body: 'update webpage',
-              completion: true
-            },
-            {
-              body: 'buy a birthday gift for LS',
-              completion: false
-            }
-          ]
+          body: '16:00 - 18:00 lunch with client',
+          completion: false,
+          date: 'Tue Dec 27 2016 18:00:00 GMT+0100 (CET)'
+        },
+        {
+          body: 'go to gym #everyday',
+          completion: true,
+          date: 'Tue Dec 27 2016 18:00:00 GMT+0100 (CET)'
+        },
+        {
+          body: 'pay tax for November',
+          completion: true,
+          date: 'Tue Dec 27 2016 18:00:00 GMT+0100 (CET)',
+          note: 'phone to Joshua: +32 655 633 653. Ask about a ship container from Hong Kong'
+        },
+        {
+          body: 'take yoga lesson',
+          completion: false,
+          date: 'Tue Dec 27 2016 18:00:00 GMT+0100 (CET)'
+        },
+        {
+          body: 'call mum',
+          completion: false,
+          date: 'Tue Dec 27 2016 18:00:00 GMT+0100 (CET)'
+        },
+        {
+          body: '13:00 - 14:00 lunch with bruh',
+          completion: false,
+          date: 'Tue Dec 28 2016 18:00:00 GMT+0100 (CET)'
+        },
+        {
+          body: 'go to gym #everyday',
+          completion: true,
+          date: 'Tue Dec 28 2016 18:00:00 GMT+0100 (CET)'
+        },
+        {
+          body: 'update webpage',
+          completion: true,
+          date: 'Tue Dec 28 2016 18:00:00 GMT+0100 (CET)'
+        },
+        {
+          body: 'buy a birthday gift for LS',
+          completion: false,
+          date: 'Tue Dec 28 2016 18:00:00 GMT+0100 (CET)'
         }
       ]
     }
