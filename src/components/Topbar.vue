@@ -1,9 +1,9 @@
 <template>
   <div>
-    &lt;
+    <i class="icon ion-ios-arrow-back"></i>
     Week {{ weekOfYear }}
     {{ startOfWeek }} - {{ endOfWeek }} {{ currentMonth }}
-    &gt;
+    <i class="icon ion-ios-arrow-forward"></i>
   </div>
 </template>
 

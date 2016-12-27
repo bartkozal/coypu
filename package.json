@@ -13,8 +13,11 @@
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
   "dependencies": {
+    "clear-sans-webfont": "^1.0.1",
+    "ionicons": "^3.0.0",
     "lodash": "^4.17.3",
     "moment": "^2.17.1",
+    "normalize.css": "^5.0.0",
     "vue": "^2.1.0"
   },
   "devDependencies": {
