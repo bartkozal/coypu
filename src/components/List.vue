@@ -4,11 +4,8 @@
       <span class="day-name">{{ dayOfWeek(date) }}</span>
       <ul class="list">
         <li v-for="task in tasks">
-          <checkbox v-model="task.completion"></checkbox>
-          {{ task.body }}
-          <div>
-            {{ task.note }}
-          </div>
+          <task-checkbox v-model="task.completion"></task-checkbox>
+          <task-input v-model="task.body"></task-input>
         </li>
       </ul>
     </div>
@@ -18,12 +15,14 @@
 <script>
 import groupBy from 'lodash/groupBy'
 import moment from 'moment'
-import Checkbox from 'components/Checkbox'
+import TaskCheckbox from 'components/task/Checkbox'
+import TaskInput from 'components/task/Input'
 
 export default {
   name: 'list',
   components: {
-    Checkbox
+    TaskCheckbox,
+    TaskInput
   },
   computed: {
     list () {
@@ -39,25 +38,14 @@ export default {
     return {
       tasks: [
         {
-          body: '13:00 - 14:00 lunch with client',
-          completion: false,
-          date: '2016-12-27'
-        },
-        {
-          body: '16:00 - 18:00 lunch with client',
-          completion: false,
-          date: '2016-12-27'
-        },
-        {
-          body: 'go to gym #everyday',
+          body: 'go to gym',
           completion: true,
           date: '2016-12-27'
         },
         {
           body: 'pay tax for November',
           completion: true,
-          date: '2016-12-27',
-          note: 'phone to Joshua: +32 655 633 653. Ask about a ship container from Hong Kong'
+          date: '2016-12-27'
         },
         {
           body: 'take yoga lesson',
@@ -70,12 +58,12 @@ export default {
           date: '2016-12-27'
         },
         {
-          body: '13:00 - 14:00 lunch with bruh',
+          body: 'lunch with bruh',
           completion: false,
           date: '2016-12-28'
         },
         {
-          body: 'go to gym #everyday',
+          body: 'go to gym',
           completion: true,
           date: '2016-12-28'
         },

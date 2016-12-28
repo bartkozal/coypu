@@ -1,16 +1,14 @@
 <template>
-  <div>
-    <div class="checkbox" @click="checkbox = !checkbox">
-      <transition name="transition">
-        <div class="checkbox-inner" v-if="value"></div>
-      </transition>
-    </div>
+  <div class="checkbox" @click="checkbox = !checkbox">
+    <transition name="transition">
+      <div class="checkbox-inner" v-if="value"></div>
+    </transition>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'checkbox',
+    name: 'task-checkbox',
     props: {
       value: {
         type: Boolean,
@@ -31,7 +29,7 @@
 </script>
 
 <style scoped>
-  @import '../defaults.css';
+  @import '../../defaults.css';
 
   :root {
     --size: 20px;
@@ -62,6 +60,7 @@
   .transition-enter-active, .transition-leave-active {
     transition: all var(--transition-duration);
   }
+
   .transition-enter, .transition-leave-active {
     opacity: 0;
     transform: scale(.6);
