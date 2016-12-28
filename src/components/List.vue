@@ -13,7 +13,6 @@
 </template>
 
 <script>
-import groupBy from 'lodash/groupBy'
 import moment from 'moment'
 import TaskCheckbox from 'components/Task/Checkbox'
 import TaskInput from 'components/Task/Input'
@@ -26,58 +25,12 @@ export default {
   },
   computed: {
     list () {
-      return groupBy(this.tasks, 'date')
+      return this.$store.getters.allTasks
     }
   },
   methods: {
     dayOfWeek (date) {
       return moment(date).format('dddd')
-    }
-  },
-  data () {
-    return {
-      tasks: [
-        {
-          body: 'go to gym',
-          completion: true,
-          date: '2016-12-27'
-        },
-        {
-          body: 'pay tax for November',
-          completion: true,
-          date: '2016-12-27'
-        },
-        {
-          body: 'take yoga lesson',
-          completion: false,
-          date: '2016-12-27'
-        },
-        {
-          body: 'call mum',
-          completion: false,
-          date: '2016-12-27'
-        },
-        {
-          body: 'lunch with bruh',
-          completion: false,
-          date: '2016-12-28'
-        },
-        {
-          body: 'go to gym',
-          completion: true,
-          date: '2016-12-28'
-        },
-        {
-          body: 'update webpage',
-          completion: true,
-          date: '2016-12-28'
-        },
-        {
-          body: 'buy a birthday gift for LS',
-          completion: false,
-          date: '2016-12-28'
-        }
-      ]
     }
   }
 }
