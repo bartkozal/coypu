@@ -15,8 +15,8 @@
 <script>
 import groupBy from 'lodash/groupBy'
 import moment from 'moment'
-import TaskCheckbox from 'components/task/Checkbox'
-import TaskInput from 'components/task/Input'
+import TaskCheckbox from 'components/Task/Checkbox'
+import TaskInput from 'components/Task/Input'
 
 export default {
   name: 'list',

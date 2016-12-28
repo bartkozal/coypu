@@ -41,9 +41,12 @@ export default {
 
   input {
     border: 0;
+    padding: 0;
+    margin: 0;
     background-color: transparent;
     outline: 0;
     font-family: var(--font-stack);
+    line-height: var(--font-leading);
     color: lightgrey;
     width: 50%;
   }
