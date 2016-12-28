@@ -44,4 +44,12 @@ export default {
   .icon {
     color: var(--color-primary);
   }
+
+  .ion-ios-arrow-back {
+    margin-right: var(--spacing);
+  }
+
+  .ion-ios-arrow-forward {
+    margin-left: var(--spacing);
+  }
 </style>
