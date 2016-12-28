@@ -38,6 +38,7 @@ export default {
   }
 
   .week-name {
+    margin-right: calc(var(--spacing) * 2);
     color: var(--color-primary);
   }
 
