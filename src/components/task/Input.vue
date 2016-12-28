@@ -2,6 +2,7 @@
   <div>
     <div v-if="active">
       <input
+        ref="input"
         type="text"
         :value="value"
         @blur="active = false"
@@ -23,6 +24,19 @@ export default {
       required: true
     }
   },
+  computed: {
+    active: {
+      get () {
+        return this.$data._active
+      },
+      set (newValue) {
+        this.$data._active = newValue
+        if (newValue) {
+          this.$nextTick(() => this.$refs.input.focus())
+        }
+      }
+    }
+  },
   methods: {
     updateValue (newValue) {
       this.$emit('input', newValue)
@@ -30,7 +44,7 @@ export default {
   },
   data () {
     return {
-      active: false
+      _active: false
     }
   }
 }
