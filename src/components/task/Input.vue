@@ -6,7 +6,11 @@
         type="text"
         :value="value"
         @blur="active = false"
-        @input="updateValue($event.target.value)"
+        @input="updateValue"
+        @keyup.enter="addNewTask"
+        @keyup.up="focusPreviousTask"
+        @keyup.down="focusNextTask"
+        @keydown.delete="removeTask"
       />
     </div>
     <div v-else @click="active = true">
@@ -16,6 +20,8 @@
 </template>
 
 <script>
+import trim from 'lodash/trim'
+
 export default {
   name: 'task-input',
   props: {
@@ -38,8 +44,21 @@ export default {
     }
   },
   methods: {
-    updateValue (newValue) {
-      this.$emit('input', newValue)
+    updateValue (event) {
+      this.$emit('input', event.target.value)
+    },
+    addNewTask () {
+      console.debug('Add new task')
+    },
+    focusPreviousTask () {
+      console.debug('Focus previous task')
+    },
+    focusNextTask () {
+      console.debug('Focus next task')
+    },
+    removeTask (event) {
+      const isInputEmpty = trim(event.target.value).length === 0
+      if (isInputEmpty) { console.debug('Remove task') }
     }
   },
   data () {
@@ -56,12 +75,9 @@ export default {
   input {
     border: 0;
     padding: 0;
-    margin: 0;
     background-color: transparent;
     outline: 0;
     font-family: var(--font-stack);
     line-height: var(--font-leading);
-    color: lightgrey;
-    width: 50%;
   }
 </style>
