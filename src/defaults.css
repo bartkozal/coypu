@@ -1,0 +1,13 @@
+  :root {
+    --font-stack: 'Clear Sans', sans-serif;
+    --font-leading: 1.4;
+    --font-base: 18px;
+    --font-large: 24px;
+
+    --spacing: 16px;
+
+    --color-primary: #ea7362;
+    --color-secondary: #b74242;
+
+    --transition-duration: .2s;
+  }

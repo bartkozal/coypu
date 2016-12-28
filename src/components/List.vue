@@ -1,10 +1,10 @@
 <template>
   <div>
     <div v-for="(tasks, date) in list">
-      <p>{{ dayOfWeek(date) }}</p>
-      <ul v-for="task in tasks">
-        <li>
-          <input type="checkbox" v-model="task.completion">
+      <span class="day-name">{{ dayOfWeek(date) }}</span>
+      <ul class="list">
+        <li v-for="task in tasks">
+          <checkbox v-model="task.completion"></checkbox>
           {{ task.body }}
           <div>
             {{ task.note }}
@@ -18,9 +18,13 @@
 <script>
 import groupBy from 'lodash/groupBy'
 import moment from 'moment'
+import Checkbox from 'components/Checkbox'
 
 export default {
   name: 'list',
+  components: {
+    Checkbox
+  },
   computed: {
     list () {
       return groupBy(this.tasks, 'date')
@@ -91,6 +95,19 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
+  @import '../defaults.css';
 
+  .list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .list > li + li {
+    margin-top: 6px;
+  }
+
+  .day-name {
+    font-size: var(--font-large);
+  }
 </style>

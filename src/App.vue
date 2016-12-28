@@ -23,7 +23,14 @@ export default {
 <style src="ionicons/dist/css/ionicons.css"/>
 
 <style>
+  @import 'defaults.css';
+
   body {
-    font-family: 'Clear Sans', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    padding: var(--spacing);
+    font-family: var(--font-stack);
+    font-size: var(--font-base);
+    line-height: var(--font-leading);
   }
 </style>
