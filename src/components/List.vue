@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="(tasks, date) in list">
+    <div v-for="(tasks, date) in week">
       <span class="day-name">{{ dayOfWeek(date) }}</span>
       <ul class="list">
         <li v-for="task in tasks">
@@ -24,13 +24,13 @@ export default {
     TaskInput
   },
   computed: {
-    list () {
-      return this.$store.getters.allTasks
+    week () {
+      return this.$store.getters.currentWeek
     }
   },
   methods: {
     dayOfWeek (date) {
-      return moment(date).format('dddd')
+      return moment(date).format('dddd - Do')
     }
   }
 }
