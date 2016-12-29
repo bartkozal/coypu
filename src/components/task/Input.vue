@@ -5,13 +5,13 @@
         ref="input"
         type="text"
         :value="value"
-        @blur="active = false"
         @input="updateValue"
-        @keyup.enter="addNewTask"
+        @blur="updateTask"
+        @keyup.enter="createTask"
         @keyup.up="focusPreviousTask"
         @keyup.down="focusNextTask"
         @keydown.delete="removeTask"
-      />
+      >
     </div>
     <div v-else @click="active = true">
       {{ value }}
@@ -30,6 +30,9 @@ export default {
       required: true
     }
   },
+  created () {
+    this.lastValue = this.value
+  },
   computed: {
     active: {
       get () {
@@ -47,22 +50,33 @@ export default {
     updateValue (event) {
       this.$emit('input', event.target.value)
     },
-    addNewTask () {
-      console.debug('Add new task')
+    updateTask () {
+      const isValueNew = this.value !== this.lastValue
+      const isEmpty = trim(this.value).length === 0
+
+      if (isValueNew && !isEmpty) {
+        this.$emit('update-task', this.value)
+        this.lastValue = this.value
+      }
+      this.active = false
+    },
+    createTask () {
+      this.$emit('create-task')
     },
     focusPreviousTask () {
-      console.debug('Focus previous task')
+      this.$emit('focus-previous-task')
     },
     focusNextTask () {
-      console.debug('Focus next task')
+      this.$emit('focus-next-task')
     },
-    removeTask (event) {
-      const isInputEmpty = trim(event.target.value).length === 0
-      if (isInputEmpty) { console.debug('Remove task') }
+    removeTask () {
+      const isEmpty = trim(this.value).length === 0
+      if (isEmpty) { this.$emit('remove-task') }
     }
   },
   data () {
     return {
+      lastValue: '',
       _active: false
     }
   }
@@ -79,5 +93,6 @@ export default {
     outline: 0;
     font-family: var(--font-stack);
     line-height: var(--font-leading);
+
   }
 </style>

@@ -4,8 +4,7 @@
       <span class="day-name">{{ dayOfWeek(date) }}</span>
       <ul class="list">
         <li v-for="task in tasks">
-          <task-checkbox v-model="task.completion"></task-checkbox>
-          <task-input v-model="task.body"></task-input>
+          <task :task="task" :date="date"></task>
         </li>
       </ul>
     </div>
@@ -14,14 +13,12 @@
 
 <script>
 import moment from 'moment'
-import TaskCheckbox from 'components/Task/Checkbox'
-import TaskInput from 'components/Task/Input'
+import Task from 'components/Task'
 
 export default {
-  name: 'list',
+  name: 'week',
   components: {
-    TaskCheckbox,
-    TaskInput
+    Task
   },
   computed: {
     week () {
