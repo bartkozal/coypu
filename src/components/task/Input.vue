@@ -10,10 +10,9 @@
         @keyup.enter="createTask"
         @keyup.up="focusPreviousTask"
         @keyup.down="focusNextTask"
-        @keydown.delete="removeTask"
-      >
+        @keydown.delete="removeTask">
     </div>
-    <div v-else @click="active = true">
+    <div v-else @click="focusTask">
       {{ value }}
     </div>
   </div>
@@ -62,6 +61,10 @@ export default {
     },
     createTask () {
       this.$emit('create-task')
+    },
+    focusTask () {
+      this.$emit('focus-task')
+      this.active = true
     },
     focusPreviousTask () {
       this.$emit('focus-previous-task')

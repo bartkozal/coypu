@@ -16,7 +16,7 @@ import moment from 'moment'
 import Task from 'components/Task'
 
 export default {
-  name: 'week',
+  name: 'week-list',
   components: {
     Task
   },
