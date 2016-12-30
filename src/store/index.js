@@ -1,12 +1,13 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-import groupBy from 'lodash/groupby'
+import groupBy from 'lodash/groupBy'
+import isUndefined from 'lodash/isUndefined'
 
 Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    activeTaskIndex: null,
+    activeTask: null,
     tasks: [
       {
         body: 'go to gym',
@@ -52,26 +53,46 @@ export default new Vuex.Store({
   },
   getters: {
     weekList: state => { return groupBy(state.tasks, 'date') },
-    indexOfTask: state => task => { return state.tasks.indexOf(task) },
-    tasksCount: state => { return state.tasks.length }
+    activeTask: state => { return state.activeTask }
   },
   mutations: {
-    setActiveTask (state, index) {
-      state.activeTaskIndex = index
-    },
-    updateActiveTaskBody (state, body) {
-      state.tasks[state.activeTaskIndex].body = body
-    },
-    createTaskNextToActiveTask (state) {
-      const nextIndex = state.activeTaskIndex + 1
-      state.tasks.splice(nextIndex, 0, {
-        body: '...',
+    createTask (state) {
+      const index = state.tasks.indexOf(state.activeTask)
+      state.tasks.splice(index + 1, 0, {
+        body: '',
         completion: false,
-        date: state.tasks[state.activeTaskIndex].date
+        date: state.activeTask.date
       })
+
+      state.activeTask = state.tasks[index + 1]
     },
-    removeActiveTask (state) {
-      state.tasks.splice(state.activeTaskIndex, 1)
+    updateTaskCompletion ({ tasks }, { task, completion }) {
+      tasks[tasks.indexOf(task)].completion = completion
+    },
+    updateTaskBody ({ activeTask }, body) {
+      activeTask.body = body
+    },
+    removeTask (state) {
+      const index = state.tasks.indexOf(state.activeTask)
+      const task = state.tasks[index - 1]
+
+      state.tasks.splice(index, 1)
+      if (!isUndefined(task)) { state.activeTask = task }
+    },
+    focusTask (state, task) {
+      state.activeTask = task
+    },
+    focusPreviousTask (state) {
+      const index = state.tasks.indexOf(state.activeTask)
+      const task = state.tasks[index - 1]
+
+      if (!isUndefined(task)) { state.activeTask = task }
+    },
+    focusNextTask (state) {
+      const index = state.tasks.indexOf(state.activeTask)
+      const task = state.tasks[index + 1]
+
+      if (!isUndefined(task)) { state.activeTask = task }
     }
   }
 })

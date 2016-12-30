@@ -1,7 +1,7 @@
 <template>
-  <div class="checkbox" @click="checkbox = !checkbox">
+  <div class="checkbox" @click="completion = !completion">
     <transition name="transition">
-      <div class="checkbox-inner" v-if="value"></div>
+      <div class="checkbox-inner" v-if="completion"></div>
     </transition>
   </div>
 </template>
@@ -10,18 +10,17 @@
   export default {
     name: 'task-checkbox',
     props: {
-      value: {
-        type: Boolean,
+      task: {
         required: true
       }
     },
     computed: {
-      checkbox: {
+      completion: {
         get () {
-          return this.value
+          return this.task.completion
         },
         set (newValue) {
-          this.$emit('input', newValue)
+          this.$store.commit('updateTaskCompletion', { task: this.task, completion: newValue })
         }
       }
     }

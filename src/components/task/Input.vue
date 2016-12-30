@@ -2,18 +2,17 @@
   <div>
     <div v-if="active">
       <input
-        ref="input"
         type="text"
-        :value="value"
-        @input="updateValue"
-        @blur="updateTask"
+        ref="input"
+        :value="task.body"
+        @input="updateTask"
         @keyup.enter="createTask"
         @keyup.up="focusPreviousTask"
         @keyup.down="focusNextTask"
         @keydown.delete="removeTask">
     </div>
     <div v-else @click="focusTask">
-      {{ value }}
+      {{ task.body }}
     </div>
   </div>
 </template>
@@ -24,63 +23,42 @@ import trim from 'lodash/trim'
 export default {
   name: 'task-input',
   props: {
-    value: {
-      type: String,
+    task: {
       required: true
     }
   },
-  created () {
-    this.lastValue = this.value
-  },
   computed: {
-    active: {
-      get () {
-        return this.$data._active
-      },
-      set (newValue) {
-        this.$data._active = newValue
-        if (newValue) {
-          this.$nextTick(() => this.$refs.input.focus())
-        }
-      }
+    activeTask () {
+      return this.$store.getters.activeTask
+    },
+    active () {
+      const isActive = this.activeTask === this.task
+      if (isActive) { this.$nextTick(() => this.$refs.input.focus()) }
+      return isActive
     }
   },
   methods: {
-    updateValue (event) {
-      this.$emit('input', event.target.value)
-    },
-    updateTask () {
-      const isValueNew = this.value !== this.lastValue
-      const isEmpty = trim(this.value).length === 0
-
-      if (isValueNew && !isEmpty) {
-        this.$emit('update-task', this.value)
-        this.lastValue = this.value
-      }
-      this.active = false
+    updateTask (event) {
+      this.$store.commit('updateTaskBody', event.target.value)
     },
     createTask () {
-      this.$emit('create-task')
+      this.$store.commit('createTask')
+    },
+    removeTask (event) {
+      const isEmpty = trim(this.task.body).length === 0
+      if (isEmpty) {
+        event.preventDefault()
+        this.$store.commit('removeTask')
+      }
     },
     focusTask () {
-      this.$emit('focus-task')
-      this.active = true
+      this.$store.commit('focusTask', this.task)
     },
     focusPreviousTask () {
-      this.$emit('focus-previous-task')
+      this.$store.commit('focusPreviousTask')
     },
     focusNextTask () {
-      this.$emit('focus-next-task')
-    },
-    removeTask () {
-      const isEmpty = trim(this.value).length === 0
-      if (isEmpty) { this.$emit('remove-task') }
-    }
-  },
-  data () {
-    return {
-      lastValue: '',
-      _active: false
+      this.$store.commit('focusNextTask')
     }
   }
 }

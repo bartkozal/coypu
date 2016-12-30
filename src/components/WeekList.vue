@@ -4,10 +4,7 @@
       <span>{{ dayOfWeek(date) }}</span>
       <ul>
         <li v-for="task in tasks">
-          <task
-            :task="task"
-            v-on:focus="focus">
-          </task>
+          <task :task="task"></task>
         </li>
       </ul>
     </div>
@@ -27,9 +24,6 @@ export default {
   computed: {
     weekList () {
       return this.$store.getters.weekList
-    },
-    tasksCount () {
-      return this.$store.getters.tasksCount
     }
   },
   methods: {
