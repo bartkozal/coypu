@@ -17,6 +17,7 @@
 import TaskCheckbox from 'components/Task/Checkbox'
 import TaskInput from 'components/Task/Input'
 
+// TODO: checkbox - check/uncheck
 export default {
   name: 'task',
   props: {
@@ -28,21 +29,19 @@ export default {
     }
   },
   methods: {
-    update (value) {
-      // TODO
-      console.debug(`Update with ${value}`)
+    focus () {
+      this.$store.commit('setActiveTask', this.task)
+    },
+    update (newValue) {
+      this.$store.commit('updateActiveTaskBody', newValue)
     },
     create () {
-      // TODO
-      console.debug(`Create`)
+      this.$store.commit('createTaskNextToActiveTask')
+      this.focusNext()
     },
     remove () {
-      // TODO
-      console.debug(`Remove`)
-    },
-    focus () {
-      // TODO
-      console.debug(`Focus`)
+      this.$store.commit('removeActiveTask')
+      this.focusPrevious()
     },
     focusPrevious () {
       // TODO

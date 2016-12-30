@@ -57,11 +57,13 @@
     background-color: var(--color-secondary);
   }
 
-  .transition-enter-active, .transition-leave-active {
+  .transition-enter-active,
+  .transition-leave-active {
     transition: all var(--transition-duration);
   }
 
-  .transition-enter, .transition-leave-active {
+  .transition-enter,
+  .transition-leave-active {
     opacity: 0;
     transform: scale(.6);
   }

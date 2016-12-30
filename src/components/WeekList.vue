@@ -1,8 +1,8 @@
 <template>
   <div>
     <div v-for="(tasks, date) in week">
-      <span class="day-name">{{ dayOfWeek(date) }}</span>
-      <ul class="list">
+      <span>{{ dayOfWeek(date) }}</span>
+      <ul>
         <li v-for="task in tasks">
           <task :task="task" :date="date"></task>
         </li>
@@ -36,16 +36,16 @@ export default {
 <style scoped>
   @import '../defaults.css';
 
-  .list {
+  span {
+    font-size: var(--font-large);
+  }
+
+  ul {
     list-style: none;
     padding-left: 0;
   }
 
-  .list > li + li {
+  ul > li + li {
     margin-top: 6px;
-  }
-
-  .day-name {
-    font-size: var(--font-large);
   }
 </style>

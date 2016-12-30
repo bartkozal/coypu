@@ -1,7 +1,7 @@
 <template>
-  <div class="container">
+  <div>
     <i class="icon ion-ios-arrow-back"></i>
-    <span class="week-name">Week {{ weekOfYear }}</span>
+    <span>Week {{ weekOfYear }}</span>
     {{ startOfWeek }} - {{ endOfWeek }} {{ currentMonth }}
     <i class="icon ion-ios-arrow-forward"></i>
   </div>
@@ -32,12 +32,12 @@ export default {
 <style scoped>
   @import '../defaults.css';
 
-  .container {
+  div {
     font-size: var(--font-large);
     margin-bottom: var(--spacing);
   }
 
-  .week-name {
+  span {
     margin-right: calc(var(--spacing) * 2);
     color: var(--color-primary);
   }

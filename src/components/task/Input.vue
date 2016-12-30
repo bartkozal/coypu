@@ -86,7 +86,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
   @import '../../defaults.css';
 
   input {
@@ -96,6 +96,5 @@ export default {
     outline: 0;
     font-family: var(--font-stack);
     line-height: var(--font-leading);
-
   }
 </style>
