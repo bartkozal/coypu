@@ -53,7 +53,7 @@
     height: calc(var(--size) - 4px);
     display: block;
     border-radius: 50%;
-    background-color: var(--color-secondary);
+    background-color: var(--color-primary);
   }
 
   .transition-enter-active,
