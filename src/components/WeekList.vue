@@ -1,10 +1,13 @@
 <template>
   <div>
-    <div v-for="(tasks, date) in week">
+    <div v-for="(tasks, date) in weekList">
       <span>{{ dayOfWeek(date) }}</span>
       <ul>
         <li v-for="task in tasks">
-          <task :task="task" :date="date"></task>
+          <task
+            :task="task"
+            v-on:focus="focus">
+          </task>
         </li>
       </ul>
     </div>
@@ -13,6 +16,7 @@
 
 <script>
 import moment from 'moment'
+import inRange from 'lodash/inrange'
 import Task from 'components/Task'
 
 export default {
@@ -21,13 +25,22 @@ export default {
     Task
   },
   computed: {
-    week () {
-      return this.$store.getters.currentWeek
+    weekList () {
+      return this.$store.getters.weekList
+    },
+    tasksCount () {
+      return this.$store.getters.tasksCount
     }
   },
   methods: {
     dayOfWeek (date) {
       return moment(date).format('dddd - Do')
+    },
+    focus (index) {
+      if (inRange(index, 0, this.tasksCount)) {
+        // this -> Task -> TaskInput -> focus input
+        this.$children[index].$children[1].focusTask()
+      }
     }
   }
 }

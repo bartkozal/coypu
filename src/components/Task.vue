@@ -23,14 +23,16 @@ export default {
   props: {
     task: {
       required: true
-    },
-    date: {
-      required: true
+    }
+  },
+  computed: {
+    index () {
+      return this.$store.getters.indexOfTask(this.task)
     }
   },
   methods: {
     focus () {
-      this.$store.commit('setActiveTask', this.task)
+      this.$store.commit('setActiveTask', this.index)
     },
     update (newValue) {
       this.$store.commit('updateActiveTaskBody', newValue)
@@ -44,12 +46,10 @@ export default {
       this.focusPrevious()
     },
     focusPrevious () {
-      // TODO
-      console.debug(`Focus previous`)
+      this.$emit('focus', this.index - 1)
     },
     focusNext () {
-      // TODO
-      console.debug(`Focus next`)
+      this.$emit('focus', this.index + 1)
     }
   },
   components: {

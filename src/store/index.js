@@ -7,7 +7,7 @@ Vue.use(Vuex)
 export default new Vuex.Store({
   state: {
     activeTaskIndex: null,
-    currentWeek: [
+    tasks: [
       {
         body: 'go to gym',
         completion: true,
@@ -51,25 +51,27 @@ export default new Vuex.Store({
     ]
   },
   getters: {
-    currentWeek: state => { return groupBy(state.currentWeek, 'date') }
+    weekList: state => { return groupBy(state.tasks, 'date') },
+    indexOfTask: state => task => { return state.tasks.indexOf(task) },
+    tasksCount: state => { return state.tasks.length }
   },
   mutations: {
-    setActiveTask (state, task) {
-      state.activeTaskIndex = state.currentWeek.indexOf(task)
+    setActiveTask (state, index) {
+      state.activeTaskIndex = index
     },
     updateActiveTaskBody (state, body) {
-      state.currentWeek[state.activeTaskIndex].body = body
+      state.tasks[state.activeTaskIndex].body = body
     },
     createTaskNextToActiveTask (state) {
       const nextIndex = state.activeTaskIndex + 1
-      state.currentWeek.splice(nextIndex, 0, {
+      state.tasks.splice(nextIndex, 0, {
         body: '...',
         completion: false,
-        date: state.currentWeek[state.activeTaskIndex].date
+        date: state.tasks[state.activeTaskIndex].date
       })
     },
     removeActiveTask (state) {
-      state.currentWeek.splice(state.activeTaskIndex, 1)
+      state.tasks.splice(state.activeTaskIndex, 1)
     }
   }
 })
