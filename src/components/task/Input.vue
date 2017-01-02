@@ -1,17 +1,19 @@
 <template>
-  <div>
-    <div v-if="active">
-      <input
-        type="text"
-        ref="input"
+  <div class="task-input">
+    <div v-show="active">
+      <textarea
+        rows="1"
+        ref="textarea"
         :value="task.body"
+        @focus="autosizeTextarea"
         @input="updateTask"
         @keyup.enter="createTask"
         @keyup.up="focusPreviousTask"
         @keyup.down="focusNextTask"
         @keydown.delete="removeTask">
+      </textarea>
     </div>
-    <div v-else @click="focusTask">
+    <div class="textarea-mock" v-show="!active" @click="focusTask">
       {{ task.body }}
     </div>
   </div>
@@ -19,9 +21,13 @@
 
 <script>
 import trim from 'lodash/trim'
+import autosize from 'autosize'
 
 export default {
   name: 'task-input',
+  mounted () {
+    autosize(this.$refs.textarea)
+  },
   props: {
     task: {
       required: true
@@ -33,11 +39,14 @@ export default {
     },
     active () {
       const isActive = this.activeTask === this.task
-      if (isActive) { this.$nextTick(() => this.$refs.input.focus()) }
+      if (isActive) { this.$nextTick(() => this.$refs.textarea.focus()) }
       return isActive
     }
   },
   methods: {
+    autosizeTextarea () {
+      autosize.update(this.$refs.textarea)
+    },
     updateTask (event) {
       this.$store.commit('updateTaskBody', event.target.value)
     },
@@ -67,12 +76,27 @@ export default {
 <style scoped>
   @import '../../defaults.css';
 
-  input {
+  .task-input {
+    flex-grow: 1;
+  }
+
+  .textarea-mock {
+    width: 100%;
+    cursor: text;
+    min-height: 25px; /* rounded calc(var(--font-base) * var(--font-leading)) */
+  }
+
+  textarea {
+    display: block;
     border: 0;
     padding: 0;
+    margin: 0;
     background-color: transparent;
     outline: 0;
     font-family: var(--font-stack);
     line-height: var(--font-leading);
+    width: 100%;
+    resize: none;
+    overflow: auto;
   }
 </style>

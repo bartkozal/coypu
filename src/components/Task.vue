@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="task">
     <task-checkbox :task="task"></task-checkbox>
     <task-input :task="task"></task-input>
   </div>
@@ -22,3 +22,12 @@ export default {
   }
 }
 </script>
+
+<style scoped>
+  @import '../defaults.css';
+
+  .task {
+    display: flex;
+    align-items: flex-start;
+  }
+</style>

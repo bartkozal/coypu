@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="topbar">
     <i class="icon ion-ios-arrow-back"></i>
-    <span>Week {{ weekOfYear }}</span>
-    {{ startOfWeek }} - {{ endOfWeek }} {{ currentMonth }}
+    <div class="topbar-week">Week {{ weekOfYear }}</div>
+    <div>{{ startOfWeek }} - {{ endOfWeek }} {{ currentMonth }}</div>
     <i class="icon ion-ios-arrow-forward"></i>
   </div>
 </template>
@@ -32,25 +32,28 @@ export default {
 <style scoped>
   @import '../defaults.css';
 
-  div {
+  .topbar {
     font-size: var(--font-large);
     margin-bottom: var(--spacing);
+    display: flex;
+    align-items: flex-end;
   }
 
-  span {
-    margin-right: calc(var(--spacing) * 2);
+  .topbar-week {
+    flex-grow: 1;
     color: var(--color-primary);
   }
 
   .icon {
     color: var(--color-primary);
+    font-size: calc(var(--font-large) - 2px);
   }
 
   .ion-ios-arrow-back {
-    margin-right: var(--spacing);
+    padding-right: var(--spacing);
   }
 
   .ion-ios-arrow-forward {
-    margin-left: var(--spacing);
+    padding-left: var(--spacing);
   }
 </style>

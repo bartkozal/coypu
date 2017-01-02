@@ -1,7 +1,7 @@
 <template>
-  <div class="checkbox" @click="completion = !completion">
+  <div class="task-checkbox" @click="completion = !completion">
     <transition name="transition">
-      <div class="checkbox-inner" v-if="completion"></div>
+      <div class="task-checkbox-inner" v-if="completion"></div>
     </transition>
   </div>
 </template>
@@ -34,18 +34,17 @@
     --size: 20px;
   }
 
-  .checkbox {
+  .task-checkbox {
     position: relative;
-    width: var(--size);
+    min-width: var(--size);
     height: var(--size);
-    display: block;
-    float: left;
+    margin-top: 2px;
     margin-right: var(--spacing);
     border-radius: 50%;
     border: 1px solid var(--color-secondary);
   }
 
-  .checkbox-inner {
+  .task-checkbox-inner {
     position: absolute;
     top: 2px;
     left: 2px;

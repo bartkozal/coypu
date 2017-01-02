@@ -52,7 +52,7 @@ export default {
     padding-left: 0;
   }
 
-  ul > li + li {
-    margin-top: 6px;
+  li + li {
+    margin-top: calc(var(--spacing) / 2);
   }
 </style>
