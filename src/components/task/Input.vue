@@ -5,7 +5,7 @@
         rows="1"
         ref="textarea"
         :value="task.body"
-        @focus="autosizeTextarea"
+        @focus="focus"
         @input="updateTask"
         @keydown.enter.prevent="createTask"
         @keydown.up.prevent="focusPreviousTask"
@@ -44,8 +44,10 @@ export default {
     }
   },
   methods: {
-    autosizeTextarea () {
-      autosize.update(this.$refs.textarea)
+    focus () {
+      const el = this.$refs.textarea
+      autosize.update(el)
+      el.setSelectionRange(el.value.length, el.value.length)
     },
     updateTask (event) {
       this.$store.commit('updateTaskBody', event.target.value)
