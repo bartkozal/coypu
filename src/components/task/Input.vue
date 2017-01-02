@@ -7,9 +7,9 @@
         :value="task.body"
         @focus="autosizeTextarea"
         @input="updateTask"
-        @keyup.enter="createTask"
-        @keyup.up="focusPreviousTask"
-        @keyup.down="focusNextTask"
+        @keydown.enter.prevent="createTask"
+        @keydown.up.prevent="focusPreviousTask"
+        @keydown.down.prevent="focusNextTask"
         @keydown.delete="removeTask">
       </textarea>
     </div>
