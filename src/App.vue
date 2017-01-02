@@ -1,19 +1,19 @@
 <template>
   <div>
     <topbar></topbar>
-    <week-list></week-list>
+    <list></list>
   </div>
 </template>
 
 <script>
 import Topbar from 'components/Topbar'
-import WeekList from 'components/WeekList'
+import List from 'components/List'
 
 export default {
   name: 'app',
   components: {
     Topbar,
-    WeekList
+    List
   }
 }
 </script>

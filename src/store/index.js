@@ -52,7 +52,7 @@ export default new Vuex.Store({
     ]
   },
   getters: {
-    weekList: state => { return groupBy(state.tasks, 'date') },
+    list: state => { return groupBy(state.tasks, 'date') },
     activeTask: state => { return state.activeTask }
   },
   mutations: {

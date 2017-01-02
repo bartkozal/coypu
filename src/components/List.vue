@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="(tasks, date) in weekList">
+    <div v-for="(tasks, date) in list">
       <span>{{ dayOfWeek(date) }}</span>
       <ul>
         <li v-for="task in tasks">
@@ -17,13 +17,13 @@ import inRange from 'lodash/inrange'
 import Task from 'components/Task'
 
 export default {
-  name: 'week-list',
+  name: 'list',
   components: {
     Task
   },
   computed: {
-    weekList () {
-      return this.$store.getters.weekList
+    list () {
+      return this.$store.getters.list
     }
   },
   methods: {
