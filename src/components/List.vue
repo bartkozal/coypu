@@ -13,7 +13,6 @@
 
 <script>
 import moment from 'moment'
-import inRange from 'lodash/inrange'
 import Task from 'components/Task'
 
 export default {
@@ -29,12 +28,6 @@ export default {
   methods: {
     dayOfWeek (date) {
       return moment(date).format('dddd - Do')
-    },
-    focus (index) {
-      if (inRange(index, 0, this.tasksCount)) {
-        // this -> Task -> TaskInput -> focus input
-        this.$children[index].$children[1].focusTask()
-      }
     }
   }
 }

@@ -8,12 +8,12 @@
         @focus="focus"
         @input="updateTask"
         @keydown.enter.prevent="createTask"
-        @keydown.up.prevent="focusPreviousTask"
-        @keydown.down.prevent="focusNextTask"
+        @keydown.up.prevent="selectPreviousTask"
+        @keydown.down.prevent="selectNextTask"
         @keydown.delete="removeTask">
       </textarea>
     </div>
-    <div class="textarea-mock" v-show="!active" @click="focusTask">
+    <div class="textarea-mock" v-show="!active" @click="selectTask">
       {{ task.body }}
     </div>
   </div>
@@ -62,14 +62,14 @@ export default {
         this.$store.commit('removeTask')
       }
     },
-    focusTask () {
-      this.$store.commit('focusTask', this.task)
+    selectTask () {
+      this.$store.commit('selectTask', this.task)
     },
-    focusPreviousTask () {
-      this.$store.commit('focusPreviousTask')
+    selectPreviousTask () {
+      this.$store.commit('selectPreviousTask')
     },
-    focusNextTask () {
-      this.$store.commit('focusNextTask')
+    selectNextTask () {
+      this.$store.commit('selectNextTask')
     }
   }
 }

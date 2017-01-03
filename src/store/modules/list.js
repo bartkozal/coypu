@@ -75,16 +75,16 @@ export default {
       state.tasks.splice(index, 1)
       if (!isUndefined(task)) { state.activeTask = task }
     },
-    focusTask (state, task) {
+    selectTask (state, task) {
       state.activeTask = task
     },
-    focusPreviousTask (state) {
+    selectPreviousTask (state) {
       const index = state.tasks.indexOf(state.activeTask)
       const task = state.tasks[index - 1]
 
       if (!isUndefined(task)) { state.activeTask = task }
     },
-    focusNextTask (state) {
+    selectNextTask (state) {
       const index = state.tasks.indexOf(state.activeTask)
       const task = state.tasks[index + 1]
 
