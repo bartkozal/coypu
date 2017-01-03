@@ -6,11 +6,15 @@
 </template>
 
 <script>
+import moment from 'moment'
 import Topbar from 'components/Topbar'
 import List from 'components/List'
 
 export default {
   name: 'app',
+  created () {
+    moment.locale('en-gb')
+  },
   components: {
     Topbar,
     List
