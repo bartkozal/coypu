@@ -5,6 +5,7 @@
     --font-large: 24px;
 
     --spacing: 16px;
+    --mock-size: 25px; /* rounded calc(var(--font-base) * var(--font-leading)) */
 
     --color-primary: #ea7362;
     --color-secondary: #b74242;

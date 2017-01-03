@@ -1,12 +1,17 @@
 <template>
   <div>
     <div v-for="(tasks, date) in activeWeek">
-      <span>{{ dayOfWeek(date) }}</span>
-      <ul>
-        <li v-for="task in tasks">
-          <task :task="task"></task>
-        </li>
-      </ul>
+      <span class="list-name">{{ dayOfWeek(date) }}</span>
+      <div v-if="tasks.length === 0 ">
+        <div class="list-mock" @click="createList(date)"></div>
+      </div>
+      <div v-else>
+        <ul class="list">
+          <li class="list-item" v-for="task in tasks">
+            <task :task="task"></task>
+          </li>
+        </ul>
+      </div>
     </div>
   </div>
 </template>
@@ -45,6 +50,9 @@ export default {
   methods: {
     dayOfWeek (date) {
       return moment(date).format('dddd - Do')
+    },
+    createList (date) {
+      this.$store.commit('createList', date)
     }
   }
 }
@@ -53,16 +61,22 @@ export default {
 <style scoped>
   @import '../defaults.css';
 
-  span {
-    font-size: var(--font-large);
-  }
-
-  ul {
+  .list {
     list-style: none;
     padding-left: 0;
   }
 
-  li + li {
+  .list-item + .list-item {
     margin-top: calc(var(--spacing) / 2);
+  }
+
+  .list-name {
+    font-size: var(--font-large);
+    cursor: default;
+  }
+
+  .list-mock {
+    height: var(--mock-size);
+    cursor: text;
   }
 </style>

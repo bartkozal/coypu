@@ -84,7 +84,7 @@ export default {
   .textarea-mock {
     width: 100%;
     cursor: text;
-    min-height: 25px; /* rounded calc(var(--font-base) * var(--font-leading)) */
+    min-height: var(--mock-size);
   }
 
   textarea {

@@ -1,3 +1,4 @@
+import sortBy from 'lodash/sortBy'
 import isUndefined from 'lodash/isUndefined'
 
 export default {
@@ -51,6 +52,14 @@ export default {
     tasks: state => { return state.tasks }
   },
   mutations: {
+    createList (state, date) {
+      state.tasks.push({
+        body: '',
+        completion: false,
+        date: date
+      })
+      state.tasks = sortBy(state.tasks, ['date'])
+    },
     createTask (state) {
       const index = state.tasks.indexOf(state.activeTask)
       state.tasks.splice(index + 1, 0, {
