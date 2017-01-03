@@ -2,7 +2,7 @@
   <div class="topbar">
     <i class="icon ion-ios-arrow-back" @click="previousWeek"></i>
     <div class="topbar-week" v-cloak>
-      Week {{ weekOfYear }}
+      {{ year }} w{{ weekOfYear }}
     </div>
     <div class="topbar-date" v-cloak>
       {{ startOfWeek }} - {{ endOfWeek }} {{ currentMonth }}
@@ -22,6 +22,9 @@ export default {
   computed: {
     activeDate () {
       return this.$store.getters.activeDate
+    },
+    year () {
+      return moment(this.activeDate).format('YYYY')
     },
     weekOfYear () {
       return moment(this.activeDate).format('w')
