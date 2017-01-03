@@ -33,4 +33,8 @@ export default {
     font-size: var(--font-base);
     line-height: var(--font-leading);
   }
+
+  [v-cloak] {
+    display: none;
+  }
 </style>
