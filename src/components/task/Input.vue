@@ -20,7 +20,6 @@
 </template>
 
 <script>
-import trim from 'lodash/trim'
 import autosize from 'autosize'
 
 export default {
@@ -56,8 +55,8 @@ export default {
       this.$store.commit('createTask')
     },
     removeTask (event) {
-      const isEmpty = trim(this.task.body).length === 0
-      if (isEmpty) {
+      const isCaretAtBeginning = this.$refs.textarea.selectionStart === 0
+      if (isCaretAtBeginning) {
         event.preventDefault()
         this.$store.commit('removeTask')
       }
