@@ -53,12 +53,15 @@ export default {
   },
   mutations: {
     createList (state, date) {
-      state.tasks.push({
+      const task = {
         body: '',
         completion: false,
         date: date
-      })
+      }
+
+      state.tasks.push(task)
       state.tasks = sortBy(state.tasks, ['date'])
+      state.activeTask = task
     },
     createTask (state) {
       const index = state.tasks.indexOf(state.activeTask)

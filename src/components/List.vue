@@ -1,10 +1,14 @@
 <template>
   <div>
     <div v-for="(tasks, date) in activeWeek">
-      <span class="list-name">{{ dayOfWeek(date) }}</span>
-      <div v-if="tasks.length === 0 ">
+      <div class="list-name">
+        {{ dayOfWeek(date) }}
+      </div>
+
+      <div v-if="tasks.length === 0">
         <div class="list-mock" @click="createList(date)"></div>
       </div>
+
       <div v-else>
         <ul class="list">
           <li class="list-item" v-for="task in tasks">
