@@ -1,4 +1,3 @@
-import groupBy from 'lodash/groupBy'
 import isUndefined from 'lodash/isUndefined'
 
 export default {
@@ -8,48 +7,48 @@ export default {
       {
         body: 'go to gym',
         completion: true,
-        date: '2016-12-27'
+        date: '2017-01-03'
       },
       {
         body: 'pay tax for November',
         completion: true,
-        date: '2016-12-27'
+        date: '2017-01-03'
       },
       {
         body: 'take yoga lesson',
         completion: false,
-        date: '2016-12-27'
+        date: '2017-01-03'
       },
       {
         body: 'call mum',
         completion: false,
-        date: '2016-12-27'
+        date: '2017-01-03'
       },
       {
         body: 'lunch with bruh',
         completion: false,
-        date: '2016-12-28'
+        date: '2017-01-04'
       },
       {
         body: 'go to gym',
         completion: true,
-        date: '2016-12-28'
+        date: '2017-01-04'
       },
       {
         body: 'update webpage',
         completion: true,
-        date: '2016-12-28'
+        date: '2017-01-04'
       },
       {
         body: 'buy a birthday gift for LS',
         completion: false,
-        date: '2016-12-28'
+        date: '2017-01-04'
       }
     ]
   },
   getters: {
-    list: state => { return groupBy(state.tasks, 'date') },
-    activeTask: state => { return state.activeTask }
+    activeTask: state => { return state.activeTask },
+    tasks: state => { return state.tasks }
   },
   mutations: {
     createTask (state) {
