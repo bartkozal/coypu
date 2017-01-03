@@ -6,44 +6,44 @@ export default {
     activeTask: null,
     tasks: [
       {
-        body: 'go to gym',
+        body: 'Go to gym',
         completion: true,
         date: '2017-01-03'
       },
       {
-        body: 'pay tax for November',
+        body: 'Pay taxes',
         completion: true,
         date: '2017-01-03'
       },
       {
-        body: 'take yoga lesson',
+        body: 'Take a yoga lesson',
         completion: false,
         date: '2017-01-03'
       },
       {
-        body: 'call mum',
+        body: 'Call dad',
         completion: false,
         date: '2017-01-03'
       },
       {
-        body: 'lunch with bruh',
+        body: 'Eat lunch with John',
         completion: false,
         date: '2017-01-04'
       },
       {
-        body: 'go to gym',
+        body: 'Learn something new',
         completion: true,
         date: '2017-01-04'
       },
       {
-        body: 'update webpage',
-        completion: true,
-        date: '2017-01-04'
-      },
-      {
-        body: 'buy a birthday gift for LS',
+        body: 'Buy a birthday gift for Kate',
         completion: false,
         date: '2017-01-04'
+      },
+      {
+        body: 'Feed my cat',
+        completion: false,
+        date: '2017-01-11'
       }
     ]
   },
