@@ -9,11 +9,15 @@
 import moment from 'moment'
 import Topbar from 'components/Topbar'
 import List from 'components/List'
+import PouchDB from 'pouchdb'
 
 export default {
   name: 'app',
   created () {
     moment.locale('en-gb')
+    if (process.env.NODE_ENV === 'development') {
+      window.PouchDB = PouchDB
+    }
   },
   components: {
     Topbar,

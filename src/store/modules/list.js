@@ -4,48 +4,7 @@ import isUndefined from 'lodash/isUndefined'
 export default {
   state: {
     activeTask: null,
-    tasks: [
-      {
-        body: 'Go to gym',
-        completion: true,
-        date: '2017-01-03'
-      },
-      {
-        body: 'Pay taxes',
-        completion: true,
-        date: '2017-01-03'
-      },
-      {
-        body: 'Take a yoga lesson',
-        completion: false,
-        date: '2017-01-03'
-      },
-      {
-        body: 'Call dad',
-        completion: false,
-        date: '2017-01-03'
-      },
-      {
-        body: 'Eat lunch with John',
-        completion: false,
-        date: '2017-01-04'
-      },
-      {
-        body: 'Learn something new',
-        completion: true,
-        date: '2017-01-04'
-      },
-      {
-        body: 'Buy a birthday gift for Kate',
-        completion: false,
-        date: '2017-01-04'
-      },
-      {
-        body: 'Feed my cat',
-        completion: false,
-        date: '2017-01-11'
-      }
-    ]
+    tasks: []
   },
   getters: {
     activeTask: state => { return state.activeTask },

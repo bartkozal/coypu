@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="(tasks, date) in activeWeek">
+    <div v-for="(tasks, date) in list">
       <div class="list-name">
         {{ dayOfWeek(date) }}
       </div>
@@ -39,7 +39,7 @@ export default {
     tasks () {
       return this.$store.getters.tasks
     },
-    activeWeek () {
+    list () {
       const startOfWeek = moment(this.activeDate).startOf('week')
       const endOfWeek = moment(this.activeDate).endOf('week')
 

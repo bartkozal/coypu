@@ -17,7 +17,7 @@ import moment from 'moment'
 export default {
   name: 'topbar',
   created () {
-    this.$store.commit('setActiveDate', moment().format())
+    this.$store.dispatch('getTasks', moment().format())
   },
   computed: {
     activeDate () {
@@ -42,11 +42,11 @@ export default {
   methods: {
     previousWeek () {
       const previousWeek = moment(this.activeDate).subtract({ weeks: 1 }).format()
-      this.$store.commit('setActiveDate', previousWeek)
+      this.$store.dispatch('getTasks', previousWeek)
     },
     nextWeek () {
       const nextWeek = moment(this.activeDate).add({ weeks: 1 }).format()
-      this.$store.commit('setActiveDate', nextWeek)
+      this.$store.dispatch('getTasks', nextWeek)
     }
   }
 }
