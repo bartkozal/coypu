@@ -6,6 +6,7 @@
         ref="textarea"
         :value="task.body"
         @focus="focus"
+        @blur="blur"
         @input="updateTask"
         @keydown.enter.prevent="createTask"
         @keydown.up.prevent="selectPreviousTask"
@@ -47,6 +48,9 @@ export default {
       const el = this.$refs.textarea
       autosize.update(el)
       el.setSelectionRange(el.value.length, el.value.length)
+    },
+    blur () {
+      this.$store.dispatch('saveActiveList')
     },
     updateTask (event) {
       this.$store.commit('updateTaskBody', event.target.value)

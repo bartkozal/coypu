@@ -5,8 +5,7 @@ const db = new PouchDB(process.env.POUCH_PATH)
 
 export default {
   state: {
-    activeDate: null,
-    activeWeek: null
+    activeDate: null
   },
   getters: {
     activeDate: state => { return state.activeDate }
@@ -14,16 +13,40 @@ export default {
   mutations: {
     setActiveDate (state, date) {
       state.activeDate = date
-      state.activeWeek = moment(date).format('YYYY-w')
     }
   },
   actions: {
-    getTasks (context, date) {
+    getList (context, date) {
+      const id = moment(date).format('YYYY-w')
       context.commit('setActiveDate', date)
-      db.get(context.state.activeWeek).then((week) => {
-        context.state.tasks = week.tasks
-      }).catch((e) => {
-        context.state.tasks = []
+
+      db.get(id).then((doc) => {
+        context.rootState.list.tasks = doc.tasks
+      }).catch((err) => {
+        if (err.name === 'not_found') {
+          return
+        } else {
+          throw err
+        }
+      })
+    },
+    saveActiveList (context) {
+      const id = moment(context.state.activeDate).format('YYYY-w')
+
+      db.get(id).catch((err) => {
+        if (err.name === 'not_found') {
+          return {
+            '_id': id,
+            'tasks': []
+          }
+        } else {
+          throw err
+        }
+      }).then((doc) => {
+        doc.tasks = context.rootState.list.tasks
+        db.put(doc)
+      }).catch((err) => {
+        throw err
       })
     }
   }
