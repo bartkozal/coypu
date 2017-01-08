@@ -1,10 +1,11 @@
 <template>
-  <div class="task-input">
+  <div class="task-input" :class="{'task-completed': task.completion }">
     <div v-show="active">
       <textarea
         rows="1"
         ref="textarea"
         :value="task.body"
+        :class="{'task-completed': task.completion }"
         @focus="focus"
         @blur="blur"
         @input="updateTask"
@@ -83,6 +84,11 @@ export default {
 
   .task-input {
     flex-grow: 1;
+  }
+
+  .task-completed {
+    text-decoration: line-through;
+    color: var(--color-muted);
   }
 
   .textarea-mock {
