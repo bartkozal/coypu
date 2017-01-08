@@ -40,6 +40,7 @@ export default {
     font-family: var(--font-stack);
     font-size: var(--font-base);
     line-height: var(--font-leading);
+    color: var(--color-text);
   }
 
   [v-cloak] {
