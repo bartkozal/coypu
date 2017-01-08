@@ -21,6 +21,7 @@
         },
         set (newValue) {
           this.$store.commit('updateTaskCompletion', { task: this.task, completion: newValue })
+          this.$store.dispatch('saveActiveList')
         }
       }
     }
