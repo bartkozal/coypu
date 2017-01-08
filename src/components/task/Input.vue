@@ -12,7 +12,8 @@
         @keydown.enter.prevent="createTask"
         @keydown.up.prevent="selectPreviousTask"
         @keydown.down.prevent="selectNextTask"
-        @keydown.delete="removeTask">
+        @keydown.delete="removeTask"
+        @keydown.tab.prevent="updateTaskCompletion">
       </textarea>
     </div>
     <div class="textarea-mock" v-show="!active" @click="selectTask">
@@ -55,6 +56,9 @@ export default {
     },
     updateTask (event) {
       this.$store.commit('updateTaskBody', event.target.value)
+    },
+    updateTaskCompletion () {
+      this.$store.commit('updateTaskCompletion', { task: this.task, completion: !this.task.completion })
     },
     createTask () {
       this.$store.commit('createTask')
