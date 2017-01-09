@@ -15,8 +15,6 @@
   },
   "dependencies": {
     "autosize": "^3.0.20",
-    "clear-sans-webfont": "^1.0.1",
-    "ionicons": "^3.0.0",
     "lodash": "^4.17.3",
     "moment": "^2.17.1",
     "moment-range": "^2.2.0",

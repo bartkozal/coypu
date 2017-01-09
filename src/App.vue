@@ -27,8 +27,6 @@ export default {
 </script>
 
 <style src="normalize.css"/>
-<style src="clear-sans-webfont/css/clear-sans.css"/>
-<style src="ionicons/dist/css/ionicons.css"/>
 
 <style>
   @import 'defaults.css';
