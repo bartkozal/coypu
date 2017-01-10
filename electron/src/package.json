@@ -1,6 +1,5 @@
 {
-  "name": "coypu",
-  "version": "0.0.0",
+  "name": "Coypu",
   "description": "Text-editor-like week planner",
   "author": "Bartlomiej Kozal <bkzl@me.com>",
   "main": "main.js"

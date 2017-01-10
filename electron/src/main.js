@@ -1,6 +1,7 @@
-const { app, BrowserWindow } = require('electron')
+const { app, BrowserWindow, Menu } = require('electron')
 const path = require('path')
 const url = require('url')
+const menu = require('./menu')
 
 let window
 
@@ -21,6 +22,8 @@ function createWindow () {
   window.on('closed', () => {
     window = null
   })
+
+  Menu.setApplicationMenu(menu)
 }
 
 app.on('ready', createWindow)
