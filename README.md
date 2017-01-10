@@ -1,6 +1,6 @@
 # coypu
 
-> Week planner
+> Text-editor-like week planner
 
 ## Build Setup
 
@@ -14,6 +14,15 @@ npm run dev
 # build for production with minification
 npm run build
 
+# run electron app (doesn't run build)
+npm run electron
+
+# package electron app (doesn't run build)
+npm run package
+
+# release electron app
+npm run release
+
 # run unit tests
 npm run unit
 
@@ -23,5 +32,3 @@ npm run e2e
 # run all tests
 npm test
 ```
-
-For detailed explanation on how things work, checkout the [guide](http://vuejs-templates.github.io/webpack/) and [docs for vue-loader](http://vuejs.github.io/vue-loader).
