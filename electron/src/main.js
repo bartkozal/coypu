@@ -32,8 +32,6 @@ function createWindow () {
     window = null
   })
 
-  window.webContents.openDevTools()
-
   Menu.setApplicationMenu(menu)
 
   if (process.platform === 'darwin') {
