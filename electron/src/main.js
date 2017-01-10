@@ -1,7 +1,16 @@
-const { app, BrowserWindow, Menu } = require('electron')
+const { app, BrowserWindow, Menu, autoUpdater } = require('electron')
 const path = require('path')
 const url = require('url')
+const os = require('os')
 const menu = require('./menu')
+const platform = os.platform() + '_' + os.arch()
+const version = app.getVersion()
+
+autoUpdater.setFeedURL('http://download.coypu.co/update/' + platform + '/' + version)
+
+autoUpdater.on('update-downloaded', function() {
+  autoUpdater.quitAndInstall()
+})
 
 let window
 
@@ -23,7 +32,13 @@ function createWindow () {
     window = null
   })
 
+  window.webContents.openDevTools()
+
   Menu.setApplicationMenu(menu)
+
+  if (process.platform === 'darwin') {
+    autoUpdater.checkForUpdates()
+  }
 }
 
 app.on('ready', createWindow)

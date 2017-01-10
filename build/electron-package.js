@@ -2,6 +2,7 @@ require('shelljs/global')
 var packager = require('electron-packager')
 var path = require('path')
 var version = require('../package.json').version
+var config = require('../config')
 
 var config = {
   name: 'Coypu',
@@ -14,7 +15,10 @@ var config = {
   'app-version': version,
   'app-bundle-id': 'bkzl.coypu',
   'app-category-type': 'public.app-category.productivity',
-  'app-copyright': '© 2017 Bartłomiej Kozal & Maciej Kozal'
+  'app-copyright': '© 2017 Bartłomiej Kozal & Maciej Kozal',
+  'osx-sign': {
+    identity: 'Developer ID Application: Bartlomiej Kozal (629M2HBZ4S)'
+  }
 }
 
 mkdir('-p', path.resolve(__dirname, '../releases/'))
