@@ -64,9 +64,6 @@ const template = [
     submenu: [
       {
         role: 'minimize'
-      },
-      {
-        role: 'close'
       }
     ]
   }
@@ -90,6 +87,7 @@ if (process.platform === 'darwin') {
         type: 'separator'
       },
       {
+        accelerator: 'CmdOrCtrl+W',
         role: 'hide'
       },
       {
