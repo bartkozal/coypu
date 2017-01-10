@@ -1,4 +1,4 @@
-const { app, BrowserWindow, Menu, autoUpdater } = require('electron')
+const { app, BrowserWindow, Menu, autoUpdater, dialog } = require('electron')
 const path = require('path')
 const url = require('url')
 const os = require('os')
@@ -8,8 +8,20 @@ const version = app.getVersion()
 
 autoUpdater.setFeedURL('http://download.coypu.co/update/' + platform + '/' + version)
 
-autoUpdater.on('update-downloaded', function() {
-  autoUpdater.quitAndInstall()
+autoUpdater.on('update-downloaded', function(event, releaseNotes, releaseName, releaseDate, updateURL) {
+  dialog.showMessageBox({
+    type: 'info',
+    buttons: ['Restart', 'Cancel'],
+    defaultId: 0,
+    title: 'Update is available',
+    message: 'New version of Coypu (v' + releaseName + ') is ready. Restart the app to install update.'
+  }, function(button) {
+    if (button === 0) {
+      autoUpdater.quitAndInstall()
+    } else {
+      return
+    }
+  })
 })
 
 let window
