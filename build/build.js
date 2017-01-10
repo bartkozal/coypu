@@ -11,7 +11,6 @@ var webpackConfig = require('./webpack.prod.conf')
 var assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory)
 rm('-rf', assetsPath)
 mkdir('-p', assetsPath)
-cp('-R', 'static/*', assetsPath)
 cp('-R', 'electron/src/*', config.build.assetsRoot)
 
 webpack(webpackConfig, function (err, stats) {
