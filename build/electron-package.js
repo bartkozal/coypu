@@ -4,14 +4,12 @@ var ora = require('ora')
 var path = require('path')
 var version = require('../package.json').version
 
-var sourcePath = path.resolve(__dirname, '../dist/')
-var releasePath = path.resolve(__dirname, '../releases/', version)
-
 var config = {
   name: 'Coypu',
   asar: true,
-  dir: sourcePath,
-  out: releasePath,
+  dir: path.resolve(__dirname, '../dist/'),
+  out: path.resolve(__dirname, '../releases/', version),
+  icon: path.resolve(__dirname, '../electron/icons/icon'),
   overwrite: true,
   prune: false,
   'app-version': version,
@@ -19,7 +17,7 @@ var config = {
   'app-category-type': 'public.app-category.productivity'
 }
 
-mkdir('-p', releasePath)
+mkdir('-p', path.resolve(__dirname, '../releases/'))
 
 packager(config, function (err, appPaths) {
   if (err) throw err
