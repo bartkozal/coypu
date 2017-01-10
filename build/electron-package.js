@@ -13,7 +13,8 @@ var config = {
   prune: false,
   'app-version': version,
   'app-bundle-id': 'bkzl.coypu',
-  'app-category-type': 'public.app-category.productivity'
+  'app-category-type': 'public.app-category.productivity',
+  'app-copyright': '© 2017 Bartłomiej Kozal & Maciej Kozal'
 }
 
 mkdir('-p', path.resolve(__dirname, '../releases/'))
