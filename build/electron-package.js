@@ -1,6 +1,5 @@
 require('shelljs/global')
 var packager = require('electron-packager')
-var ora = require('ora')
 var path = require('path')
 var version = require('../package.json').version
 
