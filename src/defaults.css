@@ -2,7 +2,7 @@
     --font-stack: 'Clear Sans', sans-serif;
     --font-leading: 1.4;
     --font-base: 18px;
-    --font-large: 24px;
+    --font-large: 22px;
 
     --spacing: 16px;
     --mock-size: 25px; /* rounded calc(var(--font-base) * var(--font-leading)) */
