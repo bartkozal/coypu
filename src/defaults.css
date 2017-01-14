@@ -1,16 +1,16 @@
-  :root {
-    --font-stack: 'Clear Sans', sans-serif;
-    --font-leading: 1.4;
-    --font-base: 18px;
-    --font-large: 22px;
+:root {
+  --font-stack: 'Clear Sans', sans-serif;
+  --font-leading: 1.4;
+  --font-base: 18px;
+  --font-large: 22px;
 
-    --spacing: 16px;
-    --mock-size: 25px; /* rounded calc(var(--font-base) * var(--font-leading)) */
+  --spacing: 16px;
+  --mock-size: 25px; /* rounded calc(var(--font-base) * var(--font-leading)) */
 
-    --color-text: #111;
-    --color-primary: #ea7362;
-    --color-secondary: #b74242;
-    --color-muted: #888;
+  --color-text: #111;
+  --color-primary: #ea7362;
+  --color-secondary: #b74242;
+  --color-muted: #888;
 
-    --transition-duration: .2s;
-  }
+  --transition-duration: .2s;
+}

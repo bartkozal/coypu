@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="(tasks, date) in list">
-      <div class="list-name">
+      <div :class="{'list-today': isToday(date)}" class="list-name">
         {{ dayOfWeek(date) }}
       </div>
 
@@ -55,6 +55,9 @@ export default {
     dayOfWeek (date) {
       return moment(date).format('dddd - Do')
     },
+    isToday (date) {
+      return moment().isSame(date, 'day')
+    },
     createList (date) {
       this.$store.commit('createList', date)
     }
@@ -74,7 +77,12 @@ export default {
     margin-top: calc(var(--spacing) / 2);
   }
 
+  .list-today {
+    box-shadow: inset 0 -1px 0 0 var(--color-text);
+  }
+
   .list-name {
+    display: inline-block;
     font-size: var(--font-large);
     cursor: default;
   }
