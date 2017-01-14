@@ -58,10 +58,18 @@ export default {
       this.$store.commit('updateTaskBody', event.target.value)
     },
     updateTaskCompletion () {
-      this.$store.commit('updateTaskCompletion', { task: this.task, completion: !this.task.completion })
+      this.$store.commit('updateTaskCompletion', {
+        task: this.task,
+        completion: !this.task.completion
+      })
     },
     createTask () {
-      this.$store.commit('createTask')
+      const isCaretAtBeginning = this.$refs.textarea.selectionStart === 0
+      if (isCaretAtBeginning) {
+        this.$store.commit('createTask', { atIndex: 0 })
+      } else {
+        this.$store.commit('createTask', { atIndex: 1 })
+      }
     },
     removeTask (event) {
       const isCaretAtBeginning = this.$refs.textarea.selectionStart === 0

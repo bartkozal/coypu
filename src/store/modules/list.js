@@ -22,15 +22,16 @@ export default {
       state.tasks = sortBy(state.tasks, ['date'])
       state.activeTask = task
     },
-    createTask (state) {
+    createTask (state, { atIndex }) {
       const index = state.tasks.indexOf(state.activeTask)
-      state.tasks.splice(index + 1, 0, {
+      const newTask = {
         body: '',
         completion: false,
         date: state.activeTask.date
-      })
+      }
 
-      state.activeTask = state.tasks[index + 1]
+      state.tasks.splice(index + atIndex, 0, newTask)
+      state.activeTask = state.tasks[state.tasks.indexOf(newTask)]
     },
     updateTaskCompletion ({ tasks }, { task, completion }) {
       tasks[tasks.indexOf(task)].completion = completion
