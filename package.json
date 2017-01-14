@@ -5,6 +5,7 @@
   "author": "Bartlomiej Kozal <bkzl@me.com>",
   "private": true,
   "scripts": {
+    "start": "npm run dev",
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "electron": "electron dist/main.js",
