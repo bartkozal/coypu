@@ -9,7 +9,7 @@ var config = {
   asar: true,
   dir: path.resolve(__dirname, '../dist/'),
   out: path.resolve(__dirname, '../releases/', version),
-  icon: path.resolve(__dirname, '../electron/icons/icon'),
+  icon: path.resolve(__dirname, '../electron/icon/icon'),
   overwrite: true,
   prune: false,
   'app-version': version,
