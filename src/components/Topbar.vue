@@ -1,10 +1,10 @@
 <template>
   <div class="topbar">
     <i class="icon ion-ios-arrow-back" @click="previousWeek"></i>
-    <div class="topbar-week" v-cloak>
+    <div class="topbar-week" @click="previousWeek" v-cloak>
       {{ year }} w{{ weekOfYear }}
     </div>
-    <div class="topbar-date" v-cloak>
+    <div class="topbar-date" @click="nextWeek" v-cloak>
       {{ startOfWeek }} - {{ endOfWeek }} {{ currentMonth }}
     </div>
     <i class="icon ion-ios-arrow-forward" @click="nextWeek"></i>
@@ -65,11 +65,11 @@ export default {
   .topbar-week {
     flex-grow: 1;
     color: var(--color-primary);
-    cursor: default;
+    cursor: pointer;
   }
 
   .topbar-date {
-    cursor: default;
+    cursor: pointer;
   }
 
   .icon {

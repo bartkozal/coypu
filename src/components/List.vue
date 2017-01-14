@@ -1,7 +1,7 @@
 <template>
   <div>
     <div v-for="(tasks, date) in list">
-      <div :class="{'list-today': isToday(date)}" class="list-name">
+      <div :class="{'list-today': isToday(date)}" class="list-name" @click="createList(date)">
         {{ dayOfWeek(date) }}
       </div>
 
@@ -84,7 +84,7 @@ export default {
   .list-name {
     display: inline-block;
     font-size: var(--font-large);
-    cursor: default;
+    cursor: pointer;
   }
 
   .list-mock {
