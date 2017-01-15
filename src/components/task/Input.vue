@@ -47,6 +47,8 @@ export default {
       this.$store.dispatch('saveActiveList')
     },
     deselectTask () {
+      this.$refs.textarea.blur()
+
       this.$store.commit('selectTask', null)
     },
     updateTask (event) {
