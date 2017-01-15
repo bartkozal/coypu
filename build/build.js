@@ -12,6 +12,7 @@ var assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirect
 rm('-rf', assetsPath)
 mkdir('-p', assetsPath)
 cp('-R', 'electron/src/*', config.build.assetsRoot)
+exec(`cd ${config.build.assetsRoot} && npm prune && npm install`)
 
 webpack(webpackConfig, function (err, stats) {
   if (err) throw err

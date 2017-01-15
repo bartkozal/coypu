@@ -2,5 +2,8 @@
   "name": "Coypu",
   "description": "Text-editor-like week planner",
   "author": "Bartlomiej Kozal <bkzl@me.com>",
-  "main": "main.js"
+  "main": "main.js",
+  "dependencies": {
+    "electron-window-state": "^4.0.1"
+  }
 }

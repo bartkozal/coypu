@@ -1,4 +1,5 @@
 const { app, BrowserWindow, Menu, autoUpdater, dialog } = require('electron')
+const windowStateKeeper = require('electron-window-state')
 const path = require('path')
 const url = require('url')
 const os = require('os')
@@ -27,12 +28,21 @@ autoUpdater.on('update-downloaded', function(event, releaseNotes, releaseName, r
 let window
 
 function createWindow () {
-  window = new BrowserWindow({
-    width: 420,
-    height: 830,
-    minWidth: 420,
-    minHeight: 420
+  let windowState = windowStateKeeper({
+    defaultWidth: 420,
+    defaultHeight: 640
   })
+
+  window = new BrowserWindow({
+    x: windowState.x,
+    y: windowState.y,
+    width: windowState.width,
+    height: windowState.height,
+    minWidth: 370,
+    minHeight: 100
+  })
+
+  windowState.manage(window)
 
   window.loadURL(url.format({
     pathname: path.join(__dirname, 'index.html'),
@@ -45,6 +55,8 @@ function createWindow () {
   })
 
   Menu.setApplicationMenu(menu)
+
+  window.webContents.openDevTools()
 
   if (process.platform === 'darwin') {
     autoUpdater.checkForUpdates()

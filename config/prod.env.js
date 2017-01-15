@@ -1,4 +1,3 @@
 module.exports = {
-  NODE_ENV: '"production"',
-  POUCH_PATH: '"coypu-offline"'
+  NODE_ENV: '"production"'
 }

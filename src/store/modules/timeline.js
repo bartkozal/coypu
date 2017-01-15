@@ -2,7 +2,7 @@ import moment from 'moment'
 import PouchDB from 'pouchdb'
 import isEqual from 'lodash/isEqual'
 
-const db = new PouchDB(process.env.POUCH_PATH)
+const db = new PouchDB('coypu-offline')
 
 export default {
   state: {
