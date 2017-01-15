@@ -60,6 +60,20 @@ export default {
       const task = state.tasks[index + 1]
 
       if (!isUndefined(task)) { state.activeTask = task }
+    },
+    joinToPreviousTask (state) {
+      const index = state.tasks.indexOf(state.activeTask)
+      const previousTask = state.tasks[index - 1]
+
+      if (!isUndefined(previousTask)) {
+        previousTask.body = previousTask.body.concat(state.activeTask.body)
+      }
+    }
+  },
+  actions: {
+    joinTask ({ commit }) {
+      commit('joinToPreviousTask')
+      commit('removeTask')
     }
   }
 }

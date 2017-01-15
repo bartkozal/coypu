@@ -13,7 +13,7 @@
         @keydown.enter.prevent="createTask"
         @keydown.up.prevent="selectPreviousTask"
         @keydown.down.prevent="selectNextTask"
-        @keydown.delete="removeTask"
+        @keydown.delete="removeCharOrJoinTask"
         @keydown.tab.prevent="updateTaskCompletion">
       </textarea>
     </div>
@@ -68,18 +68,23 @@ export default {
       })
     },
     createTask () {
-      const isCaretAtBeginning = this.$refs.textarea.selectionStart === 0
-      if (isCaretAtBeginning) {
+      const isCaretAtBeginning = this.$refs.textarea.selectionStart === 0 &&
+        this.$refs.textarea.selectionEnd === 0
+      const hasBody = this.task.body.length > 0
+
+      if (isCaretAtBeginning && hasBody) {
         this.$store.commit('createTask', { atIndex: 0 })
       } else {
         this.$store.commit('createTask', { atIndex: 1 })
       }
     },
-    removeTask (event) {
-      const isCaretAtBeginning = this.$refs.textarea.selectionStart === 0
+    removeCharOrJoinTask (event) {
+      const isCaretAtBeginning = this.$refs.textarea.selectionStart === 0 &&
+        this.$refs.textarea.selectionEnd === 0
+
       if (isCaretAtBeginning) {
         event.preventDefault()
-        this.$store.commit('removeTask')
+        this.$store.dispatch('joinTask')
       }
     },
     selectTask () {
