@@ -1,5 +1,6 @@
 import moment from 'moment'
 import PouchDB from 'pouchdb'
+import isEqual from 'lodash/isEqual'
 
 const db = new PouchDB(process.env.POUCH_PATH)
 
@@ -43,8 +44,10 @@ export default {
           throw err
         }
       }).then((doc) => {
-        doc.tasks = context.rootState.list.tasks
-        db.put(doc)
+        if (!isEqual(doc.tasks, context.rootState.list.tasks)) {
+          doc.tasks = context.rootState.list.tasks
+          db.put(doc)
+        }
       }).catch((err) => {
         throw err
       })
