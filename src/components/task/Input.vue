@@ -9,6 +9,7 @@
         @focus="focus"
         @blur="blur"
         @input="updateTask"
+        @keydown.esc.prevent="deselectTask"
         @keydown.enter.prevent="createTask"
         @keydown.up.prevent="selectPreviousTask"
         @keydown.down.prevent="selectNextTask"
@@ -53,6 +54,9 @@ export default {
     },
     blur () {
       this.$store.dispatch('saveActiveList')
+    },
+    deselectTask () {
+      this.$store.commit('selectTask', null)
     },
     updateTask (event) {
       this.$store.commit('updateTaskBody', event.target.value)
