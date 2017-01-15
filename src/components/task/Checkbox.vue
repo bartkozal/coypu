@@ -20,8 +20,7 @@
           return this.task.completion
         },
         set (newValue) {
-          this.$store.commit('updateTaskCompletion', { task: this.task, completion: newValue })
-          this.$store.dispatch('saveActiveList')
+          this.$store.dispatch('toggleTask', this.task)
         }
       }
     }

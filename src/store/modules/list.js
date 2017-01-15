@@ -39,6 +39,9 @@ export default {
     updateTaskBody ({ activeTask }, body) {
       activeTask.body = body
     },
+    toggleTask (state, task) {
+      task.completion = !task.completion
+    },
     removeTask (state) {
       const index = state.tasks.indexOf(state.activeTask)
       const task = state.tasks[index - 1]
@@ -79,6 +82,10 @@ export default {
     updateTask ({ commit, dispatch }, { body, completion }) {
       if (!isNil(body)) { commit('updateTaskBody', body) }
       if (!isNil(completion)) { commit('updateTaskCompletion', completion) }
+      dispatch('saveActiveList')
+    },
+    toggleTask ({ commit, dispatch }, task) {
+      commit('toggleTask', task)
       dispatch('saveActiveList')
     },
     createTask ({ commit, dispatch }, { body = '', atIndex = 1, offset = 0 }) {
