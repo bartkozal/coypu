@@ -33,8 +33,8 @@ export default {
       state.tasks.splice(index + atIndex, 0, newTask)
       state.activeTask = state.tasks[state.tasks.indexOf(newTask)]
     },
-    updateTaskCompletion ({ tasks }, { task, completion }) {
-      tasks[tasks.indexOf(task)].completion = completion
+    updateTaskCompletion ({ activeTask }, completion) {
+      activeTask.completion = completion
     },
     updateTaskBody ({ activeTask }, body) {
       activeTask.body = body
@@ -74,6 +74,17 @@ export default {
     joinTask ({ commit }) {
       commit('joinToPreviousTask')
       commit('removeTask')
+    },
+    updateTask ({ commit, dispatch }, { body, completion }) {
+      if (!isUndefined(body)) {
+        commit('updateTaskBody', body)
+      }
+
+      if (!isUndefined(completion)) {
+        commit('updateTaskCompletion', completion)
+      }
+
+      dispatch('saveActiveList')
     }
   }
 }

@@ -6,9 +6,9 @@
       :value="task.body"
       :class="{'task-completed': task.completion }"
       :active="active"
-      @focus="selectTask"
       @blur="blur"
-      @input="updateTask"
+      @focus="selectTask"
+      @input="updateTaskBody"
       @keydown.esc.prevent="deselectTask"
       @keydown.enter.prevent="createTask"
       @keydown.up.prevent="selectPreviousTask"
@@ -49,17 +49,13 @@ export default {
     }, 300),
     deselectTask () {
       this.$refs.textarea.blur()
-
       this.$store.commit('selectTask', null)
     },
-    updateTask (event) {
-      this.$store.commit('updateTaskBody', event.target.value)
-    },
+    updateTaskBody: debounce(function (event) {
+      this.$store.dispatch('updateTask', { body: event.target.value })
+    }, 500),
     updateTaskCompletion () {
-      this.$store.commit('updateTaskCompletion', {
-        task: this.task,
-        completion: !this.task.completion
-      })
+      this.$store.dispatch('updateTask', { completion: !this.task.completion })
     },
     createTask () {
       const isCaretAtBeginning = this.$refs.textarea.selectionStart === 0 &&
