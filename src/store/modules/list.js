@@ -22,10 +22,10 @@ export default {
       state.tasks = sortBy(state.tasks, ['date'])
       state.activeTask = task
     },
-    createTask (state, { atIndex }) {
+    createTask (state, { atIndex, body = '' }) {
       const index = state.tasks.indexOf(state.activeTask)
       const newTask = {
-        body: '',
+        body: body,
         completion: false,
         date: state.activeTask.date
       }

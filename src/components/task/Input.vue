@@ -52,33 +52,35 @@ export default {
     }
   },
   methods: {
-    blur: debounce(function () {
+    blur: function () {
       this.$store.dispatch('saveActiveList')
-    }, 300),
+    },
     deselectTask () {
       this.$refs.textarea.blur()
       this.$store.commit('selectTask', null)
     },
     updateTaskBody: debounce(function (event) {
       this.$store.dispatch('updateTask', { body: event.target.value })
-    }, 500),
+    }, 200),
     updateTaskCompletion () {
       this.$store.dispatch('updateTask', { completion: !this.task.completion })
     },
     createTask () {
-      const isCaretAtBeginning = this.$refs.textarea.selectionStart === 0 &&
-        this.$refs.textarea.selectionEnd === 0
+      const el = this.$refs.textarea
+      const isCaretAtBeginning = el.selectionStart === 0 && el.selectionEnd === 0
       const hasBody = this.task.body.length > 0
 
       if (isCaretAtBeginning && hasBody) {
         this.$store.commit('createTask', { atIndex: 0 })
       } else {
-        this.$store.commit('createTask', { atIndex: 1 })
+        const slice = this.task.body.slice(el.selectionStart)
+        this.task.body = this.task.body.slice(0, el.selectionStart)
+        this.$store.commit('createTask', { atIndex: 1, body: slice })
       }
     },
     removeCharOrJoinTask (event) {
-      const isCaretAtBeginning = this.$refs.textarea.selectionStart === 0 &&
-        this.$refs.textarea.selectionEnd === 0
+      const el = this.$refs.textarea
+      const isCaretAtBeginning = el.selectionStart === 0 && el.selectionEnd === 0
 
       if (isCaretAtBeginning) {
         event.preventDefault()
