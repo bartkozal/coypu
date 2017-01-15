@@ -1,25 +1,21 @@
 <template>
-  <div class="task-input" :class="{'task-completed': task.completion }">
-    <div v-show="active">
-      <textarea
-        rows="1"
-        ref="textarea"
-        :value="task.body"
-        :class="{'task-completed': task.completion }"
-        @focus="focus"
-        @blur="blur"
-        @input="updateTask"
-        @keydown.esc.prevent="deselectTask"
-        @keydown.enter.prevent="createTask"
-        @keydown.up.prevent="selectPreviousTask"
-        @keydown.down.prevent="selectNextTask"
-        @keydown.delete="removeCharOrJoinTask"
-        @keydown.tab.prevent="updateTaskCompletion">
-      </textarea>
-    </div>
-    <div class="textarea-mock" v-show="!active" @click="selectTask">
-      {{ task.body }}
-    </div>
+  <div class="task-input">
+    <textarea
+      rows="1"
+      ref="textarea"
+      :value="task.body"
+      :class="{'task-completed': task.completion }"
+      :active="active"
+      @focus="selectTask"
+      @blur="blur"
+      @input="updateTask"
+      @keydown.esc.prevent="deselectTask"
+      @keydown.enter.prevent="createTask"
+      @keydown.up.prevent="selectPreviousTask"
+      @keydown.down.prevent="selectNextTask"
+      @keydown.delete="removeCharOrJoinTask"
+      @keydown.tab.prevent="updateTaskCompletion">
+    </textarea>
   </div>
 </template>
 
@@ -47,11 +43,6 @@ export default {
     }
   },
   methods: {
-    focus () {
-      const el = this.$refs.textarea
-      autosize.update(el)
-      el.setSelectionRange(el.value.length, el.value.length)
-    },
     blur () {
       this.$store.dispatch('saveActiveList')
     },
@@ -88,6 +79,10 @@ export default {
       }
     },
     selectTask () {
+      const el = this.$refs.textarea
+      autosize.update(el)
+      el.setSelectionRange(el.value.length, el.value.length)
+
       this.$store.commit('selectTask', this.task)
     },
     selectPreviousTask () {
