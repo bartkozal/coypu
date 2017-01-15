@@ -1,5 +1,5 @@
 import sortBy from 'lodash/sortBy'
-import isUndefined from 'lodash/isUndefined'
+import isNil from 'lodash/isNil'
 
 export default {
   state: {
@@ -22,7 +22,7 @@ export default {
       state.tasks = sortBy(state.tasks, ['date'])
       state.activeTask = task
     },
-    createTask (state, { atIndex, body = '' }) {
+    createTask (state, { body, atIndex }) {
       const index = state.tasks.indexOf(state.activeTask)
       const newTask = {
         body: body,
@@ -44,7 +44,7 @@ export default {
       const task = state.tasks[index - 1]
 
       state.tasks.splice(index, 1)
-      if (!isUndefined(task)) { state.activeTask = task }
+      if (!isNil(task)) { state.activeTask = task }
     },
     selectTask (state, task) {
       state.activeTask = task
@@ -53,38 +53,49 @@ export default {
       const index = state.tasks.indexOf(state.activeTask)
       const task = state.tasks[index - 1]
 
-      if (!isUndefined(task)) { state.activeTask = task }
+      if (!isNil(task)) { state.activeTask = task }
     },
     selectNextTask (state) {
       const index = state.tasks.indexOf(state.activeTask)
       const task = state.tasks[index + 1]
 
-      if (!isUndefined(task)) { state.activeTask = task }
+      if (!isNil(task)) { state.activeTask = task }
     },
     joinToPreviousTask (state) {
       const index = state.tasks.indexOf(state.activeTask)
       const previousTask = state.tasks[index - 1]
 
-      if (!isUndefined(previousTask)) {
+      if (!isNil(previousTask)) {
         previousTask.body = previousTask.body.concat(state.activeTask.body)
       }
     }
   },
   actions: {
-    joinTask ({ commit }) {
+    joinTasks ({ commit, dispatch }, { offset }) {
       commit('joinToPreviousTask')
       commit('removeTask')
+      dispatch('setCaretOffset', offset)
     },
     updateTask ({ commit, dispatch }, { body, completion }) {
-      if (!isUndefined(body)) {
-        commit('updateTaskBody', body)
-      }
-
-      if (!isUndefined(completion)) {
-        commit('updateTaskCompletion', completion)
-      }
-
+      if (!isNil(body)) { commit('updateTaskBody', body) }
+      if (!isNil(completion)) { commit('updateTaskCompletion', completion) }
       dispatch('saveActiveList')
+    },
+    createTask ({ commit, dispatch }, { body = '', atIndex = 1, offset = 0 }) {
+      commit('createTask', { body, atIndex })
+      dispatch('setCaretOffset', offset)
+    },
+    selectTask ({ commit }, task) {
+      commit('selectTask', task)
+    },
+    selectPreviousTask ({ commit }) {
+      commit('selectPreviousTask')
+    },
+    selectNextTask ({ commit }) {
+      commit('selectNextTask')
+    },
+    deselectTask ({ commit }) {
+      commit('selectTask', null)
     }
   }
 }
