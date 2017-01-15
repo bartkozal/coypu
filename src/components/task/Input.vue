@@ -52,9 +52,9 @@ export default {
     }
   },
   methods: {
-    blur: function () {
+    blur: debounce(function () {
       this.$store.dispatch('saveActiveList')
-    },
+    }, 200),
     deselectTask () {
       this.$refs.textarea.blur()
       this.$store.commit('selectTask', null)
