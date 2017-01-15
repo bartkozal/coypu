@@ -56,8 +56,6 @@ function createWindow () {
 
   Menu.setApplicationMenu(menu)
 
-  window.webContents.openDevTools()
-
   if (process.platform === 'darwin') {
     autoUpdater.checkForUpdates()
   }
