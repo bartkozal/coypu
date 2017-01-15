@@ -39,7 +39,15 @@ export default {
     },
     active () {
       const isActive = this.activeTask === this.task
-      if (isActive) { this.$nextTick(() => this.$refs.textarea.focus()) }
+
+      this.$nextTick(() => {
+        const el = this.$refs.textarea
+        autosize.update(el)
+        el.setSelectionRange(el.value.length, el.value.length)
+
+        if (isActive) { el.focus() }
+      })
+
       return isActive
     }
   },
@@ -78,10 +86,6 @@ export default {
       }
     },
     selectTask () {
-      const el = this.$refs.textarea
-      autosize.update(el)
-      el.setSelectionRange(el.value.length, el.value.length)
-
       this.$store.commit('selectTask', this.task)
     },
     selectPreviousTask () {
