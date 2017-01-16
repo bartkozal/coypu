@@ -1,6 +1,6 @@
 {
   "name": "coypu",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Text-editor-like week planner",
   "author": "Bartlomiej Kozal <bkzl@me.com>",
   "private": true,
