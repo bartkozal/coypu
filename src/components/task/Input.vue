@@ -21,7 +21,6 @@
 
 <script>
 import autosize from 'autosize'
-import debounce from 'lodash/debounce'
 
 export default {
   name: 'task-input',
@@ -63,16 +62,16 @@ export default {
     }
   },
   methods: {
-    blur: debounce(function () {
+    blur: function () {
       this.$store.dispatch('saveActiveList')
-    }, 100),
+    },
     deselectTask () {
       this.$refs.textarea.blur()
       this.$store.dispatch('deselectTask')
     },
-    updateTaskBody: debounce(function (event) {
+    updateTaskBody: function (event) {
       this.$store.dispatch('updateTask', { body: event.target.value })
-    }, 100),
+    },
     updateTaskCompletion () {
       this.$store.dispatch('updateTask', { completion: !this.task.completion })
     },

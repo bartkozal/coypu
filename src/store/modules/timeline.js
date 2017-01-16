@@ -1,6 +1,7 @@
 import moment from 'moment'
 import PouchDB from 'pouchdb'
 import isEqual from 'lodash/isEqual'
+import debounce from 'lodash/debounce'
 
 const db = new PouchDB('coypu-offline')
 
@@ -31,7 +32,7 @@ export default {
         }
       })
     },
-    saveActiveList (context) {
+    saveActiveList: debounce(function (context) {
       const id = moment(context.state.activeDate).format('YYYY-w')
 
       db.get(id).catch((err) => {
@@ -51,6 +52,6 @@ export default {
       }).catch((err) => {
         throw err
       })
-    }
+    }, 400)
   }
 }
