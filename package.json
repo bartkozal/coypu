@@ -1,19 +1,64 @@
 {
   "name": "coypu",
   "version": "1.0.2",
+  "homepage": "https://coypu.co",
+  "license": "CC-BY-ND-4.0",
   "description": "Text-editor-like week planner",
-  "author": "Bartlomiej Kozal <bkzl@me.com>",
+  "author": "Lost Bananas <hello@lostbananas.com>",
   "private": true,
   "scripts": {
     "start": "npm run dev",
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
-    "package": "npm run build && node build/electron-package.js",
+    "pack": "npm run build && build --dir",
+    "dist": "npm run build && build -mwl",
     "unit": "karma start test/unit/karma.conf.js --single-run",
     "e2e": "node test/e2e/runner.js",
     "test": "npm run unit && npm run e2e",
     "lint": "eslint --ext .js,.vue src test/unit/specs test/e2e/specs"
   },
+  "build": {
+    "appId": "bkzl.coypu",
+    "copyright": "© 2017 Bartłomiej Kozal, Maciej Kozal",
+    "productName": "Coypu",
+    "asar": true,
+    "forceCodeSigning": true,
+    "publish": {
+      "provider": "generic",
+      "url": "https://download.coypu.co/"
+    },
+    "dmg": {
+      "title": "${productName}"
+    },
+    "directories": {
+      "buildResources": "build/resources",
+      "output": "dist",
+      "app": "app"
+    },
+    "linux": {
+      "category": "Office",
+      "packageCategory": "misc",
+      "target": "deb",
+      "synopsis": "Text-editor-like week planner"
+    },
+    "mac": {
+      "category": "public.app-category.productivity",
+      "target": [
+        "dmg",
+        "zip"
+      ]
+    },
+    "squirrelWindows": {
+      "iconUrl": "https://coypu.co/icon.ico",
+      "loadingGif": "build/resources/spinner.gif"
+    },
+    "win": {
+      "target": "squirrel",
+      "certificateFile": "/Users/bkzl/.ssl/startssl.p12",
+      "certificatePassword": "provos104enlist"
+    }
+  },
+  "postinstall": "install-app-deps",
   "dependencies": {
     "autosize": "^3.0.20",
     "lodash": "^4.17.3",
@@ -39,7 +84,8 @@
     "cross-spawn": "^4.0.2",
     "css-loader": "^0.25.0",
     "electron": "^1.4.13",
-    "electron-packager": "^8.4.0",
+    "electron-builder": "^11.4.4",
+    "electron-builder-squirrel-windows": "^11.4.0",
     "eslint": "^3.7.1",
     "eslint-config-standard": "^6.1.0",
     "eslint-friendly-formatter": "^2.0.5",

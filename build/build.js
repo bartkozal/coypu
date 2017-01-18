@@ -1,18 +1,9 @@
-// https://github.com/shelljs/shelljs
 require('./check-versions')()
 require('shelljs/global')
 env.NODE_ENV = 'production'
 
-var path = require('path')
-var config = require('../config')
 var webpack = require('webpack')
 var webpackConfig = require('./webpack.prod.conf')
-
-var assetsPath = path.join(config.build.assetsRoot, config.build.assetsSubDirectory)
-rm('-rf', assetsPath)
-mkdir('-p', assetsPath)
-cp('-R', 'electron/src/*', config.build.assetsRoot)
-exec(`cd ${config.build.assetsRoot} && npm prune && npm install`)
 
 webpack(webpackConfig, function (err, stats) {
   if (err) throw err

@@ -1,29 +1,11 @@
-const { app, BrowserWindow, Menu, autoUpdater, dialog } = require('electron')
+if (require('electron-squirrel-startup')) return;
+const { app, BrowserWindow, Menu } = require('electron')
 const windowStateKeeper = require('electron-window-state')
 const path = require('path')
 const url = require('url')
-const os = require('os')
+
 const menu = require('./menu')
-const platform = os.platform() + '_' + os.arch()
-const version = app.getVersion()
-
-autoUpdater.setFeedURL('http://download.coypu.co/update/' + platform + '/' + version)
-
-autoUpdater.on('update-downloaded', function(event, releaseNotes, releaseName, releaseDate, updateURL) {
-  dialog.showMessageBox({
-    type: 'info',
-    buttons: ['Restart', 'Cancel'],
-    defaultId: 0,
-    title: 'Update is available',
-    message: 'New version of Coypu (v' + releaseName + ') is ready. Restart the app to install update.'
-  }, function(button) {
-    if (button === 0) {
-      autoUpdater.quitAndInstall()
-    } else {
-      return
-    }
-  })
-})
+const updater = require('./updater')
 
 let window
 
@@ -55,13 +37,14 @@ function createWindow () {
   })
 
   Menu.setApplicationMenu(menu)
-
-  if (process.platform === 'darwin') {
-    autoUpdater.checkForUpdates()
-  }
 }
 
-app.on('ready', createWindow)
+app.on('ready', () => {
+  createWindow()
+  if (process.platform === 'darwin' || process.platform === 'win32') {
+    updater()
+  }
+})
 
 app.on('window-all-closed', () => {
   if (process.platform !== 'darwin') {

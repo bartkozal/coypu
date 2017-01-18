@@ -14,14 +14,11 @@ npm run dev
 # build for production with minification
 npm run build
 
-# run electron app (doesn't run build)
-npm run electron
+# pack into electron app
+npm run pack
 
-# package electron app (doesn't run build)
-npm run package
-
-# release electron app
-npm run release
+# release new version
+npm run dist
 
 # run unit tests
 npm run unit
