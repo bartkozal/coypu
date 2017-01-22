@@ -54,8 +54,8 @@
     },
     "win": {
       "target": "squirrel",
-      "certificateFile": "/Users/bkzl/.ssl/startssl.p12",
-      "certificatePassword": "provos104enlist"
+      "certificateFile": "/Users/bkzl/.ssl/cert.p12",
+      "certificatePassword": "lac25couture"
     }
   },
   "postinstall": "install-app-deps",
