@@ -8,6 +8,7 @@
   "private": true,
   "scripts": {
     "start": "npm run dev",
+    "postinstall": "install-app-deps",
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "pack": "npm run build && build --dir",
@@ -58,7 +59,6 @@
       "certificatePassword": "lac25couture"
     }
   },
-  "postinstall": "install-app-deps",
   "dependencies": {
     "autosize": "^3.0.20",
     "lodash": "^4.17.3",
