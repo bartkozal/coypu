@@ -91,4 +91,36 @@ export default {
     height: var(--mock-size);
     cursor: text;
   }
+
+  .previous-list-enter,
+  .next-list-leave-to {
+    transform: translateX(-10%);
+  },
+
+  .next-list-enter,
+  .previous-list-leave-to {
+    transform: translateX(10%);
+  }
+
+  .previous-list-enter-to,
+  .previous-list-leave,
+  .next-list-enter-to,
+  .next-list-leave {
+    transform: translateX(0);
+    opacity: 1;
+  }
+
+  .previous-list-enter,
+  .next-list-enter,
+  .previous-list-leave-to,
+  .next-list-leave-to {
+    opacity: 0;
+  }
+
+  .previous-list-enter-active,
+  .previous-list-leave-active,
+  .next-list-enter-active,
+  .next-list-leave-active {
+    transition: all var(--transition-duration) ease-in-out;
+  }
 </style>
