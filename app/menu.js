@@ -74,6 +74,7 @@ if (process.platform === 'darwin') {
     label: 'Coypu',
     submenu: [
       {
+        label: 'About Coypu',
         role: 'about'
       },
       {
@@ -87,7 +88,7 @@ if (process.platform === 'darwin') {
         type: 'separator'
       },
       {
-        accelerator: 'CmdOrCtrl+W',
+        label: 'Hide Coypu',
         role: 'hide'
       },
       {
@@ -126,7 +127,7 @@ if (process.platform === 'darwin') {
     {
       label: 'Close',
       accelerator: 'CmdOrCtrl+W',
-      role: 'close'
+      role: 'hide'
     },
     {
       label: 'Minimize',
