@@ -11,7 +11,6 @@
 import moment from 'moment'
 import Topbar from 'components/Topbar'
 import List from 'components/List'
-import PouchDB from 'pouchdb'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -24,9 +23,6 @@ export default {
   },
   created () {
     moment.locale('en-gb')
-    if (process.env.NODE_ENV === 'development') {
-      window.PouchDB = PouchDB
-    }
   },
   data () {
     return {
