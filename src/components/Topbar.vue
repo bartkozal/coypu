@@ -13,16 +13,15 @@
 
 <script>
 import moment from 'moment'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'topbar',
   created () {
-    this.$store.dispatch('getList', moment().format())
+    this.setList(moment().format())
   },
   computed: {
-    activeDate () {
-      return this.$store.getters.activeDate
-    },
+    ...mapGetters(['activeDate']),
     year () {
       return moment(this.activeDate).format('YYYY')
     },
@@ -40,13 +39,14 @@ export default {
     }
   },
   methods: {
+    ...mapActions(['setList']),
     previousWeek () {
       const previousWeek = moment(this.activeDate).subtract({ weeks: 1 }).format()
-      this.$store.dispatch('getList', previousWeek)
+      this.setList(previousWeek)
     },
     nextWeek () {
       const nextWeek = moment(this.activeDate).add({ weeks: 1 }).format()
-      this.$store.dispatch('getList', nextWeek)
+      this.setList(nextWeek)
     }
   }
 }

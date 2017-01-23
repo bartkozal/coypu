@@ -1,25 +1,40 @@
 import moment from 'moment'
 import PouchDB from 'pouchdb'
 import isEqual from 'lodash/isEqual'
+import isNil from 'lodash/isNil'
 import debounce from 'lodash/debounce'
 
 const db = new PouchDB('coypu-offline')
 
 export default {
   state: {
-    activeDate: null
+    activeDate: null,
+    timelineTransition: null
   },
   getters: {
-    activeDate: state => { return state.activeDate }
+    activeDate: state => { return state.activeDate },
+    activeList: state => {
+      return moment(state.activeDate).format('YYYY-w')
+    },
+    timelineTransition: state => { return state.timelineTransition }
   },
   mutations: {
     setActiveDate (state, date) {
       state.activeDate = date
+    },
+    setTransition (state, name) {
+      state.timelineTransition = name
     }
   },
   actions: {
-    getList (context, date) {
+    setList (context, date) {
       const id = moment(date).format('YYYY-w')
+
+      if (!isNil(context.state.activeDate)) {
+        const isAfter = moment(date).isAfter(context.state.activeDate)
+        context.commit('setTransition', isAfter ? 'next' : 'previous')
+      }
+
       context.commit('setActiveDate', date)
 
       db.get(id).then((doc) => {
