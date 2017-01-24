@@ -3,6 +3,10 @@
     <transition name="transition">
       <div class="settings-view" v-if="isActive">
         <i class="icon icon-close ion-ios-close-outline" @click="isActive = false"></i>
+        <settings-key keycap="Enter">Add new task</settings-key>
+        <settings-key keycap="Backspace">Remove task</settings-key>
+        <settings-key keycap="Tab">Complete task</settings-key>
+        <settings-key keycap="↑ or ↓">Jump between tasks</settings-key>
       </div>
     </transition>
     <i class="icon icon-settings ion-ios-settings"
@@ -12,12 +16,17 @@
 </template>
 
 <script>
+import SettingsKey from 'components/Settings/Key'
+
 export default {
   name: 'settings',
   data () {
     return {
       isActive: false
     }
+  },
+  components: {
+    SettingsKey
   }
 }
 </script>
@@ -55,8 +64,9 @@ export default {
     right: 0;
     bottom: 0;
     left: 0;
-    background-color: var(--color-primary);
     z-index: var(--z-settings-view);
+    background-color: var(--color-primary);
+    font-size: 16px;
   }
 
   .transition-enter,
