@@ -4,6 +4,7 @@
     <transition :name="transitionName" mode="out-in">
       <component :is="List" :key="activeList"></component>
     </transition>
+    <settings></settings>
   </div>
 </template>
 
@@ -11,6 +12,7 @@
 import moment from 'moment'
 import Topbar from 'components/Topbar'
 import List from 'components/List'
+import Settings from 'components/Settings'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -30,7 +32,8 @@ export default {
     }
   },
   components: {
-    Topbar
+    Topbar,
+    Settings
   }
 }
 </script>

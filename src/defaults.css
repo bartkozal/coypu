@@ -13,4 +13,7 @@
   --color-muted: #888;
 
   --transition-duration: .2s;
+
+  --z-settings-view: 1;
+  --z-settings-icon: 2;
 }

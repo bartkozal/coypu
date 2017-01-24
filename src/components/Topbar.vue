@@ -1,13 +1,13 @@
 <template>
   <div class="topbar">
-    <i class="icon ion-ios-arrow-back" @click="previousWeek"></i>
+    <i class="icon icon-chevron-left ion-ios-arrow-back" @click="previousWeek"></i>
     <div class="topbar-week" @click="previousWeek" v-cloak>
       {{ year }} w{{ weekOfYear }}
     </div>
     <div class="topbar-date" @click="nextWeek" v-cloak>
       {{ startOfWeek }} - {{ endOfWeek }} {{ currentMonth }}
     </div>
-    <i class="icon ion-ios-arrow-forward" @click="nextWeek"></i>
+    <i class="icon icon-chevron-right ion-ios-arrow-forward" @click="nextWeek"></i>
   </div>
 </template>
 
@@ -78,11 +78,11 @@ export default {
     cursor: pointer;
   }
 
-  .ion-ios-arrow-back {
+  .icon-chevron-left {
     padding-right: var(--spacing);
   }
 
-  .ion-ios-arrow-forward {
+  .icon-chevron-right {
     padding-left: var(--spacing);
   }
 </style>
