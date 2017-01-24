@@ -43,6 +43,13 @@ export default {
 <style>
   @import 'defaults.css';
 
+  @font-face {
+    font-family: 'Clear Sans';
+    font-style: normal;
+    font-weight: 400;
+    src: local('Clear Sans'), local('ClearSans'), url('assets/ClearSans-Regular.ttf');
+  }
+
   body {
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
