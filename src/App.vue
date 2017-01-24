@@ -56,4 +56,33 @@ export default {
   [v-cloak] {
     display: none;
   }
+
+  .icon {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    cursor: pointer;
+    background-repeat: no-repeat;
+    font-style: normal;
+  }
+
+  .icon-chevron-left {
+    background-image: url('assets/icon-chevron-left.svg');
+  }
+
+  .icon-chevron-right {
+    background-image: url('assets/icon-chevron-right.svg');
+  }
+
+  .icon-settings {
+    background-image: url('assets/icon-settings.svg');
+  }
+
+  .icon-settings-active {
+    background-image: url('assets/icon-settings-active.svg');
+  }
+
+  .icon-close {
+    background-image: url('assets/icon-close.svg');
+  }
 </style>

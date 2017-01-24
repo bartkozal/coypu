@@ -2,16 +2,15 @@
   <div>
     <transition name="transition">
       <div class="settings-view" v-if="isActive">
-        <i class="icon icon-close ion-ios-close-outline" @click="isActive = false"></i>
+        <i class="icon icon-close" @click="isActive = false"></i>
         <settings-key keycap="Enter">Add new task</settings-key>
         <settings-key keycap="Backspace">Remove task</settings-key>
         <settings-key keycap="Tab">Complete task</settings-key>
         <settings-key keycap="↑ or ↓">Jump between tasks</settings-key>
       </div>
     </transition>
-    <i class="icon icon-settings ion-ios-settings"
-      @click="isActive = !isActive"
-      :class="{ 'icon-settings-active': isActive }"></i>
+    <i class="icon" @click="isActive = !isActive"
+      :class="isActive ? 'icon-settings-active' : 'icon-settings'"></i>
   </div>
 </template>
 
@@ -34,32 +33,23 @@ export default {
 <style scoped>
   @import '../defaults.css';
 
-  .icon {
-    font-size: calc(var(--font-large) * 1.2);
-    cursor: pointer;
-  }
-
   .icon-close {
     position: fixed;
-    top: 10px;
-    right: 10px;
-    color: white;
+    top: var(--spacing);
+    right: var(--spacing);
   }
 
-  .icon-settings {
-    position: fixed;
-    bottom: 10px;
-    right: 10px;
-    color: var(--color-primary);
-    z-index: var(--z-settings-icon);
-  }
-
+  .icon-settings,
   .icon-settings-active {
-    color: white;
+    position: fixed;
+    bottom: var(--spacing);
+    right: var(--spacing);
+    z-index: var(--z-settings-icon);
   }
 
   .settings-view {
     position: fixed;
+    padding: calc(var(--spacing) * 2);
     top: 0;
     right: 0;
     bottom: 0;

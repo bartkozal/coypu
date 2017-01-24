@@ -34,7 +34,7 @@ export default {
   }
 
   .settings-key + .settings-key {
-    margin-top: 10px;
+    margin-top: 12px;
   }
 
   .has-key {

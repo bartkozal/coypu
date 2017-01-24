@@ -1,13 +1,13 @@
 <template>
   <div class="topbar">
-    <i class="icon icon-chevron-left ion-ios-arrow-back" @click="previousWeek"></i>
+    <i class="icon icon-chevron-left" @click="previousWeek"></i>
     <div class="topbar-week" @click="previousWeek" v-cloak>
       {{ year }} w{{ weekOfYear }}
     </div>
     <div class="topbar-date" @click="nextWeek" v-cloak>
       {{ startOfWeek }} - {{ endOfWeek }} {{ currentMonth }}
     </div>
-    <i class="icon icon-chevron-right ion-ios-arrow-forward" @click="nextWeek"></i>
+    <i class="icon icon-chevron-right" @click="nextWeek"></i>
   </div>
 </template>
 
@@ -70,19 +70,5 @@ export default {
 
   .topbar-date {
     cursor: pointer;
-  }
-
-  .icon {
-    color: var(--color-primary);
-    font-size: calc(var(--font-large) - 2px);
-    cursor: pointer;
-  }
-
-  .icon-chevron-left {
-    padding-right: var(--spacing);
-  }
-
-  .icon-chevron-right {
-    padding-left: var(--spacing);
   }
 </style>
