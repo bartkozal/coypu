@@ -3,6 +3,12 @@
     <transition name="transition">
       <div class="settings-view" v-if="isActive">
         <i class="icon icon-close" @click="isActive = false"></i>
+
+        <div class="settings-view-section">
+          <h1 class="settings-view-heading">Calendar</h1>
+          <settings-locale></settings-locale>
+        </div>
+
         <settings-key keycap="Enter">Add new task</settings-key>
         <settings-key keycap="Backspace">Remove task</settings-key>
         <settings-key keycap="Tab">Complete task</settings-key>
@@ -16,6 +22,7 @@
 
 <script>
 import SettingsKey from 'components/Settings/Key'
+import SettingsLocale from 'components/Settings/Locale'
 
 export default {
   name: 'settings',
@@ -25,7 +32,8 @@ export default {
     }
   },
   components: {
-    SettingsKey
+    SettingsKey,
+    SettingsLocale
   }
 }
 </script>
@@ -56,7 +64,19 @@ export default {
     left: 0;
     z-index: var(--z-settings-view);
     background-color: var(--color-primary);
-    font-size: 16px;
+    color: white;
+    font-size: var(--font-settings);
+  }
+
+  .settings-view-section {
+    text-align: center;
+    margin-bottom: calc(var(--spacing) * 3);
+  }
+
+  .settings-view-heading {
+    font-size: var(--font-settings);
+    font-weight: normal;
+    margin-bottom: var(--spacing);
   }
 
   .transition-enter,

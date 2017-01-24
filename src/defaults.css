@@ -1,6 +1,7 @@
 :root {
   --font-stack: 'Clear Sans', sans-serif;
   --font-leading: 1.4;
+  --font-settings: 16px;
   --font-base: 18px;
   --font-large: 22px;
 
