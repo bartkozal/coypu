@@ -1,8 +1,10 @@
 <template>
   <div>
-    <div class="settings-view" v-if="isActive">
-      <i class="icon icon-close ion-ios-close-outline" @click="isActive = false"></i>
-    </div>
+    <transition name="transition">
+      <div class="settings-view" v-if="isActive">
+        <i class="icon icon-close ion-ios-close-outline" @click="isActive = false"></i>
+      </div>
+    </transition>
     <i class="icon icon-settings ion-ios-settings"
       @click="isActive = !isActive"
       :class="{ 'icon-settings-active': isActive }"></i>
@@ -55,5 +57,22 @@ export default {
     left: 0;
     background-color: var(--color-primary);
     z-index: var(--z-settings-view);
+  }
+
+  .transition-enter,
+  .transition-leave-to {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+
+  .transition-enter-to,
+  .transition-leave {
+    transform: translateY(0);
+    opacity: 1;
+  }
+
+  .transition-enter-active,
+  .transition-leave-active {
+    transition: all var(--transition-duration);
   }
 </style>
