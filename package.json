@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "homepage": "https://coypu.co",
   "license": "CC-BY-ND-4.0",
-  "description": "Text-editor-like week planner",
+  "description": "Text-editor-like weekly planner",
   "author": "Lost Bananas <hello@lostbananas.com>",
   "private": true,
   "scripts": {
@@ -40,7 +40,7 @@
       "category": "Office",
       "packageCategory": "misc",
       "target": "deb",
-      "synopsis": "Text-editor-like week planner"
+      "synopsis": "Text-editor-like weekly planner"
     },
     "mac": {
       "category": "public.app-category.productivity",

@@ -1,6 +1,6 @@
 # coypu
 
-> Text-editor-like week planner
+> Text-editor-like weekly planner
 
 ## Build Setup
 

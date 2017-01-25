@@ -3,7 +3,7 @@
   "version": "1.1.0",
   "homepage": "https://coypu.co",
   "license": "CC-BY-ND-4.0",
-  "description": "Text-editor-like week planner",
+  "description": "Text-editor-like weekly planner",
   "author": "Lost Bananas <hello@lostbananas.com>",
   "main": "main.js",
   "dependencies": {
