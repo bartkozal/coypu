@@ -49,6 +49,7 @@ export default {
     box-shadow: 0 2px white;
     min-width: 20px;
     text-align: center;
+    font-family: BlinkMacSystemFont, "Clear Sans";
   }
 
   .key + .key {
