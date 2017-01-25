@@ -2,7 +2,7 @@
   <div class="topbar">
     <i class="icon icon-chevron-left" @click="previousWeek"></i>
     <div class="topbar-week" @click="previousWeek" v-cloak>
-      {{ year }} w{{ weekOfYear }}
+      {{ year }} - {{ weekOfYear }}
     </div>
     <div class="topbar-date" @click="nextWeek" v-cloak>
       {{ startOfWeek }} - {{ endOfWeek }} {{ currentMonth }}
