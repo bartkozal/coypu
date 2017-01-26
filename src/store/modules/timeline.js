@@ -68,6 +68,6 @@ export default {
       }).catch((err) => {
         throw err
       })
-    }, 400)
+    }, 300)
   }
 }
