@@ -1,10 +1,9 @@
 import moment from 'moment'
-import PouchDB from 'pouchdb'
 import isEqual from 'lodash/isEqual'
 import isNil from 'lodash/isNil'
 import debounce from 'lodash/debounce'
+import db from '../db'
 
-const db = new PouchDB('coypu-offline')
 const listFormat = 'YYYY-w'
 
 export default {
