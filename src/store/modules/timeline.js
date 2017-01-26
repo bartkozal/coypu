@@ -5,6 +5,7 @@ import isNil from 'lodash/isNil'
 import debounce from 'lodash/debounce'
 
 const db = new PouchDB('coypu-offline')
+const listFormat = 'YYYY-w'
 
 export default {
   state: {
@@ -14,7 +15,7 @@ export default {
   getters: {
     activeDate: state => { return state.activeDate },
     activeList: state => {
-      return moment(state.activeDate).format('YYYY-w')
+      return moment(state.activeDate).format(listFormat)
     },
     timelineTransition: state => { return state.timelineTransition }
   },
@@ -28,7 +29,7 @@ export default {
   },
   actions: {
     setList (context, date) {
-      const id = moment(date).format('YYYY-w')
+      const id = moment(date).format(listFormat)
 
       if (!isNil(context.state.activeDate)) {
         const isAfter = moment(date).isAfter(context.state.activeDate)
@@ -48,7 +49,7 @@ export default {
       })
     },
     saveActiveList: debounce(function (context) {
-      const id = moment(context.state.activeDate).format('YYYY-w')
+      const id = moment(context.state.activeDate).format(listFormat)
 
       db.get(id).catch((err) => {
         if (err.name === 'not_found') {
