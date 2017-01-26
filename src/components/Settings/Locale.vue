@@ -1,5 +1,5 @@
 <template>
-  <select v-model="locale">
+  <select v-model="select">
     <option v-for="option in options" :value="option.code">
       {{ option.name }}
     </option>
@@ -8,18 +8,30 @@
 
 <script>
 import sortBy from 'lodash/sortBy'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'settings-locale',
   computed: {
+    ...mapGetters(['calendar']),
+    select: {
+      get () {
+        return this.calendar
+      },
+      set (calendar) {
+        this.setCalendar(calendar)
+      }
+    },
     options () {
-      return sortBy(this.locales, 'name')
+      return sortBy(this.calendars, 'name')
     }
+  },
+  methods: {
+    ...mapMutations(['setCalendar'])
   },
   data () {
     return {
-      locale: 'en-gb',
-      locales: [
+      calendars: [
         {
           code: 'af',
           name: 'Afrikaans'

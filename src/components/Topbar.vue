@@ -21,31 +21,31 @@ export default {
     this.setList(moment().format())
   },
   computed: {
-    ...mapGetters(['activeDate']),
+    ...mapGetters(['activeDate', 'calendar']),
     year () {
-      return moment(this.activeDate).format('YYYY')
+      return moment(this.activeDate).locale(this.calendar).format('YYYY')
     },
     weekOfYear () {
-      return moment(this.activeDate).format('w')
+      return moment(this.activeDate).locale(this.calendar).format('w')
     },
     startOfWeek () {
-      return moment(this.activeDate).startOf('week').format('D')
+      return moment(this.activeDate).locale(this.calendar).startOf('week').format('D')
     },
     endOfWeek () {
-      return moment(this.activeDate).endOf('week').format('D')
+      return moment(this.activeDate).locale(this.calendar).endOf('week').format('D')
     },
     currentMonth () {
-      return moment(this.activeDate).format('MMMM')
+      return moment(this.activeDate).locale(this.calendar).format('MMMM')
     }
   },
   methods: {
     ...mapActions(['setList']),
     previousWeek () {
-      const previousWeek = moment(this.activeDate).subtract({ weeks: 1 }).format()
+      const previousWeek = moment(this.activeDate).locale(this.calendar).subtract({ weeks: 1 }).format()
       this.setList(previousWeek)
     },
     nextWeek () {
-      const nextWeek = moment(this.activeDate).add({ weeks: 1 }).format()
+      const nextWeek = moment(this.activeDate).locale(this.calendar).add({ weeks: 1 }).format()
       this.setList(nextWeek)
     }
   }
