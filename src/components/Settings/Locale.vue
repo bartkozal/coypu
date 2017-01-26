@@ -13,13 +13,13 @@ import { mapGetters, mapMutations } from 'vuex'
 export default {
   name: 'settings-locale',
   computed: {
-    ...mapGetters(['calendar']),
+    ...mapGetters(['calendarLocale']),
     select: {
       get () {
-        return this.calendar
+        return this.calendarLocale
       },
-      set (calendar) {
-        this.setCalendar(calendar)
+      set (locale) {
+        this.setCalendarLocale(locale)
       }
     },
     options () {
@@ -27,7 +27,7 @@ export default {
     }
   },
   methods: {
-    ...mapMutations(['setCalendar'])
+    ...mapMutations(['setCalendarLocale'])
   },
   data () {
     return {

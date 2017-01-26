@@ -34,10 +34,10 @@ export default {
     Task
   },
   computed: {
-    ...mapGetters(['activeDate', 'tasks', 'calendar']),
+    ...mapGetters(['activeDate', 'tasks', 'calendarLocale']),
     list () {
-      const startOfWeek = moment(this.activeDate).locale(this.calendar).startOf('week')
-      const endOfWeek = moment(this.activeDate).locale(this.calendar).endOf('week')
+      const startOfWeek = this.calendar().startOf('week')
+      const endOfWeek = this.calendar().endOf('week')
 
       return tap({}, (result) => {
         moment.range(startOfWeek, endOfWeek).by('days', moment => {
@@ -49,8 +49,11 @@ export default {
   },
   methods: {
     ...mapMutations(['createList']),
+    calendar () {
+      return moment(this.activeDate).locale(this.calendarLocale)
+    },
     dayOfWeek (date) {
-      return moment(date).locale(this.calendar).format('dddd - Do')
+      return moment(date).locale(this.calendarLocale).format('dddd - Do')
     },
     isToday (date) {
       return moment().isSame(date, 'day')

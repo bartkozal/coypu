@@ -1,16 +1,16 @@
-const settingsCalendar = 'settings-calendar'
+const calendarLocale = 'calendar-locale'
 
 export default {
   state: {
-    calendar: window.localStorage.getItem(settingsCalendar) || 'en-gb'
+    calendarLocale: window.localStorage.getItem(calendarLocale) || 'en-gb'
   },
   getters: {
-    calendar: state => { return state.calendar }
+    calendarLocale: state => { return state.calendarLocale }
   },
   mutations: {
-    setCalendar (state, calendar) {
-      state.calendar = calendar
-      window.localStorage.setItem(settingsCalendar, calendar)
+    setCalendarLocale (state, locale) {
+      state.calendarLocale = locale
+      window.localStorage.setItem(calendarLocale, locale)
     }
   }
 }

@@ -18,18 +18,18 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'app',
   computed: {
-    ...mapGetters(['activeList', 'timelineTransition', 'calendar']),
+    ...mapGetters(['activeList', 'timelineTransition', 'calendarLocale']),
     transitionName () {
       return `${this.timelineTransition}-list`
     }
   },
   watch: {
-    calendar (newCalendar) {
-      moment.locale(newCalendar)
+    calendarLocale (newLocale) {
+      moment.locale(newLocale)
     }
   },
   created () {
-    moment.locale(this.calendar)
+    moment.locale(this.calendarLocale)
   },
   data () {
     return {
