@@ -6,11 +6,11 @@
       :value="task.body"
       :class="{'task-completed': task.completion }"
       :active="active"
-      @blur="blur"
-      @focus="selectTask"
+      @blur="saveActiveList"
+      @focus="selectTask(task)"
       @input="updateTaskBody"
       @keydown.esc.prevent="deselectTask"
-      @keydown.enter.prevent="createTask"
+      @keydown.enter.prevent="createOrSplitTask"
       @keydown.up.prevent="selectPreviousTask"
       @keydown.down.prevent="selectNextTask"
       @keydown.delete="removeCharOrJoinTasks"
@@ -21,6 +21,7 @@
 
 <script>
 import autosize from 'autosize'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'task-input',
@@ -33,12 +34,7 @@ export default {
     }
   },
   computed: {
-    activeTask () {
-      return this.$store.getters.activeTask
-    },
-    caretOffset () {
-      return this.$store.getters.caretOffset
-    },
+    ...mapGetters(['activeTask', 'caretOffset']),
     active () {
       const isActive = this.activeTask === this.task
 
@@ -62,30 +58,31 @@ export default {
     }
   },
   methods: {
-    blur: function () {
-      this.$store.dispatch('saveActiveList')
-    },
+    ...mapActions([
+      'saveActiveList', 'deselectTask', 'updateTask', 'createTask', 'joinTasks',
+      'selectTask', 'selectPreviousTask', 'selectNextTask'
+    ]),
     deselectTask () {
       this.$refs.textarea.blur()
-      this.$store.dispatch('deselectTask')
+      this.deselectTask()
     },
     updateTaskBody: function (event) {
-      this.$store.dispatch('updateTask', { body: event.target.value })
+      this.updateTask({ body: event.target.value })
     },
     updateTaskCompletion () {
-      this.$store.dispatch('updateTask', { completion: !this.task.completion })
+      this.updateTask({ completion: !this.task.completion })
     },
-    createTask () {
+    createOrSplitTask () {
       const el = this.$refs.textarea
       const isCaretAtBeginning = el.selectionStart === 0 && el.selectionEnd === 0
       const hasBody = this.task.body.length > 0
 
       if (isCaretAtBeginning && hasBody) {
-        this.$store.dispatch('createTask', { atIndex: 0 })
+        this.createTask({ atIndex: 0 })
       } else {
         const slice = this.task.body.slice(el.selectionStart)
         this.task.body = this.task.body.slice(0, el.selectionStart)
-        this.$store.dispatch('createTask', { body: slice, offset: slice.length })
+        this.createTask({ body: slice, offset: slice.length })
       }
     },
     removeCharOrJoinTasks (event) {
@@ -94,17 +91,8 @@ export default {
 
       if (isCaretAtBeginning) {
         event.preventDefault()
-        this.$store.dispatch('joinTasks', { offset: this.task.body.length })
+        this.joinTasks({ offset: this.task.body.length })
       }
-    },
-    selectTask () {
-      this.$store.dispatch('selectTask', this.task)
-    },
-    selectPreviousTask () {
-      this.$store.dispatch('selectPreviousTask')
-    },
-    selectNextTask () {
-      this.$store.dispatch('selectNextTask')
     }
   }
 }

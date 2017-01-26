@@ -1,12 +1,13 @@
 <template>
-  <div class="task-checkbox" @click="completion = !completion">
+  <div class="task-checkbox" @click="toggleTask(task)">
     <transition name="transition">
-      <div class="task-checkbox-inner" v-if="completion"></div>
+      <div class="task-checkbox-inner" v-if="task.completion"></div>
     </transition>
   </div>
 </template>
 
 <script>
+  import { mapActions } from 'vuex'
   export default {
     name: 'task-checkbox',
     props: {
@@ -14,15 +15,8 @@
         required: true
       }
     },
-    computed: {
-      completion: {
-        get () {
-          return this.task.completion
-        },
-        set (newValue) {
-          this.$store.dispatch('toggleTask', this.task)
-        }
-      }
+    methods: {
+      ...mapActions(['toggleTask'])
     }
   }
 </script>

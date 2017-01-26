@@ -26,6 +26,7 @@ import tap from 'lodash/tap'
 import moment from 'moment'
 import 'moment-range'
 import Task from 'components/Task'
+import { mapGetters, mapMutations } from 'vuex'
 
 export default {
   name: 'list',
@@ -33,12 +34,7 @@ export default {
     Task
   },
   computed: {
-    activeDate () {
-      return this.$store.getters.activeDate
-    },
-    tasks () {
-      return this.$store.getters.tasks
-    },
+    ...mapGetters(['activeDate', 'tasks']),
     list () {
       const startOfWeek = moment(this.activeDate).startOf('week')
       const endOfWeek = moment(this.activeDate).endOf('week')
@@ -52,14 +48,12 @@ export default {
     }
   },
   methods: {
+    ...mapMutations(['createList']),
     dayOfWeek (date) {
       return moment(date).format('dddd - Do')
     },
     isToday (date) {
       return moment().isSame(date, 'day')
-    },
-    createList (date) {
-      this.$store.commit('createList', date)
     }
   }
 }
