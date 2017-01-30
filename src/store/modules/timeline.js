@@ -2,7 +2,7 @@ import moment from 'moment'
 import isEqual from 'lodash/isEqual'
 import isNil from 'lodash/isNil'
 import debounce from 'lodash/debounce'
-import db from '../db'
+import { db } from '../db'
 
 const listFormat = 'YYYY-w'
 

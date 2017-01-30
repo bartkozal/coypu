@@ -14,6 +14,8 @@ import Topbar from 'components/Topbar'
 import List from 'components/List'
 import Settings from 'components/Settings'
 import { mapGetters } from 'vuex'
+import PouchDB from 'pouchdb'
+import { migrate } from './store/db'
 
 export default {
   name: 'app',
@@ -28,7 +30,11 @@ export default {
       moment.locale(newLocale)
     }
   },
+  beforeCreate () {
+    migrate()
+  },
   created () {
+    window.PouchDB = PouchDB
     moment.locale(this.calendarLocale)
   },
   data () {
