@@ -36,6 +36,8 @@ export const migrate = () => {
           _id: schemaKey,
           version: dbVersion
         })
+      }).then(() => {
+        window.location.reload(true)
       })
     }
   })

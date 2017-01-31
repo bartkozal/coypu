@@ -1,18 +1,13 @@
 export default {
   state: {
-    offset: 0
+    caretOffset: 0
   },
   getters: {
-    caretOffset: state => { return state.offset }
+    caretOffset: state => { return state.caretOffset }
   },
   mutations: {
-    setOffset (state, newOffset) {
-      state.offset = newOffset
-    }
-  },
-  actions: {
-    setCaretOffset ({ commit }, offset) {
-      commit('setOffset', offset)
+    setCaretOffset (state, offset) {
+      state.caretOffset = offset
     }
   }
 }

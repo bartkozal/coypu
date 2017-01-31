@@ -1,18 +1,18 @@
 <template>
   <div>
-    <div v-for="(tasks, date) in list">
-      <div :class="{'list-today': isToday(date)}" class="list-name" @click="createList(date)">
-        {{ dayOfWeek(date) }}
+    <div v-for="(tasks, day) in list">
+      <div :class="{'list-today': isToday(day)}" class="list-name" @click="createTask({ day })">
+        {{ dayOfWeek(day) }}
       </div>
 
-      <div v-if="tasks.length === 0">
-        <div class="list-mock" @click="createList(date)"></div>
+      <div v-if="isEmpty(tasks)">
+        <div class="list-mock" @click="createTask({ day })"></div>
       </div>
 
       <div v-else>
         <ul class="list">
           <li class="list-item" v-for="task in tasks">
-            <task :task="task"></task>
+            <task :day="day" :task="task"></task>
           </li>
         </ul>
       </div>
@@ -21,12 +21,10 @@
 </template>
 
 <script>
-import filter from 'lodash/filter'
-import tap from 'lodash/tap'
 import moment from 'moment'
-import 'moment-range'
+import isEmpty from 'lodash/isEmpty'
 import Task from 'components/Task'
-import { mapGetters, mapMutations } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'list',
@@ -34,26 +32,15 @@ export default {
     Task
   },
   computed: {
-    ...mapGetters(['activeDate', 'tasks', 'calendarLocale']),
-    list () {
-      const startOfWeek = this.calendar().startOf('week')
-      const endOfWeek = this.calendar().endOf('week')
-
-      return tap({}, (result) => {
-        moment.range(startOfWeek, endOfWeek).by('days', moment => {
-          const date = moment.format('YYYY-MM-DD')
-          result[date] = filter(this.tasks, ['date', date])
-        })
-      })
-    }
+    ...mapGetters(['list', 'calendarLocale'])
   },
   methods: {
-    ...mapMutations(['createList']),
-    calendar () {
-      return moment(this.activeDate).locale(this.calendarLocale)
-    },
+    ...mapActions(['createTask']),
     dayOfWeek (date) {
       return moment(date).locale(this.calendarLocale).format('dddd - Do')
+    },
+    isEmpty (tasks) {
+      return isEmpty(tasks)
     },
     isToday (date) {
       return moment().isSame(date, 'day')

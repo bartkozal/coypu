@@ -1,7 +1,7 @@
 <template>
   <div class="task">
     <task-checkbox :task="task"></task-checkbox>
-    <task-input :task="task"></task-input>
+    <task-input :day="day" :task="task"></task-input>
   </div>
 </template>
 
@@ -13,6 +13,9 @@ export default {
   name: 'task',
   props: {
     task: {
+      required: true
+    },
+    day: {
       required: true
     }
   },

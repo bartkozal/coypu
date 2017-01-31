@@ -2,7 +2,7 @@
   <div>
     <topbar></topbar>
     <transition :name="transitionName" mode="out-in">
-      <component :is="List" :key="activeList"></component>
+      <component :is="List" :key="listKey"></component>
     </transition>
     <settings></settings>
   </div>
@@ -13,14 +13,13 @@ import moment from 'moment'
 import Topbar from 'components/Topbar'
 import List from 'components/List'
 import Settings from 'components/Settings'
-import { mapGetters } from 'vuex'
-import PouchDB from 'pouchdb'
+import { mapGetters, mapActions } from 'vuex'
 import { migrate } from './store/db'
 
 export default {
   name: 'app',
   computed: {
-    ...mapGetters(['activeList', 'timelineTransition', 'calendarLocale']),
+    ...mapGetters(['listKey', 'timelineTransition', 'calendarLocale']),
     transitionName () {
       return `${this.timelineTransition}-list`
     }
@@ -28,13 +27,13 @@ export default {
   watch: {
     calendarLocale (newLocale) {
       moment.locale(newLocale)
+      this.setTimeline()
     }
   },
   beforeCreate () {
     migrate()
   },
   created () {
-    window.PouchDB = PouchDB
     moment.locale(this.calendarLocale)
   },
   data () {
@@ -45,7 +44,8 @@ export default {
   components: {
     Topbar,
     Settings
-  }
+  },
+  methods: mapActions(['setTimeline'])
 }
 </script>
 

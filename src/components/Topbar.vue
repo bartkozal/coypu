@@ -1,55 +1,51 @@
 <template>
   <div class="topbar">
-    <i class="icon icon-chevron-left" @click="previousWeek"></i>
-    <div class="topbar-week" @click="previousWeek" v-cloak>
+    <i class="icon icon-chevron-left" @click="showPreviousWeek"></i>
+    <div class="topbar-week" @click="showPreviousWeek" v-cloak>
       {{ year }} - {{ weekOfYear }}
     </div>
-    <div class="topbar-date" @click="nextWeek" v-cloak>
+    <div class="topbar-date" @click="showNextWeek" v-cloak>
       {{ startOfWeek }} - {{ endOfWeek }} {{ currentMonth }}
     </div>
-    <i class="icon icon-chevron-right" @click="nextWeek"></i>
+    <i class="icon icon-chevron-right" @click="showNextWeek"></i>
   </div>
 </template>
 
 <script>
-import moment from 'moment'
 import { mapGetters, mapActions } from 'vuex'
 
 export default {
   name: 'topbar',
   created () {
-    this.setList(moment().format())
+    this.setTimeline()
   },
   computed: {
-    ...mapGetters(['activeDate', 'calendarLocale']),
+    ...mapGetters(['timeline']),
     year () {
-      return this.calendar().format('YYYY')
+      return this.timeline.format('YYYY')
     },
     weekOfYear () {
-      return this.calendar().format('w')
+      return this.timeline.format('w')
     },
     startOfWeek () {
-      return this.calendar().startOf('week').format('D')
+      return this.timeline.startOf('week').format('D')
     },
     endOfWeek () {
-      return this.calendar().endOf('week').format('D')
+      return this.timeline.endOf('week').format('D')
     },
     currentMonth () {
-      return this.calendar().format('MMMM')
+      return this.timeline.format('MMMM')
     }
   },
   methods: {
-    ...mapActions(['setList']),
-    calendar () {
-      return moment(this.activeDate).locale(this.calendarLocale)
+    ...mapActions(['setTimeline']),
+    showPreviousWeek () {
+      const previousWeek = this.timeline.subtract({ weeks: 1 }).format()
+      this.setTimeline(previousWeek)
     },
-    previousWeek () {
-      const previousWeek = this.calendar().subtract({ weeks: 1 }).format()
-      this.setList(previousWeek)
-    },
-    nextWeek () {
-      const nextWeek = this.calendar().add({ weeks: 1 }).format()
-      this.setList(nextWeek)
+    showNextWeek () {
+      const nextWeek = this.timeline.add({ weeks: 1 }).format()
+      this.setTimeline(nextWeek)
     }
   }
 }

@@ -1,72 +1,77 @@
 import moment from 'moment'
-import isEqual from 'lodash/isEqual'
-import isNil from 'lodash/isNil'
+import { extendMoment } from 'moment-range'
+import get from 'lodash/get'
 import debounce from 'lodash/debounce'
 import { db } from '../db'
 
-const listFormat = 'YYYY-w'
-
 export default {
   state: {
-    activeDate: null,
+    timelineDate: null,
     timelineTransition: null
   },
   getters: {
-    activeDate: state => { return state.activeDate },
-    activeList: state => {
-      return moment(state.activeDate).format(listFormat)
+    timeline: (state, _, rootState) => {
+      return moment(state.timelineDate).locale(rootState.settings.calendarLocale)
     },
+    timelineDate: state => { return state.timelineDate },
     timelineTransition: state => { return state.timelineTransition }
   },
   mutations: {
-    setActiveDate (state, date) {
-      state.activeDate = date
+    setDate (state, date) {
+      state.timelineDate = date
     },
     setTransition (state, name) {
       state.timelineTransition = name
     }
   },
   actions: {
-    setList (context, date) {
-      const id = moment(date).format(listFormat)
+    setTimeline ({ state, commit, getters, rootState }, date = moment().format()) {
+      const isAfter = moment(date).isAfter(state.timelineDate)
+      const dayFormat = 'YYYY-MM-DD'
 
-      if (!isNil(context.state.activeDate)) {
-        const isAfter = moment(date).isAfter(context.state.activeDate)
-        context.commit('setTransition', isAfter ? 'next' : 'previous')
-      }
+      commit('setTransition', isAfter ? 'next' : 'previous')
+      commit('setDate', date)
 
-      context.commit('setActiveDate', date)
+      const startOfWeek = getters.timeline.startOf('week').format(dayFormat)
+      const endOfWeek = getters.timeline.endOf('week').format(dayFormat)
+      const week = extendMoment(moment).range(startOfWeek, endOfWeek).by('days')
+      const keys = Array.from(week).map(day => day.format(dayFormat))
 
-      db.get(id).then((doc) => {
-        context.rootState.list.tasks = doc.tasks
-      }).catch((err) => {
-        if (err.name === 'not_found') {
-          return
-        } else {
-          throw err
-        }
+      db.allDocs({
+        include_docs: true,
+        keys: keys
+      }).then(docs => {
+        return docs.rows.reduce((list, row) => {
+          list[row.key] = get(row, 'doc.tasks', [])
+          return list
+        }, {})
+      }).then(list => {
+        commit('setList', list)
+      }).catch(error => {
+        throw error
       })
     },
-    saveActiveList: debounce(function (context) {
-      const id = moment(context.state.activeDate).format(listFormat)
+    saveTimeline: debounce((context) => {
+      // TODO
+      // const id = moment(context.state.timelineDate).format('YYYY-w')
 
-      db.get(id).catch((err) => {
-        if (err.name === 'not_found') {
-          return {
-            '_id': id,
-            'tasks': []
-          }
-        } else {
-          throw err
-        }
-      }).then((doc) => {
-        if (!isEqual(doc.tasks, context.rootState.list.tasks)) {
-          doc.tasks = context.rootState.list.tasks
-          db.put(doc)
-        }
-      }).catch((err) => {
-        throw err
-      })
+      // db.get(id).catch((err) => {
+      //   if (err.name === 'not_found') {
+      //     return {
+      //       '_id': id,
+      //       'tasks': []
+      //     }
+      //   } else {
+      //     throw err
+      //   }
+      // }).then((doc) => {
+      //   if (!isEqual(doc.tasks, context.rootState.list.tasks)) {
+      //     doc.tasks = context.rootState.list.tasks
+      //     db.put(doc)
+      //   }
+      // }).catch((err) => {
+      //   throw err
+      // })
     }, 300)
   }
 }

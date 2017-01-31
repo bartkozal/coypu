@@ -5,15 +5,15 @@
       ref="textarea"
       :value="task.body"
       :class="{'task-completed': task.completion }"
-      :active="active"
-      @blur="saveActiveList"
-      @focus="selectTask(task)"
+      :active="isActive"
+      @blur="blurTask"
+      @focus="selectTask({ day, task })"
       @input="updateTaskBody"
-      @keydown.esc.prevent="deselectTask"
-      @keydown.enter.prevent="createOrSplitTask"
+      @keydown.esc.prevent="blurTask"
+      @keydown.enter.prevent="splitTask"
       @keydown.up.prevent="selectPreviousTask"
       @keydown.down.prevent="selectNextTask"
-      @keydown.delete="removeCharOrJoinTasks"
+      @keydown.delete="removeTask"
       @keydown.tab.prevent="updateTaskCompletion">
     </textarea>
   </div>
@@ -31,11 +31,14 @@ export default {
   props: {
     task: {
       required: true
+    },
+    day: {
+      required: true
     }
   },
   computed: {
     ...mapGetters(['activeTask', 'caretOffset']),
-    active () {
+    isActive () {
       const isActive = this.activeTask === this.task
 
       this.$nextTick(() => {
@@ -47,7 +50,6 @@ export default {
           if (this.caretOffset !== 0) {
             const position = el.value.length - this.caretOffset
             el.setSelectionRange(position, position)
-            this.$store.dispatch('setCaretOffset', 0)
           } else {
             el.setSelectionRange(el.value.length, el.value.length)
           }
@@ -59,10 +61,10 @@ export default {
   },
   methods: {
     ...mapActions([
-      'saveActiveList', 'deselectTask', 'updateTask', 'createTask', 'joinTasks',
+      'saveTimeline', 'deselectTask', 'updateTask', 'createTask', 'joinTasks',
       'selectTask', 'selectPreviousTask', 'selectNextTask'
     ]),
-    deselectTask () {
+    blurTask () {
       this.$refs.textarea.blur()
       this.deselectTask()
     },
@@ -72,26 +74,26 @@ export default {
     updateTaskCompletion () {
       this.updateTask({ completion: !this.task.completion })
     },
-    createOrSplitTask () {
+    splitTask () {
       const el = this.$refs.textarea
       const isCaretAtBeginning = el.selectionStart === 0 && el.selectionEnd === 0
       const hasBody = this.task.body.length > 0
 
       if (isCaretAtBeginning && hasBody) {
-        this.createTask({ atIndex: 0 })
+        this.createTask({ day: this.day })
       } else {
         const slice = this.task.body.slice(el.selectionStart)
         this.task.body = this.task.body.slice(0, el.selectionStart)
-        this.createTask({ body: slice, offset: slice.length })
+        this.createTask({ day: this.day, body: slice, caretOffset: slice.length })
       }
     },
-    removeCharOrJoinTasks (event) {
+    removeTask (event) {
       const el = this.$refs.textarea
       const isCaretAtBeginning = el.selectionStart === 0 && el.selectionEnd === 0
 
       if (isCaretAtBeginning) {
         event.preventDefault()
-        this.joinTasks({ offset: this.task.body.length })
+        this.joinTasks({ caretOffset: this.task.body.length })
       }
     }
   }
