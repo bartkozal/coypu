@@ -1,8 +1,10 @@
-const calendarLocale = 'calendar-locale'
+import { getItem, setItem } from '../localstorage'
+
+const calendarLocaleKey = 'calendar-locale'
 
 export default {
   state: {
-    calendarLocale: window.localStorage.getItem(calendarLocale) || 'en-gb'
+    calendarLocale: getItem(calendarLocaleKey) || 'en-gb'
   },
   getters: {
     calendarLocale: state => { return state.calendarLocale }
@@ -10,7 +12,7 @@ export default {
   mutations: {
     setCalendarLocale (state, locale) {
       state.calendarLocale = locale
-      window.localStorage.setItem(calendarLocale, locale)
+      setItem(calendarLocaleKey, locale)
     }
   }
 }
