@@ -1,5 +1,5 @@
 import moment from 'moment'
-import isNil from 'lodash/isNil'
+import { isUndefined } from 'lodash'
 import { previousTask, nextTask } from '../helpers'
 
 export default {
@@ -26,10 +26,10 @@ export default {
         completion: false
       }
 
-      if (isNil(state.activeTask)) {
-        dayList.push(newTask)
-      } else {
+      if (state.activeTask) {
         dayList.splice(dayList.indexOf(state.activeTask) + 1, 0, newTask)
+      } else {
+        dayList.push(newTask)
       }
 
       state.activeTask = dayList[dayList.indexOf(newTask)]
@@ -50,36 +50,41 @@ export default {
     selectPreviousTask (state) {
       const task = previousTask(state)
 
-      if (!isNil(task)) { state.activeTask = task }
+      if (task) { state.activeTask = task }
     },
     selectNextTask (state) {
       const task = nextTask(state)
 
-      if (!isNil(task)) { state.activeTask = task }
+      if (task) { state.activeTask = task }
     },
     removeTask (state) {
-      const task = previousTask(state)
+      const task = previousTask(state, (state) => {
+        const dayList = state.list[state.activeDay]
+        const index = dayList.indexOf(state.activeTask)
+        dayList.splice(index, 1)
+      })
 
-      // dayList.splice(index, 1)
-      if (!isNil(task)) { state.activeTask = task }
+      if (task) { state.activeTask = task } else {
+        state.activeTask = nextTask(state)
+      }
     },
-    joinToPreviousTask (state) {
+    joinTasks (state) {
       const task = previousTask(state)
 
-      if (!isNil(task)) {
+      if (task) {
         task.body = task.body.concat(state.activeTask.body)
       }
     }
   },
   actions: {
     joinTasks ({ commit, dispatch }, { caretOffset }) {
-      commit('joinToPreviousTask')
+      commit('joinTasks')
       commit('removeTask')
       commit('setCaretOffset', caretOffset)
     },
     updateTask ({ commit, dispatch }, { body, completion }) {
-      if (!isNil(body)) { commit('updateTaskBody', body) }
-      if (!isNil(completion)) { commit('updateTaskCompletion', completion) }
+      if (!isUndefined(body)) { commit('updateTaskBody', body) }
+      if (!isUndefined(completion)) { commit('updateTaskCompletion', completion) }
       dispatch('saveTimeline')
     },
     toggleTask ({ commit, dispatch }, task) {

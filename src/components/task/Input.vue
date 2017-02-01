@@ -6,7 +6,6 @@
       :value="task.body"
       :class="{'task-completed': task.completion }"
       :active="isActive"
-      @blur="blurTask"
       @focus="selectTask({ day, task })"
       @input="updateTaskBody"
       @keydown.esc.prevent="blurTask"

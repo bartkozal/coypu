@@ -7,7 +7,7 @@
 </template>
 
 <script>
-import sortBy from 'lodash/sortBy'
+import { sortBy } from 'lodash'
 import { mapGetters, mapMutations } from 'vuex'
 
 export default {

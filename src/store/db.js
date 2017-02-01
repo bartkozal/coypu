@@ -1,6 +1,5 @@
 import PouchDB from 'pouchdb'
-import groupBy from 'lodash/groupBy'
-import forEach from 'lodash/forEach'
+import { groupBy, forEach } from 'lodash'
 
 export const db = new PouchDB('coypu-offline')
 const dbVersion = 1

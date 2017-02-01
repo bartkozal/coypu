@@ -1,18 +1,23 @@
 import moment from 'moment'
+import { isUndefined, values, flatten } from 'lodash'
 import { extendMoment } from 'moment-range'
 
-export const previousTask = state => {
-  const dayList = state.list[state.activeDay]
-  const index = dayList.indexOf(state.activeTask)
+export const previousTask = (state, cb) => {
+  const tasks = flatten(values(state.list))
+  const index = tasks.indexOf(state.activeTask)
 
-  return dayList[index - 1]
+  if (!isUndefined(cb)) { cb(state) }
+
+  return tasks[index - 1]
 }
 
-export const nextTask = state => {
-  const dayList = state.list[state.activeDay]
-  const index = dayList.indexOf(state.activeTask)
+export const nextTask = (state, cb) => {
+  const tasks = flatten(values(state.list))
+  const index = tasks.indexOf(state.activeTask)
 
-  return dayList[index + 1]
+  if (!isUndefined(cb)) { cb(state) }
+
+  return tasks[index + 1]
 }
 
 export const weekDays = timeline => {

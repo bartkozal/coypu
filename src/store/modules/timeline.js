@@ -1,6 +1,5 @@
 import moment from 'moment'
-import get from 'lodash/get'
-import debounce from 'lodash/debounce'
+import { get, debounce } from 'lodash'
 import { db } from '../db'
 import { weekDays } from '../helpers'
 

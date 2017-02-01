@@ -22,7 +22,7 @@
 
 <script>
 import moment from 'moment'
-import isEmpty from 'lodash/isEmpty'
+import { isEmpty } from 'lodash'
 import Task from 'components/Task'
 import { mapGetters, mapActions } from 'vuex'
 
