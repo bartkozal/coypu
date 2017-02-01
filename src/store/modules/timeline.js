@@ -1,8 +1,8 @@
 import moment from 'moment'
-import { extendMoment } from 'moment-range'
 import get from 'lodash/get'
 import debounce from 'lodash/debounce'
 import { db } from '../db'
+import { weekDays } from '../helpers'
 
 export default {
   state: {
@@ -25,23 +25,17 @@ export default {
     }
   },
   actions: {
-    setTimeline ({ state, commit, getters, rootState }, date = moment().format()) {
+    setTimeline ({ state, commit, getters }, date = moment().format()) {
       const isAfter = moment(date).isAfter(state.timelineDate)
-      const dayFormat = 'YYYY-MM-DD'
 
       commit('setTransition', isAfter ? 'next' : 'previous')
       commit('setDate', date)
 
-      const startOfWeek = getters.timeline.startOf('week').format(dayFormat)
-      const endOfWeek = getters.timeline.endOf('week').format(dayFormat)
-      const week = extendMoment(moment).range(startOfWeek, endOfWeek).by('days')
-      const keys = Array.from(week).map(day => day.format(dayFormat))
-
       db.allDocs({
         include_docs: true,
-        keys: keys
-      }).then(docs => {
-        return docs.rows.reduce((list, row) => {
+        keys: weekDays(getters.timeline)
+      }).then(result => {
+        return result.rows.reduce((list, row) => {
           list[row.key] = get(row, 'doc.tasks', [])
           return list
         }, {})
@@ -51,27 +45,28 @@ export default {
         throw error
       })
     },
-    saveTimeline: debounce((context) => {
-      // TODO
-      // const id = moment(context.state.timelineDate).format('YYYY-w')
+    saveTimeline: debounce(({ getters, rootState }) => {
+      db.allDocs({
+        include_docs: true,
+        keys: weekDays(getters.timeline)
+      }).then(result => {
+        return result.rows.reduce((docs, row) => {
+          const rev = get(row, 'value.rev')
+          const doc = {
+            _id: row.key,
+            tasks: JSON.parse(JSON.stringify(rootState.list.list[row.key]))
+          }
 
-      // db.get(id).catch((err) => {
-      //   if (err.name === 'not_found') {
-      //     return {
-      //       '_id': id,
-      //       'tasks': []
-      //     }
-      //   } else {
-      //     throw err
-      //   }
-      // }).then((doc) => {
-      //   if (!isEqual(doc.tasks, context.rootState.list.tasks)) {
-      //     doc.tasks = context.rootState.list.tasks
-      //     db.put(doc)
-      //   }
-      // }).catch((err) => {
-      //   throw err
-      // })
+          if (rev) { doc['_rev'] = rev }
+          docs.push(doc)
+
+          return docs
+        }, [])
+      }).then(docs => {
+        db.bulkDocs(docs)
+      }).catch(error => {
+        throw error
+      })
     }, 300)
   }
 }

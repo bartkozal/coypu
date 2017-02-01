@@ -1,5 +1,6 @@
 import moment from 'moment'
 import isNil from 'lodash/isNil'
+import { previousTask, nextTask } from '../helpers'
 
 export default {
   state: {
@@ -47,31 +48,23 @@ export default {
       state.activeTask = task
     },
     selectPreviousTask (state) {
-      const dayList = state.list[state.activeDay]
-      const index = dayList.indexOf(state.activeTask)
-      const task = dayList[index - 1]
+      const task = previousTask(state)
 
       if (!isNil(task)) { state.activeTask = task }
     },
     selectNextTask (state) {
-      const dayList = state.list[state.activeDay]
-      const index = dayList.indexOf(state.activeTask)
-      const task = dayList[index + 1]
+      const task = nextTask(state)
 
       if (!isNil(task)) { state.activeTask = task }
     },
     removeTask (state) {
-      const dayList = state.list[state.activeDay]
-      const index = dayList.indexOf(state.activeTask)
-      const task = dayList[index - 1]
+      const task = previousTask(state)
 
-      dayList.splice(index, 1)
+      // dayList.splice(index, 1)
       if (!isNil(task)) { state.activeTask = task }
     },
     joinToPreviousTask (state) {
-      const dayList = state.list[state.activeDay]
-      const index = dayList.indexOf(state.activeTask)
-      const task = dayList[index - 1]
+      const task = previousTask(state)
 
       if (!isNil(task)) {
         task.body = task.body.concat(state.activeTask.body)
