@@ -76,16 +76,10 @@ export default {
     },
     splitTask () {
       const el = this.$refs.textarea
-      const isCaretAtBeginning = el.selectionStart === 0 && el.selectionEnd === 0
-      const hasBody = this.task.body.length > 0
+      const slice = this.task.body.slice(el.selectionStart)
 
-      if (isCaretAtBeginning && hasBody) {
-        this.createTask({ day: this.day })
-      } else {
-        const slice = this.task.body.slice(el.selectionStart)
-        this.task.body = this.task.body.slice(0, el.selectionStart)
-        this.createTask({ day: this.day, body: slice, caretOffset: slice.length })
-      }
+      this.task.body = this.task.body.slice(0, el.selectionStart)
+      this.createTask({ day: this.day, body: slice, caretOffset: slice.length })
     },
     removeTask (event) {
       const el = this.$refs.textarea
