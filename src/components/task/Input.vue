@@ -12,6 +12,10 @@
       @keydown.enter.prevent="splitTask"
       @keydown.up.prevent="selectPreviousTask"
       @keydown.down.prevent="selectNextTask"
+      @keydown.ctrl.left.prevent="moveCaretToStart"
+      @keydown.meta.left.prevent="moveCaretToStart"
+      @keydown.ctrl.right.prevent="moveCaretToEnd"
+      @keydown.meta.right.prevent="moveCaretToEnd"
       @keydown.delete="removeTask"
       @keydown.tab.prevent="updateTaskCompletion">
     </textarea>
@@ -72,6 +76,24 @@ export default {
     },
     updateTaskCompletion () {
       this.updateTask({ completion: !this.task.completion })
+    },
+    moveCaretToStart (event) {
+      const el = this.$refs.textarea
+
+      if (event.shiftKey) {
+        el.setSelectionRange(0, el.selectionEnd, 'backward')
+      } else {
+        el.setSelectionRange(0, 0)
+      }
+    },
+    moveCaretToEnd (event) {
+      const el = this.$refs.textarea
+
+      if (event.shiftKey) {
+        el.setSelectionRange(el.selectionEnd, this.task.body.length, 'forward')
+      } else {
+        el.setSelectionRange(this.task.body.length, this.task.body.length)
+      }
     },
     splitTask () {
       const el = this.$refs.textarea
