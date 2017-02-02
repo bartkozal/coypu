@@ -479,6 +479,10 @@ export default {
     font-size: var(--font-settings);
   }
 
+  select option {
+    color: var(--color-text);
+  }
+
   select:focus {
     outline: none;
   }
