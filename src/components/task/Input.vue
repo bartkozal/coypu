@@ -98,9 +98,15 @@ export default {
     splitTask () {
       const el = this.$refs.textarea
       const slice = this.task.body.slice(el.selectionStart)
+      const isCaretAtBeginning = el.selectionStart === 0 && el.selectionEnd === 0
 
       this.task.body = this.task.body.slice(0, el.selectionStart)
-      this.createTask({ day: this.day, body: slice, caretOffset: slice.length })
+      this.createTask({
+        day: this.day,
+        body: slice,
+        caretOffset: slice.length,
+        insertBefore: isCaretAtBeginning
+      })
     },
     removeTask (event) {
       const el = this.$refs.textarea

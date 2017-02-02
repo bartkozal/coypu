@@ -19,7 +19,7 @@ export default {
     setList (state, list) {
       state.list = list
     },
-    createTask (state, { day, body }) {
+    createTask (state, { day, body, insertBefore }) {
       const dayList = state.list[day]
       const newTask = {
         body: body,
@@ -27,6 +27,10 @@ export default {
       }
 
       if (state.activeTask) {
+        if (insertBefore) {
+          newTask.completion = state.activeTask.completion
+          state.activeTask.completion = false
+        }
         dayList.splice(dayList.indexOf(state.activeTask) + 1, 0, newTask)
       } else {
         dayList.push(newTask)
@@ -92,8 +96,8 @@ export default {
       commit('toggleTask', task)
       dispatch('saveTimeline')
     },
-    createTask ({ commit, dispatch }, { day, body = '', caretOffset = 0 }) {
-      commit('createTask', { day, body })
+    createTask ({ commit, dispatch }, { day, body = '', caretOffset = 0, insertBefore = false }) {
+      commit('createTask', { day, body, insertBefore })
       commit('setCaretOffset', caretOffset)
       dispatch('saveTimeline')
     },
