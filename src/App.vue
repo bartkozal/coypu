@@ -69,6 +69,7 @@ export default {
     font-size: var(--font-base);
     line-height: var(--font-leading);
     color: var(--color-text);
+    overflow-x: hidden;
   }
 
   [v-cloak] {
