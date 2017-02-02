@@ -81,6 +81,7 @@ export default {
       commit('joinTasks')
       commit('removeTask')
       commit('setCaretOffset', caretOffset)
+      dispatch('saveTimeline')
     },
     updateTask ({ commit, dispatch }, { body, completion }) {
       if (!isUndefined(body)) { commit('updateTaskBody', body) }
@@ -94,6 +95,7 @@ export default {
     createTask ({ commit, dispatch }, { day, body = '', caretOffset = 0 }) {
       commit('createTask', { day, body })
       commit('setCaretOffset', caretOffset)
+      dispatch('saveTimeline')
     },
     selectTask ({ commit }, { day, task }) {
       commit('selectTask', { day, task })
