@@ -92,6 +92,7 @@ if (process.platform === 'darwin') {
         type: 'separator'
       },
       {
+        label: 'Quit Coypu',
         role: 'quit'
       }
     ]
