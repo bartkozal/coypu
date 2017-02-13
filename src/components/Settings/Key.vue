@@ -27,32 +27,32 @@ export default {
 </script>
 
 <style scoped>
-  .settings-key {
-    color: white;
-    display: flex;
-    align-items: center;
-  }
+.settings-key {
+  display: flex;
+  align-items: center;
+  color: white;
+}
 
-  .settings-key + .settings-key {
-    margin-top: 12px;
-  }
+.settings-key + .settings-key {
+  margin-top: 12px;
+}
 
-  .has-key {
-    flex-basis: 40%;
-  }
+.has-key {
+  flex-basis: 40%;
+}
 
-  .key {
-    display: inline-block;
-    padding: 8px 10px;
-    border-radius: 5px;
-    border: 1px solid white;
-    box-shadow: 0 2px white;
-    min-width: 20px;
-    text-align: center;
-    font-family: BlinkMacSystemFont, "Clear Sans";
-  }
+.key {
+  display: inline-block;
+  min-width: 20px;
+  padding: 8px 10px;
+  font-family: BlinkMacSystemFont, "Clear Sans";
+  text-align: center;
+  border: 1px solid white;
+  border-radius: 5px;
+  box-shadow: 0 2px white;
+}
 
-  .key + .key {
-    margin-left: 10px;
-  }
+.key + .key {
+  margin-left: 10px;
+}
 </style>

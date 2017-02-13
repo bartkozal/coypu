@@ -129,27 +129,27 @@ export default {
   }
 
   .task-completed {
-    text-decoration: line-through;
     color: var(--color-muted);
+    text-decoration: line-through;
   }
 
   .textarea-mock {
     width: 100%;
-    cursor: text;
     min-height: var(--mock-size);
+    cursor: text;
   }
 
   textarea {
     display: block;
-    border: 0;
+    width: 100%;
     padding: 0;
     margin: 0;
-    background-color: transparent;
-    outline: 0;
+    overflow: auto;
     font-family: var(--font-stack);
     line-height: var(--font-leading);
-    width: 100%;
     resize: none;
-    overflow: auto;
+    background-color: transparent;
+    border: 0;
+    outline: 0;
   }
 </style>

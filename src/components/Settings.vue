@@ -39,60 +39,60 @@ export default {
 </script>
 
 <style scoped>
-  @import '../defaults.css';
+@import '../defaults.css';
 
-  .icon-close {
-    position: fixed;
-    top: var(--spacing);
-    right: var(--spacing);
-  }
+.icon-close {
+  position: fixed;
+  top: var(--spacing);
+  right: var(--spacing);
+}
 
-  .icon-settings,
-  .icon-settings-active {
-    position: fixed;
-    bottom: var(--spacing);
-    right: var(--spacing);
-    z-index: var(--z-settings-icon);
-  }
+.icon-settings,
+.icon-settings-active {
+  position: fixed;
+  right: var(--spacing);
+  bottom: var(--spacing);
+  z-index: var(--z-settings-icon);
+}
 
-  .settings-view {
-    position: fixed;
-    padding: calc(var(--spacing) * 2);
-    top: 0;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    z-index: var(--z-settings-view);
-    background-color: var(--color-primary);
-    color: white;
-    font-size: var(--font-settings);
-  }
+.settings-view {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: var(--z-settings-view);
+  padding: calc(var(--spacing) * 2);
+  font-size: var(--font-settings);
+  color: white;
+  background-color: var(--color-primary);
+}
 
-  .settings-view-section {
-    text-align: center;
-    margin-bottom: calc(var(--spacing) * 3);
-  }
+.settings-view-section {
+  margin-bottom: calc(var(--spacing) * 3);
+  text-align: center;
+}
 
-  .settings-view-heading {
-    font-size: var(--font-settings);
-    font-weight: normal;
-    margin-bottom: var(--spacing);
-  }
+.settings-view-heading {
+  margin-bottom: var(--spacing);
+  font-size: var(--font-settings);
+  font-weight: normal;
+}
 
-  .transition-enter,
-  .transition-leave-to {
-    transform: translateY(100%);
-    opacity: 0;
-  }
+.transition-enter,
+.transition-leave-to {
+  opacity: 0;
+  transform: translateY(100%);
+}
 
-  .transition-enter-to,
-  .transition-leave {
-    transform: translateY(0);
-    opacity: 1;
-  }
+.transition-enter-to,
+.transition-leave {
+  opacity: 1;
+  transform: translateY(0);
+}
 
-  .transition-enter-active,
-  .transition-leave-active {
-    transition: all var(--transition-duration);
-  }
+.transition-enter-active,
+.transition-leave-active {
+  transition: all var(--transition-duration);
+}
 </style>

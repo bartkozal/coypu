@@ -463,27 +463,27 @@ export default {
 </script>
 
 <style scoped>
-  @import '../../defaults.css';
+@import '../../defaults.css';
 
-  select {
-    width: 70%;
-    padding: 4px 25px 6px 10px;
-    appearance: none;
-    color: white;
-    border: 1px solid white;
-    background-color: transparent;
-    background-image: url('../../assets/bg-select.svg');
-    background-repeat: no-repeat;
-    background-position: center right 10px;
-    font-family: var(--font-stack);
-    font-size: var(--font-settings);
-  }
+select {
+  width: 70%;
+  padding: 4px 25px 6px 10px;
+  appearance: none;
+  font-family: var(--font-stack);
+  font-size: var(--font-settings);
+  color: white;
+  background-color: transparent;
+  background-image: url('../../assets/bg-select.svg');
+  background-repeat: no-repeat;
+  background-position: center right 10px;
+  border: 1px solid white;
+}
 
-  select option {
-    color: var(--color-text);
-  }
+select option {
+  color: var(--color-text);
+}
 
-  select:focus {
-    outline: none;
-  }
+select:focus {
+  outline: none;
+}
 </style>

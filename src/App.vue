@@ -49,59 +49,58 @@ export default {
 }
 </script>
 
-<style src="normalize.css"/>
-
+<style src="normalize.css"></style>
 <style>
-  @import 'defaults.css';
+@import 'defaults.css';
 
-  @font-face {
-    font-family: 'Clear Sans';
-    font-style: normal;
-    font-weight: 400;
-    src: local('Clear Sans'), local('ClearSans'), url('assets/ClearSans-Regular.ttf');
-  }
+@font-face {
+  font-family: 'Clear Sans';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Clear Sans'), local('ClearSans'), url('assets/ClearSans-Regular.ttf');
+}
 
-  body {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    padding: var(--spacing);
-    font-family: var(--font-stack);
-    font-size: var(--font-base);
-    line-height: var(--font-leading);
-    color: var(--color-text);
-    overflow-x: hidden;
-  }
+body {
+  padding: var(--spacing);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-stack);
+  font-size: var(--font-base);
+  line-height: var(--font-leading);
+  color: var(--color-text);
+}
 
-  [v-cloak] {
-    display: none;
-  }
+[v-cloak] {
+  display: none;
+}
 
-  .icon {
-    display: inline-block;
-    width: 25px;
-    height: 25px;
-    cursor: pointer;
-    background-repeat: no-repeat;
-    font-style: normal;
-  }
+.icon {
+  display: inline-block;
+  width: 25px;
+  height: 25px;
+  font-style: normal;
+  cursor: pointer;
+  background-repeat: no-repeat;
+}
 
-  .icon-chevron-left {
-    background-image: url('assets/icon-chevron-left.svg');
-  }
+.icon-chevron-left {
+  background-image: url('assets/icon-chevron-left.svg');
+}
 
-  .icon-chevron-right {
-    background-image: url('assets/icon-chevron-right.svg');
-  }
+.icon-chevron-right {
+  background-image: url('assets/icon-chevron-right.svg');
+}
 
-  .icon-settings {
-    background-image: url('assets/icon-settings.svg');
-  }
+.icon-settings {
+  background-image: url('assets/icon-settings.svg');
+}
 
-  .icon-settings-active {
-    background-image: url('assets/icon-settings-active.svg');
-  }
+.icon-settings-active {
+  background-image: url('assets/icon-settings-active.svg');
+}
 
-  .icon-close {
-    background-image: url('assets/icon-close.svg');
-  }
+.icon-close {
+  background-image: url('assets/icon-close.svg');
+}
 </style>

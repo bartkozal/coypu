@@ -52,22 +52,22 @@ export default {
 </script>
 
 <style scoped>
-  @import '../defaults.css';
+@import '../defaults.css';
 
-  .topbar {
-    font-size: var(--font-large);
-    margin-bottom: var(--spacing);
-    display: flex;
-    align-items: flex-end;
-  }
+.topbar {
+  display: flex;
+  align-items: flex-end;
+  margin-bottom: var(--spacing);
+  font-size: var(--font-large);
+}
 
-  .topbar-week {
-    flex-grow: 1;
-    color: var(--color-primary);
-    cursor: pointer;
-  }
+.topbar-week {
+  flex-grow: 1;
+  color: var(--color-primary);
+  cursor: pointer;
+}
 
-  .topbar-date {
-    cursor: pointer;
-  }
+.topbar-date {
+  cursor: pointer;
+}
 </style>

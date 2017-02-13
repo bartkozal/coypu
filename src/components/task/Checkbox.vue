@@ -34,19 +34,19 @@
     height: var(--size);
     margin-top: 2px;
     margin-right: var(--spacing);
-    border-radius: 50%;
     border: 1px solid var(--color-secondary);
+    border-radius: 50%;
   }
 
   .task-checkbox-inner {
     position: absolute;
     top: 2px;
     left: 2px;
+    display: block;
     width: calc(var(--size) - 4px);
     height: calc(var(--size) - 4px);
-    display: block;
-    border-radius: 50%;
     background-color: var(--color-primary);
+    border-radius: 50%;
   }
 
   .transition-enter-active,
@@ -57,6 +57,6 @@
   .transition-enter,
   .transition-leave-active {
     opacity: 0;
-    transform: scale(.6);
+    transform: scale(0.6);
   }
 </style>

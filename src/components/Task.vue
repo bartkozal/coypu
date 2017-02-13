@@ -27,10 +27,10 @@ export default {
 </script>
 
 <style scoped>
-  @import '../defaults.css';
+@import '../defaults.css';
 
-  .task {
-    display: flex;
-    align-items: flex-start;
-  }
+.task {
+  display: flex;
+  align-items: flex-start;
+}
 </style>
