@@ -86,7 +86,7 @@ export default {
 
 .settings-view-heading {
   margin-bottom: var(--spacing-unit);
-  font-size: calc(1em * var(--font-ratio));
+  font-size: var(--font-large);
   font-weight: normal;
 }
 
