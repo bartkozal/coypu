@@ -52,12 +52,12 @@ export default {
 </script>
 
 <style scoped>
-@import '../defaults.css';
+@import '../variables.css';
 
 .topbar {
   display: flex;
-  align-items: flex-end;
-  margin-bottom: var(--spacing);
+  align-items: center;
+  margin-bottom: var(--spacing-unit);
   font-size: var(--font-large);
 }
 

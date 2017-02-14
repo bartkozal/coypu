@@ -66,6 +66,7 @@
     "moment-range": "^3.0.1",
     "normalize.css": "^5.0.0",
     "pouchdb": "^6.1.1",
+    "sensible.css": "^1.0.2",
     "vue": "^2.1.0",
     "vuex": "^2.1.1"
   },

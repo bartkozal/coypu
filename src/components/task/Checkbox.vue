@@ -22,29 +22,29 @@
 </script>
 
 <style scoped>
-  @import '../../defaults.css';
+  @import '../../variables.css';
 
   :root {
-    --size: 20px;
+    --checkbox-size: 21px;
+    --checkbox-inner-size: calc(var(--checkbox-size) - 6px);
   }
 
   .task-checkbox {
-    position: relative;
-    min-width: var(--size);
-    height: var(--size);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-width: var(--checkbox-size);
+    height: var(--checkbox-size);
     margin-top: 2px;
-    margin-right: var(--spacing);
+    margin-right: var(--spacing-unit);
     border: 1px solid var(--color-secondary);
     border-radius: 50%;
   }
 
   .task-checkbox-inner {
-    position: absolute;
-    top: 2px;
-    left: 2px;
     display: block;
-    width: calc(var(--size) - 4px);
-    height: calc(var(--size) - 4px);
+    width: var(--checkbox-inner-size);
+    height: var(--checkbox-inner-size);
     background-color: var(--color-primary);
     border-radius: 50%;
   }

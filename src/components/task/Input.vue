@@ -122,7 +122,7 @@ export default {
 </script>
 
 <style scoped>
-  @import '../../defaults.css';
+  @import '../../variables.css';
 
   .task-input {
     flex-grow: 1;
@@ -133,20 +133,14 @@ export default {
     text-decoration: line-through;
   }
 
-  .textarea-mock {
-    width: 100%;
-    min-height: var(--mock-size);
-    cursor: text;
-  }
-
   textarea {
     display: block;
     width: 100%;
     padding: 0;
     margin: 0;
     overflow: auto;
-    font-family: var(--font-stack);
-    line-height: var(--font-leading);
+    font-family: inherit;
+    line-height: inherit;
     resize: none;
     background-color: transparent;
     border: 0;

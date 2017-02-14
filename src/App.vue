@@ -50,8 +50,9 @@ export default {
 </script>
 
 <style src="normalize.css"></style>
+<style src="sensible.css"></style>
 <style>
-@import 'defaults.css';
+@import 'variables.css';
 
 @font-face {
   font-family: 'Clear Sans';
@@ -61,13 +62,9 @@ export default {
 }
 
 body {
-  padding: var(--spacing);
+  padding: var(--spacing-unit);
   overflow-x: hidden;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
   font-family: var(--font-stack);
-  font-size: var(--font-base);
-  line-height: var(--font-leading);
   color: var(--color-text);
 }
 

@@ -27,7 +27,7 @@ export default {
 </script>
 
 <style scoped>
-@import '../defaults.css';
+@import '../variables.css';
 
 .task {
   display: flex;

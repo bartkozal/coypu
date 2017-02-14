@@ -39,19 +39,19 @@ export default {
 </script>
 
 <style scoped>
-@import '../defaults.css';
+@import '../variables.css';
 
 .icon-close {
   position: fixed;
-  top: var(--spacing);
-  right: var(--spacing);
+  top: var(--spacing-unit);
+  right: var(--spacing-unit);
 }
 
 .icon-settings,
 .icon-settings-active {
   position: fixed;
-  right: var(--spacing);
-  bottom: var(--spacing);
+  right: var(--spacing-unit);
+  bottom: var(--spacing-unit);
   z-index: var(--z-settings-icon);
 }
 
@@ -62,20 +62,19 @@ export default {
   bottom: 0;
   left: 0;
   z-index: var(--z-settings-view);
-  padding: calc(var(--spacing) * 2);
-  font-size: var(--font-settings);
+  padding: calc(var(--spacing-unit) * 2);
   color: white;
   background-color: var(--color-primary);
 }
 
 .settings-view-section {
-  margin-bottom: calc(var(--spacing) * 3);
+  margin-bottom: calc(var(--spacing-unit) * 3);
   text-align: center;
 }
 
 .settings-view-heading {
-  margin-bottom: var(--spacing);
-  font-size: var(--font-settings);
+  margin-bottom: var(--spacing-unit);
+  font-size: calc(1em * var(--font-ratio));
   font-weight: normal;
 }
 

@@ -10,11 +10,11 @@
       </div>
 
       <div v-else>
-        <ul class="list">
-          <li class="list-item" v-for="task in tasks">
+        <div class="list">
+          <div class="list-item" v-for="task in tasks">
             <task :day="day" :task="task"></task>
-          </li>
-        </ul>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -50,15 +50,15 @@ export default {
 </script>
 
 <style scoped>
-@import '../defaults.css';
+@import '../variables.css';
 
 .list {
-  padding-left: 0;
-  list-style: none;
+  margin-top: calc(var(--spacing-unit) / 1.75);
+  margin-bottom: calc(var(--spacing-unit) / 1.25);
 }
 
 .list-item + .list-item {
-  margin-top: calc(var(--spacing) / 2);
+  margin-top: calc(var(--spacing-unit) / 2);
 }
 
 .list-today {
@@ -72,7 +72,7 @@ export default {
 }
 
 .list-mock {
-  height: var(--mock-size);
+  height: var(--font-large);
   cursor: text;
 }
 

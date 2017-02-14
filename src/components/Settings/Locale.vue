@@ -463,14 +463,13 @@ export default {
 </script>
 
 <style scoped>
-@import '../../defaults.css';
+@import '../../variables.css';
 
 select {
   width: 70%;
   padding: 4px 25px 6px 10px;
   appearance: none;
   font-family: var(--font-stack);
-  font-size: var(--font-settings);
   color: white;
   background-color: transparent;
   background-image: url('../../assets/bg-select.svg');

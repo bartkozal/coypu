@@ -44,7 +44,7 @@ export default {
 .key {
   display: inline-block;
   min-width: 20px;
-  padding: 8px 10px;
+  padding: 8px 12px;
   font-family: BlinkMacSystemFont, "Clear Sans";
   text-align: center;
   border: 1px solid white;

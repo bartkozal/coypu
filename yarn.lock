@@ -6244,6 +6244,10 @@ send@0.14.2:
     range-parser "~1.2.0"
     statuses "~1.3.1"
 
+sensible.css@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/sensible.css/-/sensible.css-1.0.2.tgz#52ea46b518ba015d66d5c75d74974b39fc56b41b"
+
 serve-static@~1.11.1:
   version "1.11.2"
   resolved "https://registry.yarnpkg.com/serve-static/-/serve-static-1.11.2.tgz#2cf9889bd4435a320cc36895c9aa57bd662e6ac7"
