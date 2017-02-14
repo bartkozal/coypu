@@ -11,6 +11,7 @@
     "postinstall": "install-app-deps",
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
+    "app": "electron app",
     "pack": "npm run build && build --dir",
     "dist": "npm run build && build -mwl",
     "unit": "karma start test/unit/karma.conf.js --single-run",
