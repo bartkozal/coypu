@@ -18,9 +18,9 @@ electron-squirrel-startup@^1.0.0:
   dependencies:
     debug "^2.2.0"
 
-electron-window-state@^4.0.1:
-  version "4.0.1"
-  resolved "https://registry.yarnpkg.com/electron-window-state/-/electron-window-state-4.0.1.tgz#8f3ccd96b6288aa78e903eb40c6a363874ee0830"
+electron-window-state@^4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/electron-window-state/-/electron-window-state-4.0.2.tgz#f214ddb99c57d905af89bd2b314e1d4cda628963"
   dependencies:
     deep-equal "^1.0.1"
     jsonfile "^2.2.3"

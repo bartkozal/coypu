@@ -8,6 +8,6 @@
   "main": "main.js",
   "dependencies": {
     "electron-squirrel-startup": "^1.0.0",
-    "electron-window-state": "^4.0.1"
+    "electron-window-state": "^4.0.2"
   }
 }
