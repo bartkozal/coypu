@@ -4,17 +4,13 @@
   --font-settings: 16px;
   --font-base: 18px;
   --font-large: 22px;
-
   --spacing: 16px;
   --mock-size: 25px; /* rounded calc(var(--font-base) * var(--font-leading)) */
-
   --color-text: #111;
   --color-primary: #ea7362;
   --color-secondary: #b74242;
   --color-muted: #888;
-
-  --transition-duration: .2s;
-
+  --transition-duration: 0.2s;
   --z-settings-view: 1;
   --z-settings-icon: 2;
 }
