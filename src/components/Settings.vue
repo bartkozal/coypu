@@ -28,7 +28,19 @@ export default {
   name: 'settings',
   data () {
     return {
-      isActive: false
+      _isActive: false
+    }
+  },
+  computed: {
+    isActive: {
+      get () {
+        return this.$data._isActive
+      },
+      set (value) {
+        const htmlElOverflowY = value ? 'hidden' : 'scroll'
+        document.documentElement.style.overflowY = htmlElOverflowY
+        this.$data._isActive = value
+      }
     }
   },
   components: {
