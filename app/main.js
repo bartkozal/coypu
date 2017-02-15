@@ -21,7 +21,8 @@ function createWindow () {
     width: windowState.width,
     height: windowState.height,
     minWidth: 370,
-    minHeight: 100
+    minHeight: 100,
+    titleBarStyle: 'hidden-inset'
   })
 
   windowState.manage(window)

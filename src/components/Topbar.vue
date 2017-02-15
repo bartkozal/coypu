@@ -57,7 +57,7 @@ export default {
 .topbar {
   display: flex;
   align-items: center;
-  margin-bottom: var(--spacing-unit);
+  padding: var(--spacing-unit);
   font-size: var(--font-large);
 }
 

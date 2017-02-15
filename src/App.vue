@@ -61,9 +61,11 @@ export default {
   src: local('Clear Sans'), local('ClearSans'), url('assets/ClearSans-Regular.ttf');
 }
 
+html {
+  overflow: hidden;
+}
+
 body {
-  padding: var(--spacing-unit);
-  overflow-x: hidden;
   font-family: var(--font-stack);
   color: var(--color-text);
 }

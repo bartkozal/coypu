@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="has-list">
     <div v-for="(tasks, day) in list">
       <div :class="{'list-today': isToday(day)}" class="list-name" @click="createTask({ day })">
         {{ dayOfWeek(day) }}
@@ -51,6 +51,15 @@ export default {
 
 <style scoped>
 @import '../variables.css';
+
+.has-list {
+  position: fixed;
+  width: 100vw;
+  height: calc(100vh - var(--font-base) * var(--font-ratio) * var(--font-leading) - var(--spacing-unit) * 2);
+  padding: var(--spacing-unit);
+  padding-top: 0;
+  overflow-y: scroll;
+}
 
 .list {
   margin-top: calc(var(--spacing-unit) / 1.75);
