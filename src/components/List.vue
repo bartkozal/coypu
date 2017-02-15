@@ -1,18 +1,20 @@
 <template>
-  <div class="has-list">
-    <div v-for="(tasks, day) in list">
-      <div :class="{'list-today': isToday(day)}" class="list-name" @click="createTask({ day })">
-        {{ dayOfWeek(day) }}
-      </div>
+  <div>
+    <div class="has-list" ref="container">
+      <div v-for="(tasks, day) in list">
+        <div :class="{'list-today': isToday(day)}" class="list-name" @click="createTask({ day })">
+          {{ dayOfWeek(day) }}
+        </div>
 
-      <div v-if="isEmpty(tasks)">
-        <div class="list-mock" @click="createTask({ day })"></div>
-      </div>
+        <div v-if="isEmpty(tasks)">
+          <div class="list-mock" @click="createTask({ day })"></div>
+        </div>
 
-      <div v-else>
-        <div class="list">
-          <div class="list-item" v-for="task in tasks">
-            <task :day="day" :task="task"></task>
+        <div v-else>
+          <div class="list">
+            <div class="list-item" v-for="task in tasks">
+              <task :day="day" :task="task"></task>
+            </div>
           </div>
         </div>
       </div>
@@ -22,14 +24,24 @@
 
 <script>
 import moment from 'moment'
-import { isEmpty } from 'lodash'
+import { isEmpty, debounce } from 'lodash'
 import Task from 'components/Task'
 import { mapGetters, mapActions } from 'vuex'
+import Scrollbar from 'perfect-scrollbar'
 
 export default {
   name: 'list',
   components: {
     Task
+  },
+  mounted () {
+    Scrollbar.initialize(this.$refs.container)
+    window.onresize = debounce(() => {
+      Scrollbar.update(this.$refs.container)
+    }, 100)
+  },
+  updated () {
+    Scrollbar.update(this.$refs.container)
   },
   computed: {
     ...mapGetters(['list', 'calendarLocale'])
@@ -58,7 +70,6 @@ export default {
   height: calc(100vh - var(--font-base) * var(--font-ratio) * var(--font-leading) - var(--spacing-unit) * 2);
   padding: var(--spacing-unit);
   padding-top: 0;
-  overflow-y: scroll;
 }
 
 .list {

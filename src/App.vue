@@ -51,6 +51,7 @@ export default {
 
 <style src="normalize.css"></style>
 <style src="sensible.css"></style>
+<style src="perfect-scrollbar/dist/css/perfect-scrollbar.css"></style>
 <style>
 @import 'variables.css';
 
@@ -72,6 +73,13 @@ body {
 
 [v-cloak] {
   display: none;
+}
+
+.ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail,
+.ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail,
+.ps-container:hover > .ps-scrollbar-y-rail:hover {
+  background-color: transparent;
+  opacity: unset;
 }
 
 .icon {
