@@ -4,6 +4,9 @@ const windowStateKeeper = require('electron-window-state')
 const path = require('path')
 const url = require('url')
 
+require('electron-context-menu')({
+  showInspectElement: false
+})
 const menu = require('./menu')
 const updater = require('./updater')
 

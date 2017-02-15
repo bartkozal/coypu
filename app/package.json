@@ -7,6 +7,7 @@
   "author": "Lost Bananas <hello@lostbananas.com>",
   "main": "main.js",
   "dependencies": {
+    "electron-context-menu": "^0.8.0",
     "electron-squirrel-startup": "^1.0.0",
     "electron-window-state": "^4.0.2"
   }
