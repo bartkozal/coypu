@@ -1,18 +1,22 @@
 <template>
-  <div class="topbar">
-    <i class="icon icon-chevron-left" @click="showPreviousWeek"></i>
-    <div class="topbar-week" @click="showPreviousWeek" v-cloak>
-      {{ year }} - {{ weekOfYear }}
+  <div>
+    <div class="titlebar" v-if="isMac"></div>
+    <div class="topbar" :style="{paddingTop: isMac && 0}">
+      <i class="icon icon-chevron-left" @click="showPreviousWeek"></i>
+      <div class="topbar-week" @click="showPreviousWeek" v-cloak>
+        {{ year }} - {{ weekOfYear }}
+      </div>
+      <div class="topbar-date" @click="showNextWeek" v-cloak>
+        {{ startOfWeek }} - {{ endOfWeek }} {{ currentMonth }}
+      </div>
+      <i class="icon icon-chevron-right" @click="showNextWeek"></i>
     </div>
-    <div class="topbar-date" @click="showNextWeek" v-cloak>
-      {{ startOfWeek }} - {{ endOfWeek }} {{ currentMonth }}
-    </div>
-    <i class="icon icon-chevron-right" @click="showNextWeek"></i>
   </div>
 </template>
 
 <script>
 import { mapGetters, mapActions } from 'vuex'
+import platform from 'platform'
 
 export default {
   name: 'topbar',
@@ -21,6 +25,9 @@ export default {
   },
   computed: {
     ...mapGetters(['timeline']),
+    isMac () {
+      return platform.os.family === 'Darwin'
+    },
     year () {
       return this.timeline.format('YYYY')
     },
@@ -59,6 +66,11 @@ export default {
   align-items: center;
   padding: var(--spacing-unit);
   font-size: var(--font-large);
+}
+
+.titlebar {
+  height: calc(var(--spacing-unit) * 2);
+  -webkit-app-region: drag;
 }
 
 .topbar-week {
