@@ -58,6 +58,19 @@
       "certificatePassword": "lac25couture"
     }
   },
+  "jest": {
+    "moduleNameMapper": {
+      "(.*)$": "<rootDir>/src/$1"
+    },
+    "moduleFileExtensions": [
+      "js",
+      "vue"
+    ],
+    "transform": {
+      ".*\\.js$": "babel-jest",
+      ".*\\.vue$": "jest-vue-preprocessor"
+    }
+  },
   "dependencies": {
     "autosize": "^3.0.20",
     "lodash": "^4.17.3",
@@ -100,6 +113,8 @@
     "html-webpack-plugin": "^2.8.1",
     "http-proxy-middleware": "^0.17.2",
     "isparta-loader": "^2.0.0",
+    "jest": "^19.0.2",
+    "jest-vue-preprocessor": "^0.1.2",
     "json-loader": "^0.5.4",
     "opn": "^4.0.2",
     "postcss-cssnext": "^2.9.0",
