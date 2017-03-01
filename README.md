@@ -20,12 +20,6 @@ npm run pack
 # release new version
 npm run dist
 
-# run unit tests
-npm run unit
-
-# run e2e tests
-npm run e2e
-
-# run all tests
+# run tests
 npm test
 ```
