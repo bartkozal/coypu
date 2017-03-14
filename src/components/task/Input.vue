@@ -12,10 +12,8 @@
       @keydown.enter.prevent="splitTask"
       @keydown.up.prevent="selectPreviousTask"
       @keydown.down.prevent="selectNextTask"
-      @keydown.ctrl.left.prevent="moveCaretToStart"
-      @keydown.meta.left.prevent="moveCaretToStart"
-      @keydown.ctrl.right.prevent="moveCaretToEnd"
-      @keydown.meta.right.prevent="moveCaretToEnd"
+      @keydown.left="handleLeftKey"
+      @keydown.right="handleRightKey"
       @keydown.delete="removeTask"
       @keydown.tab.prevent="updateTaskCompletion">
     </textarea>
@@ -67,6 +65,18 @@ export default {
       'saveTimeline', 'deselectTask', 'updateTask', 'createTask', 'joinTasks',
       'selectTask', 'selectPreviousTask', 'selectNextTask'
     ]),
+    handleLeftKey (e) {
+      if (e.ctrlKey || e.metaKey) {
+        e.preventDefault()
+        this.moveCaretToStart(e)
+      }
+    },
+    handleRightKey (e) {
+      if (e.ctrlKey || e.metaKey) {
+        e.preventDefault()
+        this.moveCaretToEnd(e)
+      }
+    },
     blurTask () {
       this.$refs.textarea.blur()
       this.deselectTask()
