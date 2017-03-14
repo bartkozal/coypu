@@ -1,7 +1,10 @@
 <template>
   <div class="settings-key">
     <div class="has-key">
-      <div class="key" v-for="keycap in keys">{{ keycap }}</div>
+      <div class="key" v-for="(keycap, index) in keys">
+        <div class="key-modifier" v-if="atOnce && index > 0">+</div>
+        <div class="key-caption"> {{ keycap }}</div>
+      </div>
     </div>
     <div>
       <slot></slot>
@@ -20,7 +23,12 @@ export default {
   },
   computed: {
     keys () {
-      return this.keycap.split(' or ')
+      return this.keycap.split(/ (?:or|and) /)
+    }
+  },
+  data () {
+    return {
+      atOnce: /and/.test(this.keycap)
     }
   }
 }
@@ -38,21 +46,34 @@ export default {
 }
 
 .has-key {
-  flex-basis: 40%;
+  display: flex;
+  flex-basis: 45%;
 }
 
 .key {
-  display: inline-block;
+  display: flex;
+}
+
+.key + .key {
+  margin-left: 10px;
+}
+
+.key-caption,
+.key-modifier {
   min-width: 20px;
+  text-align: center;
+}
+
+.key-caption {
   padding: 8px 12px;
   font-family: BlinkMacSystemFont, "Clear Sans";
-  text-align: center;
   border: 1px solid white;
   border-radius: 5px;
   box-shadow: 0 2px white;
 }
 
-.key + .key {
-  margin-left: 10px;
+.key-modifier {
+  padding: 8px 4px;
+  margin-left: -10px;
 }
 </style>
