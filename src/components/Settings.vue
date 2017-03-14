@@ -13,6 +13,9 @@
         <settings-key keycap="Backspace">Remove task</settings-key>
         <settings-key keycap="Tab">Complete task</settings-key>
         <settings-key keycap="↑ or ↓">Jump between tasks</settings-key>
+        <settings-key keycap="⇧ and Enter">
+          Add a note to the task
+        </settings-key>
       </div>
     </transition>
     <i class="icon" @click="isActive = !isActive"
