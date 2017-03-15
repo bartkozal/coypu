@@ -1,3 +1,4 @@
+import Vue from 'vue'
 import moment from 'moment'
 import { isUndefined } from 'lodash'
 import { previousTask, nextTask } from '../helpers'
@@ -6,6 +7,7 @@ export default {
   state: {
     activeTask: null,
     activeDay: null,
+    selectWithFocus: false,
     list: {}
   },
   getters: {
@@ -13,7 +15,8 @@ export default {
     list: state => { return state.list },
     listKey: (_, __, rootState) => {
       return moment(rootState.timeline.timelineDate).format('YYYY-w')
-    }
+    },
+    selectWithFocus: state => { return state.selectWithFocus }
   },
   mutations: {
     setList (state, list) {
@@ -39,27 +42,37 @@ export default {
       state.activeTask = dayList[dayList.indexOf(newTask)]
     },
     updateTaskCompletion ({ activeTask }, completion) {
-      activeTask.completion = completion
+      Vue.set(activeTask, 'completion', completion)
     },
     updateTaskBody ({ activeTask }, body) {
-      activeTask.body = body
+      Vue.set(activeTask, 'body', body)
+    },
+    updateTaskNote ({ activeTask }, note) {
+      Vue.set(activeTask, 'note', note)
     },
     toggleTask (state, task) {
       task.completion = !task.completion
     },
-    selectTask (state, { day, task }) {
+    selectTask (state, { day, task, withFocus }) {
       state.activeDay = day
       state.activeTask = task
+      state.selectWithFocus = withFocus
     },
     selectPreviousTask (state) {
       const task = previousTask(state)
 
-      if (task) { state.activeTask = task }
+      if (task) {
+        state.activeTask = task
+        state.selectWithFocus = true
+      }
     },
     selectNextTask (state) {
       const task = nextTask(state)
 
-      if (task) { state.activeTask = task }
+      if (task) {
+        state.activeTask = task
+        state.selectWithFocus = true
+      }
     },
     removeTask (state) {
       const task = previousTask(state, (state) => {
@@ -87,9 +100,10 @@ export default {
       commit('setCaretOffset', caretOffset)
       dispatch('saveTimeline')
     },
-    updateTask ({ commit, dispatch }, { body, completion }) {
+    updateTask ({ commit, dispatch }, { body, completion, note }) {
       if (!isUndefined(body)) { commit('updateTaskBody', body) }
       if (!isUndefined(completion)) { commit('updateTaskCompletion', completion) }
+      if (!isUndefined(note)) { commit('updateTaskNote', note) }
       dispatch('saveTimeline')
     },
     toggleTask ({ commit, dispatch }, task) {
@@ -101,8 +115,8 @@ export default {
       commit('setCaretOffset', caretOffset)
       dispatch('saveTimeline')
     },
-    selectTask ({ commit }, { day, task }) {
-      commit('selectTask', { day, task })
+    selectTask ({ commit }, { day, task, withFocus }) {
+      commit('selectTask', { day, task, withFocus })
     },
     selectPreviousTask ({ commit }) {
       commit('selectPreviousTask')
@@ -111,7 +125,7 @@ export default {
       commit('selectNextTask')
     },
     deselectTask ({ commit }) {
-      commit('selectTask', { day: null, task: null })
+      commit('selectTask', { day: null, task: null, withFocus: false })
     }
   }
 }

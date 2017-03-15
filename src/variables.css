@@ -3,6 +3,7 @@
   --font-base: 1em;
   --font-ratio: 1.3333;
   --font-leading: 1.45;
+  --font-small: calc(1em / var(--font-ratio));
   --font-large: calc(1em * var(--font-ratio));
   --spacing-unit: 1rem;
   --color-text: #111;
