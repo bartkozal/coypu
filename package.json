@@ -19,7 +19,7 @@
   },
   "build": {
     "appId": "bkzl.coypu",
-    "copyright": "© 2017 Bartłomiej Kozal, Maciej Kozal",
+    "copyright": "© 2017 Bart Kozal, Maciej Kozal",
     "productName": "Coypu",
     "asar": true,
     "forceCodeSigning": true,
