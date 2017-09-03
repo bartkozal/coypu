@@ -4,7 +4,7 @@
   "homepage": "https://coypu.co",
   "license": "CC-BY-ND-4.0",
   "description": "Text-editor-like weekly planner",
-  "author": "Lost Bananas <hello@lostbananas.com>",
+  "author": "Bart Kozal <bkzl@me.com>",
   "main": "main.js",
   "dependencies": {
     "electron-context-menu": "^0.8.0",
