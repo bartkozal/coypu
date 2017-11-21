@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="has-list" ref="container">
-      <div v-for="(tasks, day) in list">
+      <div v-for="(tasks, day) in list" :key="day">
         <div :class="{'list-today': isToday(day)}" class="list-name" @click="createTask({ day })">
           {{ dayOfWeek(day) }}
         </div>
@@ -12,7 +12,7 @@
 
         <div v-else>
           <div class="list">
-            <div class="list-item" v-for="task in tasks">
+            <div class="list-item" v-for="(task, index) in tasks" :key="index">
               <task :day="day" :task="task"></task>
             </div>
           </div>

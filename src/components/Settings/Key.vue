@@ -1,7 +1,7 @@
 <template>
   <div class="settings-key">
     <div class="has-key">
-      <div class="key" v-for="(keycap, index) in keys">
+      <div class="key" v-for="(keycap, index) in keys" :key="index">
         <div class="key-modifier" v-if="atOnce && index > 0">+</div>
         <div class="key-caption"> {{ keycap }}</div>
       </div>
