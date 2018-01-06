@@ -66,7 +66,7 @@ export default {
 
 .key-caption {
   padding: 8px 12px;
-  font-family: BlinkMacSystemFont, "Clear Sans";
+  font-family: BlinkMacSystemFont, "Clear Sans", sans-serif;
   border: 1px solid white;
   border-radius: 5px;
   box-shadow: 0 2px white;

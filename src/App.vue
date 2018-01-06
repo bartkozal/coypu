@@ -76,8 +76,8 @@ body {
 }
 
 .ps-container.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail,
-.ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail,
-.ps-container:hover > .ps-scrollbar-y-rail:hover {
+.ps-container:hover > .ps-scrollbar-y-rail:hover,
+.ps-container:hover.ps-in-scrolling.ps-y > .ps-scrollbar-y-rail {
   background-color: transparent;
   opacity: unset;
 }
