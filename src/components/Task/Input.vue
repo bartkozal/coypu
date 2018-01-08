@@ -183,11 +183,6 @@ export default {
   color: var(--color-primary);
 }
 
-.task-completed > textarea {
-  color: var(--color-muted);
-  text-decoration: line-through;
-}
-
 textarea {
   display: block;
   width: 100%;
@@ -200,5 +195,10 @@ textarea {
   background-color: transparent;
   border: 0;
   outline: 0;
+}
+
+.task-completed > textarea {
+  color: var(--color-muted);
+  text-decoration: line-through;
 }
 </style>
