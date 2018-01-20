@@ -9,6 +9,10 @@
           <settings-locale></settings-locale>
         </div>
 
+        <div class="settings-view-section">
+          <settings-hide></settings-hide>
+        </div>
+
         <settings-key keycap="Enter">Add new task</settings-key>
         <settings-key keycap="Backspace">Remove task</settings-key>
         <settings-key keycap="Tab">Complete task</settings-key>
@@ -24,6 +28,7 @@
 </template>
 
 <script>
+import SettingsHide from 'components/Settings/Hide'
 import SettingsKey from 'components/Settings/Key'
 import SettingsLocale from 'components/Settings/Locale'
 
@@ -35,6 +40,7 @@ export default {
     }
   },
   components: {
+    SettingsHide,
     SettingsKey,
     SettingsLocale
   }

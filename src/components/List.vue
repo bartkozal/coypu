@@ -13,7 +13,7 @@
         <div v-else>
           <div class="list">
             <div class="list-item" v-for="(task, index) in tasks" :key="index">
-              <task :day="day" :task="task"></task>
+              <task v-if="task.completion === false || hideCompleted === false" :day="day" :task="task"></task>
             </div>
           </div>
         </div>
@@ -44,7 +44,7 @@ export default {
     Scrollbar.update(this.$refs.container)
   },
   computed: {
-    ...mapGetters(['list', 'calendarLocale'])
+    ...mapGetters(['list', 'calendarLocale', 'hideCompleted'])
   },
   methods: {
     ...mapActions(['createTask']),
