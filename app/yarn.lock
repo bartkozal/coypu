@@ -12,7 +12,7 @@ deep-equal@^1.0.1:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/deep-equal/-/deep-equal-1.0.1.tgz#f5d260292b660e084eff4cdbc9f08ad3247448b5"
 
-electron-context-menu@^0.8.0:
+electron-context-menu@0.8.0:
   version "0.8.0"
   resolved "https://registry.yarnpkg.com/electron-context-menu/-/electron-context-menu-0.8.0.tgz#60c4b5e29d5514007be8728a6ebdf3cb694c4e3e"
   dependencies:
@@ -31,15 +31,15 @@ electron-is-dev@^0.1.1:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/electron-is-dev/-/electron-is-dev-0.1.2.tgz#8a1043e32b3a1da1c3f553dce28ce764246167e3"
 
-electron-squirrel-startup@^1.0.0:
+electron-squirrel-startup@1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/electron-squirrel-startup/-/electron-squirrel-startup-1.0.0.tgz#19b4e55933fa0ef8f556784b9c660f772546a0b8"
   dependencies:
     debug "^2.2.0"
 
-electron-window-state@^4.0.2:
-  version "4.1.1"
-  resolved "https://registry.yarnpkg.com/electron-window-state/-/electron-window-state-4.1.1.tgz#6b34fdc31b38514dfec8b7c8f7b5d4addb67632d"
+electron-window-state@4.0.2:
+  version "4.0.2"
+  resolved "https://registry.yarnpkg.com/electron-window-state/-/electron-window-state-4.0.2.tgz#f214ddb99c57d905af89bd2b314e1d4cda628963"
   dependencies:
     deep-equal "^1.0.1"
     jsonfile "^2.2.3"
