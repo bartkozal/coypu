@@ -2,9 +2,11 @@
 
 > Text-editor-like weekly planner
 
+![screenshot](https://mackozal.com/static/19.552cc8a3.jpg)
+
 ## Build Setup
 
-``` bash
+```bash
 # install dependencies
 npm install
 
