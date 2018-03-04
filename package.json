@@ -7,13 +7,13 @@
   "author": "Bart Kozal <bkzl@me.com>",
   "private": true,
   "scripts": {
-    "start": "npm run dev",
+    "start": "yarn dev",
     "postinstall": "install-app-deps",
     "dev": "node build/dev-server.js",
     "build": "node build/build.js",
     "app": "electron app",
-    "pack": "npm run build && build --dir",
-    "dist": "npm run build && build -mwl",
+    "pack": "yarn run build && build --dir",
+    "dist": "yarn run build && build -mwl",
     "test": "jest",
     "lint": "eslint --ext .js,.vue src test"
   },
@@ -43,10 +43,7 @@
     },
     "mac": {
       "category": "public.app-category.productivity",
-      "target": [
-        "dmg",
-        "zip"
-      ]
+      "target": ["dmg", "zip"]
     },
     "squirrelWindows": {
       "iconUrl": "https://coypu.co/icon.ico",
@@ -60,10 +57,7 @@
     "moduleNameMapper": {
       "(.*)$": "<rootDir>/src/$1"
     },
-    "moduleFileExtensions": [
-      "js",
-      "vue"
-    ],
+    "moduleFileExtensions": ["js", "vue"],
     "transform": {
       ".*\\.js$": "babel-jest",
       ".*\\.vue$": "jest-vue-preprocessor"
