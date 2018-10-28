@@ -1,8 +1,0 @@
-.DS_Store
-node_modules/
-dist/
-npm-debug.log
-
-app/node_modules/
-app/static/
-app/index.html
