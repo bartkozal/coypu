@@ -3,3 +3,5 @@
 # Coypu
 
 > Text-editor-like weekly planner – [coypu.co](https://coypu.co)
+
+![screenshot](https://mackozal.com/static/19.552cc8a3.jpg)
