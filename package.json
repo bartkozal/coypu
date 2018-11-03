@@ -8,9 +8,11 @@
   "author": "Bart Kozal <bkzl@me.com>, Mac Kozal <mackozal@me.com>",
   "license": "GPL-3.0",
   "scripts": {
-    "start": "run-p dev:*",
-    "dev:client": "parcel ./src/client/index.html",
-    "dev:desktop": "electron ./src/desktop/main.js"
+    "start": "yarn dev",
+    "build:client": "parcel ./src/client/index.html --out-dir ./build/client",
+    "build:desktop": "parcel ./src/desktop/main.ts --out-dir ./build/desktop --target electron",
+    "dev": "run-p build:* dev:desktop",
+    "dev:desktop": "electron ./build/desktop/main.js"
   },
   "devDependencies": {
     "electron": "^3.0.6",
