@@ -20,4 +20,5 @@
 
    ```
    $ yarn start
+   $ yarn dev:desktop
    ```
