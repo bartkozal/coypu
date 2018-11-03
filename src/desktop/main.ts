@@ -1,6 +1,7 @@
-const { app, BrowserWindow } = require("electron");
+import { app, BrowserWindow } from "electron";
+import electronReload from "electron-reload";
 
-require("electron-reload")(__dirname);
+electronReload(__dirname);
 
 // To avoid garbage collector; don't remove!
 let mainWindow;
