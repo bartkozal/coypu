@@ -24,6 +24,7 @@
   },
   "dependencies": {
     "electron": "^3.0.6",
+    "electron-window-state": "^5.0.2",
     "react": "^16.6.0",
     "react-dom": "^16.6.0"
   }

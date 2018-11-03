@@ -1,5 +1,6 @@
 import { app, BrowserWindow } from "electron";
 import electronReload from "electron-reload";
+import electronWindowState from "electron-window-state";
 
 electronReload(__dirname);
 
@@ -7,7 +8,23 @@ electronReload(__dirname);
 let mainWindow;
 
 const createWindow = () => {
-  mainWindow = new BrowserWindow({ width: 800, height: 600 });
+  let windowState = electronWindowState({
+    defaultWidth: 420,
+    defaultHeight: 640
+  });
+
+  mainWindow = new BrowserWindow({
+    x: windowState.x,
+    y: windowState.y,
+    width: windowState.width,
+    height: windowState.height,
+    minWidth: 370,
+    minHeight: 100,
+    titleBarStyle: "hiddenInset"
+  });
+
+  windowState.manage(mainWindow);
+
   mainWindow.loadURL("http://localhost:1234");
   mainWindow.on("closed", () => {
     mainWindow = null;
